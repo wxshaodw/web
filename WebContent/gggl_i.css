@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+#north{
+	overflow: hidden;
+    position: relative;
+}
+#north #north_left #logo{
+	float:left;
+}
+#north #north_right{
+	float:right;
+}
+#datetime{
+	float:right;
+	font-align:right;
+}
+#weather{
+	float:right;
+	font-size:16px;
+	font-align:right;
+}
+#testbar{
+	height:30px;
+	overflow:hidden;
+	position:relative;
+}
+#testbar_left{
+	float: left;
+}
+#testbar_center{
+    float: left;
+}
+#testbar_right{
+	float: right;
+}
+#funcbar{
+	
+}
+#center #data{
+}
+#center #quicket{
+	position:absolute;
+	bottom:3%
+}
+#south{
+	position:absolute;
+    bottom:0px
+}
