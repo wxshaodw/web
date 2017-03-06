@@ -43,14 +43,15 @@
                     </select>
                     <font>发布日期：</font>
                     <input type="text"/>
+                    asdfasdfasdfas
                     <input type="button" value="确定" />
                 </div>
                 <div id="control_right">
                     <font id=page>1/7页</font>
-                    <a></a>
-                    <a></a>
-                    <a></a>
-                    <a></a>
+                    <a><img /></a>
+                    <a><img /></a>
+                    <a><img /></a>
+                    <a><img /></a>
                     <font>跳转到：第</font>
                     <input id="page" />
                     <font>页</font>
@@ -59,20 +60,20 @@
             </form>
         </div>
         <div id="data">
-        <table id="rs">
-            <tr>
-                <td>发布人</td>
-                <td>类型</td>
-                <td>标题</td>
-                <td>发布范围</td>
-                <td>生效日期</td>
-            </tr>
-        </table>
+            <table id="rs">
+                <tr>
+                    <td>发布人</td>
+                    <td>类型</td>
+                    <td>标题</td>
+                    <td>发布范围</td>
+                    <td>生效日期</td>
+                </tr>
+            </table>
         </div>
         <div id="quicket">
-        <font>快捷操作：</font>
-        <button>标记所有公告为已读</button>
-        <button>按生效日期排列</button>
+            <font>快捷操作：</font>
+            <button>标记所有公告为已读</button>
+            <button>按生效日期排列</button>
         </div>
     </div>
     <div id="south">尾页</div>

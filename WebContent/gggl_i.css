@@ -33,8 +33,11 @@
 	float: right;
 }
 #funcbar{
-	
 }
+#center #control #control_left{
+	float:left;
+}
+
 #center #data{
 }
 #center #quicket{
