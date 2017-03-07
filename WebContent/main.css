@@ -34,11 +34,17 @@
 }
 #funcbar{
 }
+#center #control{
+	overflow:hidden;
+	position:relative;
+}
 #center #control #control_left{
 	float:left;
 }
-
-#center #data{
+#center #control #control_right{
+	float:right;
+}
+#center #data #rs{
 }
 #center #quicket{
 	position:absolute;
@@ -47,4 +53,16 @@
 #south{
 	position:absolute;
     bottom:0px
+}
+#south #online{
+	float:left;
+	position:relative;
+}
+#south #company{
+	float:left;
+	position:relative;
+}
+#south #extra{
+	float:right;
+	position:relative;
 }

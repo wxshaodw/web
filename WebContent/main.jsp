@@ -59,22 +59,35 @@
             </form>
         </div>
         <div id="data">
-        <table id="rs">
-            <tr>
-                <td>发布人</td>
-                <td>类型</td>
-                <td>标题</td>
-                <td>发布范围</td>
-                <td>生效日期</td>
-            </tr>
+            <table align=center id="rs" border="2">
+                <tr>
+                    <td style="width:150px;overflow: hidden;" align=center>发布人</td>
+                    <td style="width:120px;overflow: hidden;" align=center>类型</td>
+                    <td style="width:150px;overflow: hidden;" align=center>标题</td>
+                    <td style="width:800px;overflow: hidden;" align=center>发布范围</td>
+                    <td style="width:180px;overflow: hidden;" align=center>生效日期</td>
+                </tr>
         </table>
         </div>
         <div id="quicket">
-        <font>快捷操作：</font>
-        <button>标记所有公告为已读</button>
-        <button>按生效日期排列</button>
+            <font>快捷操作：</font>
+            <button>标记所有公告为已读</button>
+            <button>按生效日期排列</button>
         </div>
     </div>
-    <div id="south">尾页</div>
+    <div id="south">
+        <table align="center" weight="1500px">
+            <tr>
+                <td>在线5人</td>
+                <td align="center">东莞理工学院城市学院</td>
+                <td align="right">
+                    <a>额外1</a>
+                    <a>额外2</a>
+                    <a>额外3</a>
+                </td>
+            </tr>
+        </table>
+    <div></div>
+    </div>
 </body>
 </html>
