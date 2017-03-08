@@ -62,9 +62,9 @@
         <div id="testbar_right">拓展功能</div>
     </div>
     <div id="funcbar">
-        <button onclick="reflush('/gggl/massage.jsp')">未读公告</button>
-        <button onclick="reflush('/gggl/massage.jsp')">已读公告</button>
-        <button onclick="reflush('/gggl/massage.jsp')">公告查询</button>
+        <button onclick="reflush('/gggl/massage.jsp')">公共管理</button>
+        <button onclick="reflush('/gggl/massage.jsp')">新建公告</button>
+        <button onclick="reflush('/gggl/query.jsp')">公告查询</button>
     </div>
     <div id="center">
     </div>

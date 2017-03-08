@@ -19,10 +19,10 @@
                 </div>
                 <div id="control_right">
                     <font id=page>1/7页</font>
-                    <a></a>
-                    <a></a>
-                    <a></a>
-                    <a></a>
+                    <a>首页</a>
+                    <a>上一页</a>
+                    <a>下一页</a>
+                    <a>尾页</a>
                     <font>跳转到：第</font>
                     <input id="page" />
                     <font>页</font>

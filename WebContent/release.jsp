@@ -4,22 +4,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
+</head>
 <body>
 <table border="1" >
-    <tr height="100px">
-        <td>格式：</td>
+    <tr>
+        <td>
+            <select>
+                <option></option>
+            </select>
+        </td>
         <td width="500px">
-        <select>
-            <option></option>
-        </select>
+        <input type="text" value="请输入标题内容" width="80px"/>
         </td>
     </tr>
-        <tr>
-        <td>类型：</td>
+    <tr height="100px">
+        <td>按部门发布：</td>
+        <td><a>或按人员或角色发布</a></td>
         <td width="500px">
-            <select>
-            <option></option>
-            </select>
         </td>
     </tr>
     <tr>
