@@ -18,8 +18,8 @@
         </td>
     </tr>
     <tr height="100px">
-        <td>按部门发布：</td>
-        <td><a>或按人员或角色发布</a></td>
+        <td>按部门发布：<br>
+        <a>或按人员或角色发布</a></td>
         <td width="500px">
         </td>
     </tr>
