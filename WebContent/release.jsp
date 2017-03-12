@@ -6,7 +6,7 @@
 </head>
 </head>
 <body>
-<table border="1" >
+<table align="center" style="margin-top: 70" border="1" >
     <tr>
         <td>
             <select>
