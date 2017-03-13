@@ -1,4 +1,4 @@
-package com.csxy.gggl;
+package com.csxy.gggl.servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
