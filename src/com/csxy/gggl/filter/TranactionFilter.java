@@ -18,9 +18,9 @@ import com.csxy.gggl.db.JDBCUtils;
 import com.csxy.gggl.web.ConnectionContext;
 
 /**
- * Servlet Filter implementation class TranactionFilter
+ * Servlet Filter implementation class T
  */
-@WebFilter("/TranactionFilter")
+@WebFilter(filterName="/TranactionFilter",urlPatterns={"/*"})
 public class TranactionFilter implements Filter {
 
     /**
@@ -41,15 +41,11 @@ public class TranactionFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
 		Connection connection =null;
 		
 		try{
 			//1.获取连接
 			connection=JDBCUtils.getConnection();
-			
-			System.out.println("110");
-			
 			//2.开启事务(屏蔽自动提交实现事务回归)
 			connection.setAutoCommit(false);
 			

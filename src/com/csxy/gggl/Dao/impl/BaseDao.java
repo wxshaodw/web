@@ -42,5 +42,15 @@ public class BaseDao<T> implements Dao<T>{
 		
 		return id;
 	}
+
+	@Override
+	public T query(String sql, Object... args) {
+		Connection connection=null;
+		List<>
+		try{
+			
+		}// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
