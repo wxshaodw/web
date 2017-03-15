@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<form>
+<form action="user_servlet?methods=register" method="post">
     <table id="register" align="center">
         <tr align="right">
             <td>用户名：</td>

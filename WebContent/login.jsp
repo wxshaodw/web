@@ -26,7 +26,7 @@
 <title>用户登录</title>
 </head>
 <body>
-    <form id="chat" action="login_servlet" method="post">
+    <form id="chat" action="user_servlet?methods=login" method="post">
     <div id="username_box">
         <label for="username">用户名：</label>
         <input type="text" id="username" name="username" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入用户名">
