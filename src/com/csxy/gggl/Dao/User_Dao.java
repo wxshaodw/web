@@ -1,5 +1,7 @@
 package com.csxy.gggl.Dao;
 
+import java.util.List;
+
 import com.csxy.gggl.domain.User;
 
 public interface User_Dao {

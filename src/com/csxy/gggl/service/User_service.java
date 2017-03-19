@@ -11,4 +11,13 @@ public class User_service {
 	public boolean register(User new_user){
 		return user_dao.register(new_user);
 	}
+	
+	public User login(String username ,String password){
+		User user=user_dao.get_User(username);
+		if(!password.equals(user.getU_password())){
+			user=null;
+		}
+		return user;
+		
+	}
 }

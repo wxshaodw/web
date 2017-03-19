@@ -9,11 +9,11 @@
     <table id="register" align="center">
         <tr align="right">
             <td>用户名：</td>
-            <td><input type="text" /></td>
+            <td><input type="text" name="username" /></td>
         </tr>
         <tr align="right">
             <td>密&nbsp;&nbsp;&nbsp;码：</td>
-            <td><input type="text" /></td>
+            <td><input type="text" name="password" /></td>
         </tr>
         <tr align="right">
             <td>再次输入密码：</td>

@@ -6,6 +6,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import com.csxy.gggl.domain.User;
 import com.csxy.gggl.service.User_service;
@@ -32,15 +34,26 @@ public class user_servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName=request.getParameter("methods");
+		User user=new User();
+		user.setU_name(request.getParameter("username"));	
+		user.setU_password(request.getParameter("password"));
 		
 		if(methodName.equals("login")){
-			response.sendRedirect("main.jsp");
+			HttpSession session=request.getSession();
+			
+			user=user_service.login(user.getU_name(),user.getU_password());
+			if(user!=null){
+				session.setAttribute("User", user);
+				response.sendRedirect("main.jsp");
+			}
+			else{
+				session.setAttribute("error", "用户名或密码有误请重新输入");
+				response.sendRedirect("login.jsp");
+			}
 		}
 		else{
-			User new_user=new User();
-			new_user.setUsername(request.getParameter("username"));	
-			new_user.setPassword(request.getParameter("password"));
-			user_service.register(new_user);
+			user_service.register(user);
+			response.sendRedirect("login.jsp");
 		}
 		// TODO Auto-generated method stub
 	}

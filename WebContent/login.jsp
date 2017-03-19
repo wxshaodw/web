@@ -20,7 +20,8 @@
     }
 </script>
 <%
-    String massage=(String)request.getAttribute("error");
+    String massage=(String)session.getAttribute("error");
+    session.removeAttribute("error");
     if(massage==null)massage="";
 %>
 <title>用户登录</title>

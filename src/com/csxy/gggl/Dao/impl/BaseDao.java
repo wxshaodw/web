@@ -3,17 +3,34 @@ package com.csxy.gggl.Dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.csxy.gggl.Dao.Dao;
 import com.csxy.gggl.db.JDBCUtils;
+import com.csxy.gggl.domain.User;
+import com.csxy.gggl.utils.ReflectionUtils;
 import com.csxy.gggl.web.ConnectionContext;
 
 public class BaseDao<T> implements Dao<T>{
+	
+	Class<T> clazz=null;
+	
+	QueryRunner runner=new QueryRunner();
+	
+	
+	public BaseDao(){
+		clazz=ReflectionUtils.getSuperGenericType(getClass());
+	}
 
 	@Override
-	public long insert(String sql, Object... args) {
-		long id=0;
+	public int insert(String sql, Object... args) {
+		int id=0;
 		Connection connection=null;
 		PreparedStatement prepareStatement=null;
 		ResultSet resultSet=null;
@@ -32,7 +49,7 @@ public class BaseDao<T> implements Dao<T>{
 			
 			resultSet= prepareStatement.getGeneratedKeys();
 			if(resultSet.next()){
-				id= resultSet.getLong(1);
+				id= resultSet.getInt(1);
 			}
 		} catch(Exception e){
 			e.printStackTrace();
@@ -45,11 +62,27 @@ public class BaseDao<T> implements Dao<T>{
 
 	@Override
 	public T query(String sql, Object... args) {
-		Connection connection=null;
-		List<>
-		try{
-			
-		}// TODO Auto-generated method stub
+		
+		Connection connection=ConnectionContext.getinstance().get();
+		
+		try {
+			return runner.query(connection, sql, new BeanHandler<T>(clazz), args);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public boolean delect(String sql, Object... args) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public T update() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	
