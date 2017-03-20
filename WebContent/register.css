@@ -1,26 +1,12 @@
 @CHARSET "UTF-8";
-label{
-	cursor: default;
-}
-#chat{
-	align:center;
-}
-
-#login_panel{
-	height: 70px;
+#register{
+    height: 70px;
 	width: 300px;
 	border-top: 1px solid #ddd;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    margin-top: 70%;
+    margin-top:70%;
     border-bottom: 1px solid #ddd;
-}
-#username_box{
-	height: auto;
-	width: auto;
-}
-#passowrd_box{	height: auto;
-	width: auto;
 }

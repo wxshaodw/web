@@ -63,8 +63,7 @@ public class BaseDao<T> implements Dao<T>{
 	@Override
 	public T query(String sql, Object... args) {
 		
-		Connection connection=ConnectionContext.getinstance().get();
-		
+		Connection connection=ConnectionContext.getinstance().get();	
 		try {
 			return runner.query(connection, sql, new BeanHandler<T>(clazz), args);
 		} catch (SQLException e) {
@@ -76,14 +75,59 @@ public class BaseDao<T> implements Dao<T>{
 
 	@Override
 	public boolean delect(String sql, Object... args) {
+		boolean r=false;
+		Connection connection=ConnectionContext.getinstance().get();
+		PreparedStatement preparedStatement=null;
+		 try {
+			 preparedStatement=connection.prepareStatement(sql);
+			 if(args!=null){
+				 for(int i=0;i<args.length;i++){
+					 preparedStatement.setObject(i+1, args[i]);
+				 }
+			 }
+
+				r=preparedStatement.execute();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		// TODO Auto-generated method stub
-		return false;
+		return r;
 	}
 
 	@Override
-	public T update() {
+	public boolean update(String sql,Object...args) {
+		boolean r=false;
+		Connection connection=ConnectionContext.getinstance().get();
+		PreparedStatement preparedStatement=null;
+		
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			if(args!=null){
+				for(int i=0;i<args.length;i++){
+					preparedStatement.setObject(i+1, args[i]);
+				}
+			}
+			if(preparedStatement.executeUpdate()>0)r=true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		// TODO Auto-generated method stub
-		return null;
+		return r;
+	}
+
+	@Override
+	public T querybyList(String sql,Object...args) {
+		Connection connection=ConnectionContext.getinstance().get();
+		// TODO Auto-generated method stub
+		try {
+			return runner.query(connection, sql, new BeanHandler<T>(clazz), args);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

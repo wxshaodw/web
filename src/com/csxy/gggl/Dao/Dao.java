@@ -38,5 +38,9 @@ public interface Dao<T> {
 	 * @param sql：要执行的sql语句
 	 * @param args：执行时所需的参数
 	 * @param return：更新后的数据集**/
-	T update();
+	boolean update(String sql,Object...args);
+	
+	/**
+	 *查找记录并返回列表 **/
+	T querybyList(String sql,Object...args);
 }

@@ -3,6 +3,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='register.css'>
 </head>
 <body>
 <form action="user_servlet?methods=register" method="post">
