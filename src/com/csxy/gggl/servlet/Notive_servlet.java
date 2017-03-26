@@ -113,8 +113,7 @@ public class Notive_servlet extends HttpServlet {
 		notive.setN_begin_time(request.getParameter("begin_time"));
 		notive.setN_end_time(request.getParameter("end_time"));
 		notive.setN_run_state(run_state_Utils.return_state(notive.getN_begin_time(), notive.getN_end_time()));
-		notive.setN_context(conversion_utils.strtobyte(request.getParameter("content")));
-		System.out.println(notive.getN_context());
+		notive.setN_context(request.getParameter("content"));
 		return notive;
 	}
 	static void getPage(List<Notive> list,Notive_service notive_service,HttpSession session){

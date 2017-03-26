@@ -49,11 +49,11 @@
                     <td style="width:100px;overflow: hidden;" align=center>生效状态</td>
                     <td style="width:180px;overflow: hidden;" align=center>操作</td>
                 </tr>
-                <c:forEach items="<%=p.getList()%>" var="notive" >
+                <c:forEach items="<%=p.getList()%>" var="notive" varStatus="no" >
                     <tr>
                         <td style="width:150px;overflow: hidden;" align=center>${notive.getN_author()}</td>
                         <td style="width:120px;overflow: hidden;" align=center>${notive.getN_type()}</td>
-                        <td style="width:300px;overflow: hidden;" align=center>${notive.getN_title()}</td>
+                        <td style="width:300px;overflow: hidden;" align=center><a href="/gggl/check.jsp?no=${no.index}">${notive.getN_title()}</a></td>
                         <td style="width:400px;overflow: hidden;" align=center></td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_run_state() }</td>

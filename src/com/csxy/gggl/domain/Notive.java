@@ -1,17 +1,17 @@
 package com.csxy.gggl.domain;
 
 public class Notive {
-	int N_id;
-	String N_title;
-	String N_context;
-	String N_type;
-	String N_top;
-	int N_author;
-	String N_state;
-	String N_reseales_time;
-	String N_begin_time;
-	String N_end_time;
-	String N_run_state;
+	private int N_id;
+	private String N_title;
+	private String N_context;
+	private String N_type;
+	private String N_top;
+	private int N_author;
+	private String N_state;
+	private String N_reseales_time;
+	private String N_begin_time;
+	private String N_end_time;
+	private String N_run_state;
 	
 	
 	public int getN_id() {
