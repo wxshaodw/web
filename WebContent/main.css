@@ -1,5 +1,6 @@
 @CHARSET "UTF-8";
 #north{
+	margin-top:0px;
 	overflow: hidden;
     position: relative;
 }
@@ -19,6 +20,7 @@
 	font-align:right;
 }
 #testbar{
+	float:left;
 	height:30px;
 	overflow:hidden;
 	position:relative;
@@ -35,16 +37,9 @@
 #funcbar{
 }
 #center #control{
+	background-color:white;
 	overflow:hidden;
 	position:relative;
-}
-#center #control #control_left{
-	float:left;
-}
-#center #control #control_right{
-	float:right;
-}
-#center #data #rs{
 }
 #center #quicket{
 	position:absolute;

@@ -2,7 +2,7 @@ package com.csxy.gggl.web;
 
 import java.util.List;
 
-public class page<T> {
+public class Page<T> {
 	
 	//当前第几页
 	private int pageNo;
@@ -11,13 +11,13 @@ public class page<T> {
 	private List<T> list;
 	
 	//每页显示多少条记录
-	private int pageSize=10;
+	private static int pageSize=10;
 	
 	//共有多少条记录
 	private long totalItemNumber;
 	
 	//构造方法中需要对pageNo 进行初始化
-	public page(int pageNo){
+	public Page(int pageNo){
 		super();
 		this.pageNo=pageNo;
 	}
@@ -33,11 +33,15 @@ public class page<T> {
 		return pageNo;
 	}
 	
-	public int getPageSize(){
+	public static int getPageSize(){
 		return pageSize;
 	}
 	
-	public void serList(List<T> list){
+	public static void setPageSize(int pageSize ){
+		Page.pageSize=pageSize;
+	}
+	
+	public void setList(List<T> list){
 		this.list=list;
 	}
 	

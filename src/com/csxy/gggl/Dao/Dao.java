@@ -42,5 +42,5 @@ public interface Dao<T> {
 	
 	/**
 	 *查找记录并返回列表 **/
-	T querybyList(String sql,Object...args);
+	List<T> queryforList(String sql);
 }

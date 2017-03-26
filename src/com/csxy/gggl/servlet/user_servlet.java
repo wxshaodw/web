@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.User;
 import com.csxy.gggl.service.User_service;
 
@@ -35,16 +36,15 @@ public class user_servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName=request.getParameter("methods");
 		User user=new User();
-		user.setU_name(request.getParameter("username"));	
-		user.setU_password(request.getParameter("password"));
 		
 		if(methodName.equals("login")){
 			HttpSession session=request.getSession();
 			
+			user_servlet.create_user(user, request, response);		
 			user=user_service.login(user.getU_name(),user.getU_password());
 			if(user!=null){
 				session.setAttribute("User", user);
-				response.sendRedirect("main.jsp");
+				request.getRequestDispatcher("Notive_servlet?method=getPage").forward(request,response);
 			}
 			else{
 				session.setAttribute("error", "用户名或密码有误请重新输入");
@@ -52,7 +52,10 @@ public class user_servlet extends HttpServlet {
 			}
 		}
 		else{
-			user_service.register(user);
+			user_servlet.create_user(user, request, response);
+			Employee employee=new Employee();
+			user_servlet.create_employee(employee, request, response);
+			user_service.register(user,employee);
 			response.sendRedirect("login.jsp");
 		}
 		// TODO Auto-generated method stub
@@ -64,6 +67,15 @@ public class user_servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected static void create_user(User user,HttpServletRequest request, HttpServletResponse response){
+		user.setU_name(request.getParameter("username"));	
+		user.setU_password(request.getParameter("password"));
+	}
+	
+	protected static void create_employee(Employee employee,HttpServletRequest request, HttpServletResponse response){
+		employee.setP_name(request.getParameter(""));
 	}
 
 }

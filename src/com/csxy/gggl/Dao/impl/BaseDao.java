@@ -13,6 +13,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.csxy.gggl.Dao.Dao;
 import com.csxy.gggl.db.JDBCUtils;
+import com.csxy.gggl.domain.Notive;
 import com.csxy.gggl.domain.User;
 import com.csxy.gggl.utils.ReflectionUtils;
 import com.csxy.gggl.web.ConnectionContext;
@@ -42,6 +43,7 @@ public class BaseDao<T> implements Dao<T>{
 			if(args!=null){
 				for(int i=0;i<args.length;i++){
 					prepareStatement.setObject(i+1, args[i]);
+					System.out.println(args[i]);
 				}
 			}
 			
@@ -87,6 +89,7 @@ public class BaseDao<T> implements Dao<T>{
 			 }
 
 				r=preparedStatement.execute();
+				r=true;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -119,15 +122,16 @@ public class BaseDao<T> implements Dao<T>{
 	}
 
 	@Override
-	public T querybyList(String sql,Object...args) {
+	public List<T> queryforList(String sql) {
 		Connection connection=ConnectionContext.getinstance().get();
 		// TODO Auto-generated method stub
 		try {
-			return runner.query(connection, sql, new BeanHandler<T>(clazz), args);
+			return runner.query(connection, sql, new BeanListHandler<>(clazz));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return null;
 	}
 	
 }

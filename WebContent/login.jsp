@@ -4,6 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel='stylesheet' type='text/css' href='login.css'>
+<link rel="stylesheet" href="kindeditor-4.1.7/themes/simple/simple.css" />
+<link rel="stylesheet" href="kindeditor-4.1.7/plugins/code/prettify.css" />
+<script charset="utf-8" src="kindeditor-4.1.7/kindeditor.js"></script>
+<script charset="utf-8" src="kindeditor-4.1.7/lang/zh_CN.js"></script>
+<script charset="utf-8" src="kindeditor-4.1.7/plugins/code/prettify.js"></script>
 <script type="text/javascript">
     function turn(method){
     	var username=document.getElementById("username").value;
@@ -17,7 +22,6 @@
     	else{
     		document.getElementById("chat").submit();
     	}
-    	
     }
 </script>
 <%
@@ -30,13 +34,14 @@
 <body >
     <div id="login_panel" align="center">
     <form id="chat" action="user_servlet?methods=login" method="post">
-    <div id="username_box" align="center">
+    <div align="center"><label id="tip">用户登录</label></div>
+    <div id="username_box">
         <label for="username">用户名：</label>
         <input type="text" id="username" name="username" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入用户名">
     </div>
-    <div id="password_box" align="center">
+    <div id="password_box">
         <label for="password">密&nbsp;&nbsp;&nbsp;码：</label>
-        <input type="text" id="password" name="password" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入密码"><br>        
+        <input type="password" id="password" name="password" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入密码"><br>        
     </div>
     <div id="function" align="center">
         <button type="button" onclick="turn('login')" title="登录">登录</button>

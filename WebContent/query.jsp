@@ -5,40 +5,39 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<table id="query" style="margin-top: 70px;" align="center" border="1" >
-    <tr height="100px">
-        <td>格式：</td>
-        <td width="500px">
-        <select>
-            <option></option>
-        </select>
-        </td>
-    </tr>
+<table>
+<tr height="100"></tr>
+<tr>
+<table id="query" align="center" border="1" >
         <tr>
         <td>类型：</td>
         <td width="500px">
-            <select>
-            <option></option>
+            <select name="type">
+                <option value="全部">全部</option>
+                <option value="决定">决定</option>
+                <option value="通知">通知</option>
+                <option value="报告">报告</option>
+                <option value="其他">其他</option>
             </select>
         </td>
     </tr>
     <tr>
         <td>发布状态：</td>
         <td width="500px">
-        <select>
-            <option>全部</option>
-            <option>未发布</option>
-            <option>已发布</option>
+        <select name="state">
+            <option value="全部">全部</option>
+            <option value="未发布">未发布</option>
+            <option value="已发布">已发布</option>
         </select>
         </td>
     </tr>
         <tr>
         <td>是否顶置：</td>
         <td width="500px">
-        <select>
-            <option>全部</option>
-            <option>未顶置</option>
-            <option>已顶置</option>
+        <select name="top">
+            <option value="全部">全部</option>
+            <option value="未顶置">未顶置</option>
+            <option value="已顶置">已顶置</option>
         </select>
         </td>
     </tr>
@@ -49,30 +48,30 @@
         <tr>
         <td>发布日期：</td>
         <td width="500px">
-            <input type="text">
+            <input name="begin_time" type="date">
             <label>至</label>
-            <input type="text">
+            <input name="end_time" type="date">
         </td>
     </tr>   
         <tr>
         <td>生效状态：</td>
         <td width="500px">
-            <select>
-                <option>全部</option>
-                
+            <select name="run_state">
+                <option value="全部">全部</option>
+                <option value="待生效">待生效</option>
+                <option value="已生效">已生效</option>
+                <option value="已失效">已失效</option>
             </select>
         </td>
     </tr>    
-    <tr>
-        <td>操作：</td>
-        <td width="500px"></td>
-    </tr>
     <tr>
         <td align="center" colspan="2">
         <button type="submit">确定</button>
         <button type="reset">重置</button>
         </td>
     </tr>
+</table>
+</tr>
 </table>
 </body>
 </html>

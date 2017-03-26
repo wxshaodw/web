@@ -4,10 +4,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel='stylesheet' type='text/css' href='main.css'>
+<script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
 <script type="text/javascript">
     var xmlhttp;
-    function reflush(url){
-    	
+    function reflush(url,method){
+    	document.getElementById("function").action=method;
     	if(window.XMLHttpRequest){
     		xmlhttp=new XMLHttpRequest();
     	}
@@ -30,6 +31,12 @@
       if (xmlhttp.status==200)
         {// 200 = "OK"
         document.getElementById("center").innerHTML=xmlhttp.responseText;
+		$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
+			KindEditor.basePath = './kindeditor-4.1.7/';
+			KindEditor.create('textarea[name="content"]',{
+				afterBlur:function(){this.sync();}
+			});
+		});
         }
       else
         {
@@ -37,12 +44,34 @@
         }
       }
     }
+    
+    function delect(url){
+    	document.getElementById("function").action=url;
+    	document.getElementById("function").submit();
+    }
+    
+    function release(){
+    	document.getElementById("function").submit();
+    }
 </script>
 <title>公告管理系统</title>
-</head>
+<style type="text/css">
+<!--
+body {
+	background-image: url(image/main_bg.jpg);
+	background-size:100%;
+	background-repeat: no-repeat;
+}
+#center{
+    width:100%;
+    height:78%;
+    background-color: white;
+}
+-->
+</style></head>
 <body>
     <div id="north">
-        <div id="north_left"><img id=logo src="./image/logo.jpg"></div>
+        <div id="north_left"><img src="./image/logo.png" height="119" id=logo></div>
         <div id="north_right">
             <div id="datetime">
                 <div name="time">10:08</div>
@@ -56,28 +85,20 @@
             </div>
         </div>
     </div>
-    <div id="testbar">
-        <div id="testbar_left"><button id="menu">菜单</button></div>
-        <div id="testbar_center">当前任务</div>
-        <div id="testbar_right">拓展功能</div>
-    </div>
     <div id="funcbar">
-        <button onclick="reflush('/gggl/massage.jsp')">公共管理</button>
-        <button onclick="reflush('/gggl/release.jsp')">新建公告</button>
-        <button onclick="reflush('/gggl/query.jsp')">公告查询</button>
-    </div>
-    <div id="center">
-    </div>
+        <button name="Manger" onClick="reflush('/gggl/massage.jsp','Notive_servlet?method=getpage')">公共管理</button>
+        <button name="release" onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')">新建公告</button>
+        <button name="query" onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')">公告查询</button>
+    </div>    
+    <form id="function" action="Notive_servlet?method=getpage"  method="post">
+    <div id="center"><jsp:include page="massage.jsp" ></jsp:include></div>
+    </form>
+
     <div id="south">
         <table align="center" weight="1500px">
             <tr>
                 <td>在线5人</td>
                 <td align="center">东莞理工学院城市学院</td>
-                <td align="right">
-                    <a>额外1</a>
-                    <a>额外2</a>
-                    <a>额外3</a>
-                </td>
             </tr>
         </table>
     <div></div>

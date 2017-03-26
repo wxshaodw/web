@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Dynamic Load Examples</title>
+		<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+<script charset="utf-8" src="jquery.js"></script>
+<script type="text/javascript">
+    var xmlhttp;
+    function reflush(url){
+    	if(window.XMLHttpRequest){
+    		xmlhttp=new XMLHttpRequest();
+    	}
+    	else{
+    		xmlhttp=new ActivexOject("Microsoft.XMLHTTP");
+    	}
+    	if(xmlhttp!=null){
+    		xmlhttp.onreadystatechange=state_Change;
+    		xmlhttp.open("GET",url,true);
+    		xmlhttp.send();
+    	}
+    	else{
+    		alert("浏览器不支持");
+    	}
+    }
+    function state_Change()
+    {
+    if (xmlhttp.readyState==4)
+      {// 4 = "loaded"
+      if (xmlhttp.status==200)
+        {// 200 = "OK"
+        document.getElementById("function").innerHTML=xmlhttp.responseText;
+		$.getScript('../kindeditor-min.js', function() {
+			KindEditor.basePath = '../';
+			KindEditor.create('textarea[name="content"]');
+		});
+        }
+      else
+        {
+        alert("Problem retrieving data:" + xmlhttp.statusText);
+        }
+      }
+    }
+    
+    function delect(url){
+    	document.getElementById("function").action=url;
+    	document.getElementById("function").submit();
+    }
+    
+</script>
+</head>
+<body>
+<button name="release" onClick="reflush('/gggl/kindeditor-4.1.7/examples/release_context.jsp')">新建公告</button>
+<div id="function"></div>
+</body>
+</html>

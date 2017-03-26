@@ -1,10 +1,7 @@
 package com.csxy.gggl.test;
 
-import java.sql.Connection;
-
 import com.csxy.gggl.Dao.User_Dao;
 import com.csxy.gggl.Dao.impl.User_Dao_impl;
-import com.csxy.gggl.db.JDBCUtils;
 import com.csxy.gggl.domain.User;
 
 public class UserDao_test {
