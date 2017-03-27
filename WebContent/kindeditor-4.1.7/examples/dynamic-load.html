@@ -14,10 +14,12 @@
 		<script charset="utf-8" src="jquery.js"></script>
 		<script>
 			$(function() {
+				var Editor;
 				$('input[name=load]').click(function() {
 					$.getScript('../kindeditor-min.js', function() {
 						KindEditor.basePath = '../';
-						KindEditor.create('textarea[name="content"]');
+						Editor=KindEditor.create('textarea[name="content"]');
+						Editor.html('cnm');
 					});
 				});
 				$('input[name=remove]').click(function() {

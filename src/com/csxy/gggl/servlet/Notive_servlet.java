@@ -109,7 +109,7 @@ public class Notive_servlet extends HttpServlet {
 		notive.setN_type(request.getParameter("type"));
 		notive.setN_state(request.getParameter("state"));
 		notive.setN_top(request.getParameter("top"));
-		notive.setN_reseales_time(request.getParameter("release_time"));
+		notive.setN_release_time(request.getParameter("release_time"));
 		notive.setN_begin_time(request.getParameter("begin_time"));
 		notive.setN_end_time(request.getParameter("end_time"));
 		notive.setN_run_state(run_state_Utils.return_state(notive.getN_begin_time(), notive.getN_end_time()));

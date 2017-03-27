@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ page import="com.csxy.gggl.web.Page" %>
+<%@ page import="com.csxy.gggl.domain.Notive" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
-<%=request.getParameter("no") %>
+<%  Page<Notive> p=(Page<Notive>)session.getAttribute("Page");
+    Notive notive=p.getList().get(Integer.parseInt(request.getParameter("no")));
+%>
 <table>
 <tr height="60"></tr>
 <tr>
@@ -13,13 +17,13 @@
     <tr>
         <td>标题：</td>
         <td width="500px">
-        <input type="text" name="title" placeholder="请输入标题内容" width="80px"/>
+        <input type="text" name="title" value="<%=notive.getN_title() %>" width="80px"/>
         </td>
     </tr>
     <tr>
         <td>类别：</td>
         <td>
-            <select name="type">
+            <select name="type" value="<%=notive.getN_type() %>" >
                 <option value=""></option>
                 <option value="决定">决定</option>
                 <option value="通知">通知</option>
@@ -54,14 +58,14 @@
     </tr>
         <tr>
         <td>发布时间：</td>
-        <td width="500px"><input type="date" name="release_time"></td>
+        <td width="500px"><input type="date" name="release_time" value="<%=notive.getN_release_time()%>"></td>
     </tr>
         <tr>
         <td>有效时间：</td>
         <td width="500px">
-            <input type="date" name="begin_time">
+            <input type="date" name="begin_time" value="<%=notive.getN_begin_time() %>">
             <label>至</label>
-            <input type="date" name="end_time">
+            <input type="date" name="end_time" value="<%=notive.getN_end_time() %>">
         </td>
     </tr>   
         <tr>
@@ -70,11 +74,11 @@
         </td>
     </tr>    
     <tr height="200px">
-    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"></textarea></td>
+    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" ></textarea></td>
     </tr>
     <tr>
         <td align="center" colspan="2">
-        <button type="button" onclick="release()">确定</button>
+        <button type="button" onclick="update()">确定</button>
         </td>
     </tr>
 </table>

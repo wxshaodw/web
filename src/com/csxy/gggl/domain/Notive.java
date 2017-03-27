@@ -8,7 +8,7 @@ public class Notive {
 	private String N_top;
 	private int N_author;
 	private String N_state;
-	private String N_reseales_time;
+	private String N_release_time;
 	private String N_begin_time;
 	private String N_end_time;
 	private String N_run_state;
@@ -52,11 +52,12 @@ public class Notive {
 	public void setN_state(String n_state) {
 		N_state = n_state;
 	}
-	public String getN_reseales_time() {
-		return N_reseales_time;
+	
+	public String getN_release_time() {
+		return N_release_time;
 	}
-	public void setN_reseales_time(String n_reseales_time) {
-		N_reseales_time = n_reseales_time;
+	public void setN_release_time(String n_release_time) {
+		N_release_time = n_release_time;
 	}
 	public String getN_begin_time() {
 		return N_begin_time;

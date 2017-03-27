@@ -17,8 +17,8 @@
 <tr height="60"></tr>
 <tr>
 <table >
-    <tr align="center">
-    <td><h1><%=notive.getN_title() %></h1></td>
+    <tr>
+    <td align="center"><h1><%=notive.getN_title() %></h1></td>
     </tr>
     <tr>
     <td><%=notive.getN_context() %></td>

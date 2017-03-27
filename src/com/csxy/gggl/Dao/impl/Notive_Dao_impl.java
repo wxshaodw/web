@@ -66,7 +66,7 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	@Override
 	public boolean releaseNotive(Notive new_notive) {
 		String sql="insert into notive(N_author, N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context,N_run_state) values"+"(?,?,?,?,?,?,?,?,?,?)";
-		int notive_id=insert(sql,new_notive.getN_author(),new_notive.getN_title(),new_notive.getN_type(),new_notive.getN_state(),new_notive.getN_top(),new_notive.getN_reseales_time(),new_notive.getN_begin_time(),new_notive.getN_end_time(),new_notive.getN_context(),new_notive.getN_run_state());
+		int notive_id=insert(sql,new_notive.getN_author(),new_notive.getN_title(),new_notive.getN_type(),new_notive.getN_state(),new_notive.getN_top(),new_notive.getN_release_time(),new_notive.getN_begin_time(),new_notive.getN_end_time(),new_notive.getN_context(),new_notive.getN_run_state());
 		new_notive.setN_id(notive_id);// TODO Auto-generated method stub
 		return true;
 	}

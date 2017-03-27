@@ -3,9 +3,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<%@ page import="com.csxy.gggl.web.Page" %>
+<%@ page import="com.csxy.gggl.domain.Notive" %>
 <link rel='stylesheet' type='text/css' href='main.css'>
 <script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
-<script type="text/javascript">
+<script charset="utf-8" type="text/javascript">
+    var Editor;
     var xmlhttp;
     function reflush(page,method){
     	document.getElementById("function").action=method;
@@ -19,6 +22,15 @@
     		xmlhttp.onreadystatechange=state_Change;
     		xmlhttp.open("GET",page,true);
     		xmlhttp.send();
+    		if(method=="Notive_servlet?method=release")
+			{
+			$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
+			KindEditor.basePath = './kindeditor-4.1.7/';
+			KindEditor.create('textarea[name="content"]',{
+				afterBlur:function(){this.sync();}
+			});
+			});
+			}
     	}
     	else{
     		alert("浏览器不支持");
@@ -31,13 +43,6 @@
       if (xmlhttp.status==200)
         {// 200 = "OK"
         document.getElementById("center").innerHTML=xmlhttp.responseText;
-		if(method="Notive_servlet?method=release")
-			{$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
-			KindEditor.basePath = './kindeditor-4.1.7/';
-			KindEditor.create('textarea[name="content"]',{
-				afterBlur:function(){this.sync();}
-			});
-		});}
         }
       else
         {
@@ -55,9 +60,15 @@
     	document.getElementById("function").submit();
     }
     
-    function turntoupdate(page){
-    	alter(page);
-    	reflush(page,'Notive_servlet?method=update');
+    function update(page, method,content){
+    	reflush(page, method);
+			$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
+				KindEditor.basePath = './kindeditor-4.1.7/';
+				Editor=KindEditor.create('textarea[name="content"]',{
+					afterBlur:function(){this.sync();}
+				});
+				Editor.html(content);
+				});
     }
 </script>
 <title>公告管理系统</title>
