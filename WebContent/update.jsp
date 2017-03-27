@@ -1,23 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <html>
-<%
-request.setCharacterEncoding("UTF-8");
-String htmlData = request.getParameter("content1") != null ? request.getParameter("content1") : "";
-%>
-<%!
-private String htmlspecialchars(String str) {
-	str = str.replaceAll("&", "&amp;");
-	str = str.replaceAll("<", "&lt;");
-	str = str.replaceAll(">", "&gt;");
-	str = str.replaceAll("\"", "&quot;");
-	return str;
-}
-%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+<%=request.getParameter("no") %>
 <table>
 <tr height="60"></tr>
 <tr>
@@ -82,7 +70,7 @@ private String htmlspecialchars(String str) {
         </td>
     </tr>    
     <tr height="200px">
-    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea></td>
+    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"></textarea></td>
     </tr>
     <tr>
         <td align="center" colspan="2">

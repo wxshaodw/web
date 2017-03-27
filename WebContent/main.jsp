@@ -7,7 +7,7 @@
 <script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
 <script type="text/javascript">
     var xmlhttp;
-    function reflush(url,method){
+    function reflush(page,method){
     	document.getElementById("function").action=method;
     	if(window.XMLHttpRequest){
     		xmlhttp=new XMLHttpRequest();
@@ -17,7 +17,7 @@
     	}
     	if(xmlhttp!=null){
     		xmlhttp.onreadystatechange=state_Change;
-    		xmlhttp.open("GET",url,true);
+    		xmlhttp.open("GET",page,true);
     		xmlhttp.send();
     	}
     	else{
@@ -31,12 +31,13 @@
       if (xmlhttp.status==200)
         {// 200 = "OK"
         document.getElementById("center").innerHTML=xmlhttp.responseText;
-		$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
+		if(method="Notive_servlet?method=release")
+			{$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
 			KindEditor.basePath = './kindeditor-4.1.7/';
 			KindEditor.create('textarea[name="content"]',{
 				afterBlur:function(){this.sync();}
 			});
-		});
+		});}
         }
       else
         {
@@ -45,13 +46,18 @@
       }
     }
     
-    function delect(url){
-    	document.getElementById("function").action=url;
+    function delect(method){
+    	document.getElementById("function").action=method;
     	document.getElementById("function").submit();
     }
     
     function release(){
     	document.getElementById("function").submit();
+    }
+    
+    function turntoupdate(page){
+    	alter(page);
+    	reflush(page,'Notive_servlet?method=update');
     }
 </script>
 <title>公告管理系统</title>

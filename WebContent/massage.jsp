@@ -58,8 +58,8 @@
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_run_state() }</td>
                         <td style="width:180px;overflow: hidden;" align=center>
-                            <button onclick="">修改</button>
-                            <button onclick="delect('Notive_servlet?method=delect&delect='+${notive.getN_id()})">删除</button>
+                            <input type="button" value="修改" onClick="turntoupdate('/gggl/update.jsp?no='+${no.index})" />
+                            <input type="button" value="删除" onclick="delect('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
                     </tr>
                 </c:forEach>
