@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.csxy.gggl.web.Page" %>
 <%@ page import="com.csxy.gggl.domain.Notive" %>
 <html>
@@ -9,7 +10,11 @@
 <body>
 <%  Page<Notive> p=(Page<Notive>)session.getAttribute("Page");
     Notive notive=p.getList().get(Integer.parseInt(request.getParameter("no")));
+    session.setAttribute("change_notive",notive );
 %>
+<c:set var="type"><%=notive.getN_type() %></c:set>
+<c:set var="top"><%=notive.getN_top() %></c:set>
+<c:set var="state"><%=notive.getN_state() %></c:set>
 <table>
 <tr height="60"></tr>
 <tr>
@@ -24,11 +29,11 @@
         <td>类别：</td>
         <td>
             <select name="type" value="<%=notive.getN_type() %>" >
-                <option value=""></option>
-                <option value="决定">决定</option>
-                <option value="通知">通知</option>
-                <option value="报告">报告</option>
-                <option value="其他">其他</option>
+  <option value="" <c:if test="${type==''}" >selected="selected"</c:if>></option>
+                <option value="决定"  <c:if test="${type=='决定'}" >selected="selected"</c:if>>决定</option>
+                <option value="通知"  <c:if test="${type=='通知'}" >selected="selected"</c:if>>通知</option>
+                <option value="报告"  <c:if test="${type=='报告'}" >selected="selected"</c:if> >报告</option>
+                <option value="其他"  <c:if test="${type=='其他'}" >selected="selected"</c:if> >其他</option>
             </select>
         </td>
     </tr>
@@ -42,8 +47,8 @@
         <td>发布状态：</td>
         <td width="500px">
         <select name="state">
-            <option value="未发布">未发布</option>
-            <option value="已发布">已发布</option>
+            <option value="未发布" <c:if test="${state=='未发布'}" >selected="selected"</c:if>>未发布</option>
+            <option value="已发布" <c:if test="${state=='已发布'}" >selected="selected"</c:if>>已发布</option>
         </select>
         </td>
     </tr>
@@ -51,8 +56,8 @@
         <td>是否顶置：</td>
         <td width="500px">
         <select name="top">
-            <option value="未顶置">未顶置</option>
-            <option value="已顶置">已顶置</option>
+            <option value="未顶置" <c:if test="${top=='未顶置'}" >selected="selected"</c:if> >未顶置</option>
+            <option value="已顶置" <c:if test="${top=='已顶置'}" >selected="selected"</c:if> > 已顶置</option>
         </select>
         </td>
     </tr>
@@ -74,11 +79,11 @@
         </td>
     </tr>    
     <tr height="200px">
-    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" ></textarea></td>
+    <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;" ><%=notive.getN_context() %></textarea></td>
     </tr>
     <tr>
         <td align="center" colspan="2">
-        <button type="button" onclick="update()">确定</button>
+        <button type="button" onclick="updatetodatebase()">确定</button>
         </td>
     </tr>
 </table>

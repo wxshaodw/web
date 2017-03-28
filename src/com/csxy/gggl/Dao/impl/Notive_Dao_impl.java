@@ -10,6 +10,7 @@ import com.csxy.gggl.domain.Notive;
 import com.csxy.gggl.utils.conversion_utils;
 import com.csxy.gggl.utils.run_state_Utils;
 import com.csxy.gggl.web.Condition;
+import com.csxy.gggl.web.Page;
 
 public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
@@ -21,8 +22,8 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	}
 
 	@Override
-	public List<Notive> getNotivebycondition(Condition condition) {
-		String sql="select * from Notive";
+	public List<Notive> getNotivebycondition(Condition condition,int page_no) {
+		String sql="select * from notive";
 		String condition_str=" where ";
 		int condition_mun=0;
 		if(!condition.getType().equals("")){
@@ -58,9 +59,9 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		if(condition_mun!=0){
 			sql=sql+condition_str;
 		}
+		sql=sql+"limit ?,?";
 		// TODO Auto-generated method stub
-		System.out.println(sql);
-		return queryforList(sql);
+		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
 	@Override
@@ -72,9 +73,9 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	}
 
 	@Override
-	public boolean updateNotive(Notive new_notive) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateNotive(Notive notive) {
+		String sql="update Notive set N_author=?,N_title=?,N_type=?,N_state=?,N_top=?,N_release_time=?,N_begin_time=?,N_end_time=?,N_context=?,N_run_state=? where N_id=?";// TODO Auto-generated method stub
+		return update(sql, notive.getN_author(),notive.getN_title(),notive.getN_type(),notive.getN_state(),notive.getN_top(),notive.getN_release_time(),notive.getN_begin_time(),notive.getN_end_time(),notive.getN_context(),notive.getN_run_state(),notive.getN_id());
 	}
 
 	@Override
@@ -82,6 +83,20 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		String sql="delete from notive where N_id=?";
 		return delect(sql, id);
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Notive> queryforpage(int page_no) {
+		String sql="select * from notive limit ?,?";
+		// TODO Auto-generated method stub
+		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
+	}
+
+	@Override
+	public int Count_Notive() {
+		String sql="select count(*)from notive ";
+		// TODO Auto-generated method stub
+		return Countfordate(sql);
 	}
 
 

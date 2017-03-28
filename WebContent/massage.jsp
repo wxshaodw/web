@@ -8,9 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
-<%
-    Page<Notive> p=(Page<Notive>)session.getAttribute("Page");
-    %>
 <body>
     <form id="function" action="Notive_servlet?method=release" method="post">
         <div id="control">
@@ -22,19 +19,17 @@
                         <option>所有类型</option>
                     </select>
                     <font>发布日期：</font>
-                    <input type="text"/>
+                    <input type="date"/>
                     <input type="button" value="确定" />
                 </div>
                 <div id="control_right">
-                    <font id=page>1/7页</font>
-                    <a>首页</a>
-                    <a>上一页</a>
-                    <a>下一页</a>
-                    <a>尾页</a>
-                    <font>跳转到：第</font>
-                    <input id="page" />
-                    <font>页</font>
-                    <a>跳转</a>
+                    <font id=page>${Page.getPageNo()} / ${Page.getTotalPageNumber()}页</font>
+                    <a href="Notive_servlet?method=turn&page_no=1">首页</a>
+                    <a href="Notive_servlet?method=turn&page_no=${Page.getPrevPage()}">上一页</a>
+                    <a href="Notive_servlet?method=turn&page_no=${Page.getNextPage()}">下一页</a>
+                    <a href="Notive_servlet?method=turn&page_no=${Page.getTotalPageNumber()}">尾页</a>
+                    <font>跳转到：第</font><input type="text" name="target" /><font>页</font>
+                    <input type="button" value="跳转" onclick="T1('Notive_servlet?method=turn&page_no=0')">
                 </div>
             </form>
         </div>
@@ -49,7 +44,7 @@
                     <td style="width:100px;overflow: hidden;" align=center>生效状态</td>
                     <td style="width:180px;overflow: hidden;" align=center>操作</td>
                 </tr>
-                <c:forEach items="<%=p.getList()%>" var="notive" varStatus="no" >
+                <c:forEach items="${Page.getList()}" var="notive" varStatus="no" >
                     <tr>
                         <td style="width:150px;overflow: hidden;" align=center>${notive.getN_author()}</td>
                         <td style="width:120px;overflow: hidden;" align=center>${notive.getN_type()}</td>
@@ -58,7 +53,7 @@
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_run_state() }</td>
                         <td style="width:180px;overflow: hidden;" align=center>
-                            <input type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()},'${notive.getN_title() }')" />
+                            <input type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
                             <input type="button" value="删除" onclick="delect('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
                     </tr>

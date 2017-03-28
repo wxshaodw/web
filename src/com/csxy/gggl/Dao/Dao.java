@@ -42,5 +42,9 @@ public interface Dao<T> {
 	
 	/**
 	 *查找记录并返回列表 **/
-	List<T> queryforList(String sql);
+	List<T> queryforList(String sql,Object...args);
+	
+	/**
+	 * 返回数据总条数**/
+	int Countfordate(String sql);
 }

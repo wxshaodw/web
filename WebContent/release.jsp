@@ -32,7 +32,7 @@ private String htmlspecialchars(String str) {
         <td>类别：</td>
         <td>
             <select name="type">
-                <option value=""></option>
+                <option value="null"></option>
                 <option value="决定">决定</option>
                 <option value="通知">通知</option>
                 <option value="报告">报告</option>

@@ -60,15 +60,38 @@
     	document.getElementById("function").submit();
     }
     
-    function update(page, method,content){
+    function update(page, method){
     	reflush(page, method);
 			$.getScript('./kindeditor-4.1.7/kindeditor-min.js', function() {
 				KindEditor.basePath = './kindeditor-4.1.7/';
 				Editor=KindEditor.create('textarea[name="content"]',{
 					afterBlur:function(){this.sync();}
 				});
-				Editor.html(content);
+				Editor.sync();
 				});
+    }
+    
+    function flush(method){
+    	document.getElementById("function").action=method;
+    	document.getElementById("function").submit();
+    }
+    
+    function updatetodatebase(){
+    	document.getElementById("function").submit();
+    }
+    
+    function T1(method){
+    	var target_page=document.getElementsByName("target").value;
+    	if(target_page==undefined)alert("目标页不能为空");
+    	else{
+        	document.getElementById("function").action=method;
+        	document.getElementById("function").submit();
+    	}
+    }
+    
+    function screen_by_type(method){
+    	document.getElementById("function").action=method;
+    	document.getElementById("function").submit();
     }
 </script>
 <title>公告管理系统</title>
@@ -103,7 +126,7 @@ body {
         </div>
     </div>
     <div id="funcbar">
-        <button name="Manger" onClick="reflush('/gggl/massage.jsp','Notive_servlet?method=getpage')">公共管理</button>
+        <button name="Manger" onClick="flush('Notive_servlet?method=getPage')">公共管理</button>
         <button name="release" onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')">新建公告</button>
         <button name="query" onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')">公告查询</button>
     </div>    

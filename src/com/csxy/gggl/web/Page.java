@@ -11,7 +11,7 @@ public class Page<T> {
 	private List<T> list;
 	
 	//每页显示多少条记录
-	private static int pageSize=10;
+	private static final int pageSize=5;
 	
 	//共有多少条记录
 	private long totalItemNumber;
@@ -37,9 +37,6 @@ public class Page<T> {
 		return pageSize;
 	}
 	
-	public static void setPageSize(int pageSize ){
-		Page.pageSize=pageSize;
-	}
 	
 	public void setList(List<T> list){
 		this.list=list;

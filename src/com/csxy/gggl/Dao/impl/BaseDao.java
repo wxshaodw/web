@@ -122,16 +122,35 @@ public class BaseDao<T> implements Dao<T>{
 	}
 
 	@Override
-	public List<T> queryforList(String sql) {
+	public List<T> queryforList(String sql,Object...args) {
 		Connection connection=ConnectionContext.getinstance().get();
 		// TODO Auto-generated method stub
 		try {
-			return runner.query(connection, sql, new BeanListHandler<>(clazz));
+			return runner.query(connection, sql, new BeanListHandler<>(clazz),args);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public int Countfordate(String sql) {
+		int sum=0;
+		Connection connection=ConnectionContext.getinstance().get();
+		PreparedStatement preparedStatement=null;
+		ResultSet rs=null;
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			rs=preparedStatement.executeQuery();
+			rs.next();
+			sum=rs.getInt(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+// TODO Auto-generated method stub
+		return sum;
 	}
 	
 }

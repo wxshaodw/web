@@ -44,33 +44,41 @@ public class Notive_servlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
-		
+		String state=(String)session.getAttribute("running_state");
+		Condition condition=(Condition) session.getAttribute("condition");
 		System.out.println(methodName);
 		
 		if(methodName.equals("release")){
+			session.setAttribute("running_state", "normal");
+			session.setAttribute("condition", new Condition());
 			Notive new_notive=new Notive();
 			create_Notive(new_notive, user, request, response);
 			if(notive_service.release(new_notive)){
-				Notive_servlet.getPage(notive_service.getNotive(),notive_service, session);
+				Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
 				response.sendRedirect("main.jsp");
 			};
 		}
 		
 		if(methodName.equals("getPage")){
-			Notive_servlet.getPage(notive_service.getNotive(),notive_service, session);
+			session.setAttribute("running_state", "normal");
+			session.setAttribute("condition", new Condition());
+			Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
+			System.out.println("刷新主页");
 			response.sendRedirect("main.jsp");
 		}
 		
 		if(methodName.equals("delect")){
+			session.setAttribute("running_state", "normal");
+			session.setAttribute("condition", new Condition());
 			if(notive_service.delect_Notive(Integer.parseInt(request.getParameter("delect")))){
-				getPage(notive_service.getNotive(),notive_service, session);
+				setPage(notive_service.getPagedate(1),1,notive_service, session);
 				System.out.println("删除成功");
 				response.sendRedirect("main.jsp");
 			}
 		}
 		
 		if(methodName.equals("query")){
-            Condition condition=new Condition();
+			session.setAttribute("running_state", "query");
             if(!request.getParameter("type").equals("全部")){
                 condition.setType(request.getParameter("type"));
             }
@@ -86,8 +94,35 @@ public class Notive_servlet extends HttpServlet {
             if(!request.getParameter("run_state").equals("全部")){
                 condition.setRun_state(request.getParameter("run_state"));
             }
-			getPage(notive_service.getNotivebycondition(condition), notive_service, session);
-			response.sendRedirect("massage.jsp");
+            session.setAttribute("condition", condition);
+			setPage(notive_service.getNotivebycondition(condition,1),1, notive_service, session);
+			response.sendRedirect("main.jsp");
+		}
+		
+		if(methodName.equals("update")){
+			session.setAttribute("running_state", "normal");
+			session.setAttribute("condition", new Condition());
+			Notive change_notive=(Notive)session.getAttribute("change_notive");
+			create_Notive(change_notive, user, request, response);
+			if(notive_service.update(change_notive)){
+				Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
+				response.sendRedirect("main.jsp");
+			};
+			
+		}
+		
+		if(methodName.equals("turn")){
+			int page_no=Integer.parseInt(request.getParameter("page_no"));
+			if(page_no==0)page_no=Integer.parseInt(request.getParameter("target"));
+			System.out.println(state);
+			if(state.equals("normal")){
+				Notive_servlet.setPage(notive_service.getPagedate(page_no),page_no,notive_service, session);
+			}
+			else{
+				System.out.println("查询翻页");
+				Notive_servlet.setPage(notive_service.getNotivebycondition(condition,page_no),page_no,notive_service, session);
+			}
+			response.sendRedirect("main.jsp");
 		}
 		
 		// TODO Auto-generated method stub
@@ -103,7 +138,7 @@ public class Notive_servlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	static Notive create_Notive(Notive notive,User user,HttpServletRequest request, HttpServletResponse response){
+	static void create_Notive(Notive notive,User user,HttpServletRequest request, HttpServletResponse response){
 		notive.setN_author(user.getU_id());
 		notive.setN_title(request.getParameter("title"));
 		notive.setN_type(request.getParameter("type"));
@@ -114,10 +149,9 @@ public class Notive_servlet extends HttpServlet {
 		notive.setN_end_time(request.getParameter("end_time"));
 		notive.setN_run_state(run_state_Utils.return_state(notive.getN_begin_time(), notive.getN_end_time()));
 		notive.setN_context(request.getParameter("content"));
-		return notive;
 	}
-	static void getPage(List<Notive> list,Notive_service notive_service,HttpSession session){
-		Page<Notive> page=notive_service.getPage(list);
+	static void setPage(List<Notive> list,int page_no,Notive_service notive_service,HttpSession session){
+		Page<Notive> page=notive_service.createPage(list,page_no);
 		session.setAttribute("Page",page);
 	}
 }

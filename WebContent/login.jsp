@@ -27,6 +27,8 @@
 <%
     String massage=(String)session.getAttribute("error");
     session.removeAttribute("error");
+    session.setAttribute("running_state", "normal");
+    session.setAttribute("condition",null);
     if(massage==null)massage="";
 %>
 <title>用户登录</title>

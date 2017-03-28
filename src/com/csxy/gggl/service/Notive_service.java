@@ -19,10 +19,15 @@ public class Notive_service {
 		return notive_Dao.getNotive();
 	}
 	
-	public Page<Notive> getPage(List<Notive> list){
-		Page<Notive> page=new Page<Notive>(1);
+	public List<Notive> getPagedate(int page_no){
+		return notive_Dao.queryforpage(page_no);
+	}
+	
+	public Page<Notive> createPage(List<Notive> list,int Page_no){
+		int sum=0;
+		Page<Notive> page=new Page<Notive>(Page_no);
 		page.setList(list);
-		page.setTotalItemNumber(list.size());
+		page.setTotalItemNumber(sum);
 		return page;
 	}
 	
@@ -30,7 +35,11 @@ public class Notive_service {
 		return notive_Dao.delectNotive(N_id);
 	}
 	
-	public List<Notive> getNotivebycondition(Condition condition){
-		return notive_Dao.getNotivebycondition(condition);
+	public List<Notive> getNotivebycondition(Condition condition,int page_no){
+		return notive_Dao.getNotivebycondition(condition,page_no);
+	}
+	
+	public boolean update(Notive notive){
+		return notive_Dao.updateNotive(notive);
 	}
 }
