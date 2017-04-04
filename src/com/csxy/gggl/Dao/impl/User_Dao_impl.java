@@ -27,8 +27,8 @@ public class User_Dao_impl extends BaseDao<User> implements User_Dao{
 	@Override
 	public boolean insert_Employee(Employee employee) {
 		String sql="insert into employee(P_name,P_mobile,P_address,U_id,P_department) values (?,?)";
-		int P_id=insert(sql, employee.getP_name(),employee.getP_mobile(),employee.getP_address(),employee.getU_id(),employee.getP_department());
-		employee.setP_id(P_id);
+		//int P_id=insert(sql, employee.getP_name(),employee.getP_mobile(),employee.getP_address(),employee.getU_id(),employee.getP_department());
+		//employee.setP_id(P_id);
 		// TODO Auto-generated method stub
 		return true;
 	}

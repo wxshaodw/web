@@ -16,12 +16,12 @@ public interface Notive_Dao {
 	/**
 	 * 通过条件查询
 	 * @return 获取结果列表**/
-	public abstract List<Notive> getNotivebycondition(Condition condition,int page);
+	public abstract List<Notive> getNotivebycondition(String condition,int page);
 	
 	/**
 	 * 添加新公告
 	 * **/
-	public abstract boolean releaseNotive(Notive new_notive);
+	public abstract int releaseNotive(Notive new_notive);
 	
 	/**
 	 * 修改公告**/
@@ -39,5 +39,12 @@ public interface Notive_Dao {
 	/**
 	 * 获取公告数量**/
 	public abstract int Count_Notive();
-
+	
+	/**
+	 * 获取公告数量**/
+	public abstract int Count_Notive(String condition);
+	
+	/**
+	 * 生成查询sql语句**/
+	public abstract String create_query_sql(Condition condition);
 }

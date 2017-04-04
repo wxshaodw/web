@@ -47,7 +47,7 @@
     </div>
     <div id="function" align="center">
         <button type="button" onclick="turn('login')" title="登录">登录</button>
-        <a href="register.jsp"><button type="button">注册</button></a>
+       <!-- <a href="register.jsp"><button type="button">注册</button></a> -->
     </div>
     <div align="center"><font id="error" ><%=massage %></font></div>
     </form>

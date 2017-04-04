@@ -6,7 +6,7 @@
 </head>
 <body>
 <table>
-<tr height="100"></tr>
+<tr height="150" align="center"><h2 align="center">查询公告</h2></tr>
 <tr>
 <table id="query" align="center" border="1" >
         <tr>

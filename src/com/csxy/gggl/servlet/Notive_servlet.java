@@ -1,6 +1,7 @@
 package com.csxy.gggl.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,13 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import com.csxy.gggl.domain.Department;
+import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.Notive;
 import com.csxy.gggl.domain.User;
 import com.csxy.gggl.service.Notive_service;
 import com.csxy.gggl.utils.conversion_utils;
 import com.csxy.gggl.utils.run_state_Utils;
 import com.csxy.gggl.web.Condition;
-import com.csxy.gggl.web.Page;;
+import com.csxy.gggl.web.Page;
+import com.csxy.gggl.web.normal_Notive;;
 
 /**
  * Servlet implementation class Notive_servlet
@@ -44,17 +48,21 @@ public class Notive_servlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
+		Employee employee=(Employee)session.getAttribute("Employee");
 		String state=(String)session.getAttribute("running_state");
 		Condition condition=(Condition) session.getAttribute("condition");
+        System.out.println(user.getU_id());
 		System.out.println(methodName);
-		
 		if(methodName.equals("release")){
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
-			Notive new_notive=new Notive();
-			create_Notive(new_notive, user, request, response);
+			String[] employee_selected=request.getParameterValues("employee_selected");
+			String[] department_selected=request.getParameterValues("department_selected");
+            normal_Notive new_notive=new normal_Notive();
+			create_Notive(new_notive,user,employee,employee_selected,department_selected, request, response);
 			if(notive_service.release(new_notive)){
-				Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
+				Page<normal_Notive> page=notive_service.createPage(1);
+				session.setAttribute("Page",page);
 				response.sendRedirect("main.jsp");
 			};
 		}
@@ -62,7 +70,8 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("getPage")){
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
-			Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
+			Page<normal_Notive> page=notive_service.createPage(1);
+			session.setAttribute("Page",page);
 			System.out.println("刷新主页");
 			response.sendRedirect("main.jsp");
 		}
@@ -71,7 +80,8 @@ public class Notive_servlet extends HttpServlet {
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
 			if(notive_service.delect_Notive(Integer.parseInt(request.getParameter("delect")))){
-				setPage(notive_service.getPagedate(1),1,notive_service, session);
+				Page<normal_Notive> page=notive_service.createPage(1);
+				session.setAttribute("Page",page);
 				System.out.println("删除成功");
 				response.sendRedirect("main.jsp");
 			}
@@ -95,7 +105,8 @@ public class Notive_servlet extends HttpServlet {
                 condition.setRun_state(request.getParameter("run_state"));
             }
             session.setAttribute("condition", condition);
-			setPage(notive_service.getNotivebycondition(condition,1),1, notive_service, session);
+			Page<normal_Notive> page=notive_service.createPage(condition,1);
+			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
 		
@@ -103,9 +114,10 @@ public class Notive_servlet extends HttpServlet {
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
 			Notive change_notive=(Notive)session.getAttribute("change_notive");
-			create_Notive(change_notive, user, request, response);
+			//create_Notive(change_notive, user, request, response);
 			if(notive_service.update(change_notive)){
-				Notive_servlet.setPage(notive_service.getPagedate(1),1,notive_service, session);
+				Page<normal_Notive> page=notive_service.createPage(1);
+				session.setAttribute("Page",page);
 				response.sendRedirect("main.jsp");
 			};
 			
@@ -116,11 +128,13 @@ public class Notive_servlet extends HttpServlet {
 			if(page_no==0)page_no=Integer.parseInt(request.getParameter("target"));
 			System.out.println(state);
 			if(state.equals("normal")){
-				Notive_servlet.setPage(notive_service.getPagedate(page_no),page_no,notive_service, session);
+				Page<normal_Notive> page=notive_service.createPage(page_no);
+				session.setAttribute("Page",page);
 			}
 			else{
 				System.out.println("查询翻页");
-				Notive_servlet.setPage(notive_service.getNotivebycondition(condition,page_no),page_no,notive_service, session);
+				Page<normal_Notive> page=notive_service.createPage(condition,page_no);
+				session.setAttribute("Page",page);
 			}
 			response.sendRedirect("main.jsp");
 		}
@@ -138,8 +152,8 @@ public class Notive_servlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	static void create_Notive(Notive notive,User user,HttpServletRequest request, HttpServletResponse response){
-		notive.setN_author(user.getU_id());
+	static void create_Notive(normal_Notive notive,User user,Employee employee,String[] employee_selected,String[] department_selected,HttpServletRequest request, HttpServletResponse response){
+		notive.setN_author(user.getU_owner());
 		notive.setN_title(request.getParameter("title"));
 		notive.setN_type(request.getParameter("type"));
 		notive.setN_state(request.getParameter("state"));
@@ -149,9 +163,19 @@ public class Notive_servlet extends HttpServlet {
 		notive.setN_end_time(request.getParameter("end_time"));
 		notive.setN_run_state(run_state_Utils.return_state(notive.getN_begin_time(), notive.getN_end_time()));
 		notive.setN_context(request.getParameter("content"));
-	}
-	static void setPage(List<Notive> list,int page_no,Notive_service notive_service,HttpSession session){
-		Page<Notive> page=notive_service.createPage(list,page_no);
-		session.setAttribute("Page",page);
+		notive.setN_authorname(employee.getP_name());
+		notive.setLink_dept( new ArrayList<String>());
+		notive.setLink_employee(new ArrayList<String>());
+		if(department_selected!=null){
+			for(int i=0;i<department_selected.length;i++){
+				notive.getLink_dept().add(department_selected[i]);
+			}
+		}
+		if(employee_selected!=null){
+			for(int i=0;i<employee_selected.length;i++)
+			{
+				notive.getLink_employee().add(employee_selected[i]);
+			}
+		}
 	}
 }

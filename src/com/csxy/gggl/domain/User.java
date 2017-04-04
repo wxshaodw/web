@@ -5,6 +5,7 @@ public class User {
 	private String U_name;
 	private String U_password;
 	private String U_type;
+	private int U_owner;
 	public int getU_id() {
 		return U_id;
 	}
@@ -29,5 +30,12 @@ public class User {
 	public void setU_type(String u_type) {
 		U_type = u_type;
 	}
+	public int getU_owner() {
+		return U_owner;
+	}
+	public void setU_owner(int u_owner) {
+		U_owner = u_owner;
+	}
+
 	
 }

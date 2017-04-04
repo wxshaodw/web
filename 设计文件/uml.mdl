@@ -91,44 +91,58 @@
 			quidu      	"58C393970335")))
 	    (object UseCase "新建公告"
 		quid       	"58C393E7037C")
-	    (object UseCase "修改公告"
-		quid       	"58C393E9010E")
 	    (object UseCase "查询公告"
 		quid       	"58C393FF0016")
+	    (object UseCase "审核公告"
+		quid       	"58DF24CC01AD")
+	    (object UseCase "修改公告"
+		quid       	"58DF254E02C4")
 	    (object Association "$UNNAMED$0"
-		quid       	"58C3941900D5"
-		roles      	(list role_list
-		    (object Role "$UNNAMED$1"
-			quid       	"58C3941A0085"
-			supplier   	"Use Case View::新建公告"
-			quidu      	"58C393E7037C"
-			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$2"
-			quid       	"58C3941A0087"
-			supplier   	"Use Case View::管理层员工"
-			quidu      	"58C393FC03AE")))
-	    (object Association "$UNNAMED$3"
-		quid       	"58C39434006D"
-		roles      	(list role_list
-		    (object Role "$UNNAMED$4"
-			quid       	"58C3943403A3"
-			supplier   	"Use Case View::修改公告"
-			quidu      	"58C393E9010E"
-			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$5"
-			quid       	"58C3943403A5"
-			supplier   	"Use Case View::管理层员工"
-			quidu      	"58C393FC03AE")))
-	    (object Association "$UNNAMED$6"
 		quid       	"58C3947302FE"
 		roles      	(list role_list
-		    (object Role "$UNNAMED$7"
+		    (object Role "$UNNAMED$1"
 			quid       	"58C394740202"
 			supplier   	"Use Case View::查询公告"
 			quidu      	"58C393FF0016"
 			is_navigable 	TRUE)
-		    (object Role "$UNNAMED$8"
+		    (object Role "$UNNAMED$2"
 			quid       	"58C394740204"
+			supplier   	"Use Case View::一般员工"
+			quidu      	"58C393970335")))
+	    (object Association "$UNNAMED$3"
+		quid       	"58DF24C70177"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"58DF24C703D1"
+			supplier   	"Use Case View::新建公告"
+			quidu      	"58C393E7037C"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"58DF24C703D3"
+			supplier   	"Use Case View::一般员工"
+			quidu      	"58C393970335")))
+	    (object Association "$UNNAMED$6"
+		quid       	"58DF24F102F0"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"58DF24F300E0"
+			supplier   	"Use Case View::审核公告"
+			quidu      	"58DF24CC01AD"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"58DF24F300E2"
+			supplier   	"Use Case View::管理层员工"
+			quidu      	"58C393FC03AE")))
+	    (object Association "$UNNAMED$9"
+		quid       	"58DF25540165"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"58DF255500F0"
+			supplier   	"Use Case View::修改公告"
+			quidu      	"58DF254E02C4"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"58DF255500F2"
 			supplier   	"Use Case View::一般员工"
 			quidu      	"58C393970335"))))
 	logical_presentations 	(list unit_reference_list
@@ -141,8 +155,8 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object UseCaseView "Use Case View::新建公告" @1
-			location   	(1888, 1008)
+		    (object UseCaseView "Use Case View::查询公告" @1
+			location   	(1440, 912)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -154,19 +168,19 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@1
-			    location   	(1888, 1146)
+			    location   	(1440, 1050)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"新建公告")
+			    label      	"查询公告")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"58C393E7037C"
+			quidu      	"58C393FF0016"
 			height     	118)
-		    (object UseCaseView "Use Case View::修改公告" @2
-			location   	(1872, 1424)
+		    (object UseCaseView "Use Case View::新建公告" @2
+			location   	(1440, 608)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -178,22 +192,22 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@2
-			    location   	(1872, 1562)
+			    location   	(1440, 746)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"修改公告")
+			    label      	"新建公告")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"58C393E9010E"
+			quidu      	"58C393E7037C"
 			height     	118)
 		    (object ClassView "Class" "Use Case View::管理层员工" @3
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(944, 1008)
+			location   	(512, 1344)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -205,7 +219,7 @@
 			    default_color 	TRUE)
 			label      	(object ItemLabel
 			    Parent_View 	@3
-			    location   	(944, 1168)
+			    location   	(512, 1504)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	325
@@ -217,86 +231,8 @@
 			quidu      	"58C393FC03AE"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object AssociationViewNew "$UNNAMED$0" @4
-			location   	(1389, 1008)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"58C3941900D5"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$1" @5
-				Parent_View 	@4
-				location   	(397, -304)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"58C3941A0085"
-				client     	@4
-				supplier   	@1
-				vertices   	(list Points
-				    (1389, 1008)
-				    (1778, 1008))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$2" @6
-				Parent_View 	@4
-				location   	(397, -304)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"58C3941A0087"
-				client     	@4
-				supplier   	@3
-				vertices   	(list Points
-				    (1389, 1008)
-				    (1001, 1008))
-				line_style 	0)))
-		    (object AssociationViewNew "$UNNAMED$3" @7
-			location   	(1381, 1202)
-			font       	(object Font
-			    size       	10
-			    face       	"Arial"
-			    bold       	FALSE
-			    italics    	FALSE
-			    underline  	FALSE
-			    strike     	FALSE
-			    color      	0
-			    default_color 	TRUE)
-			stereotype 	TRUE
-			line_color 	3342489
-			quidu      	"58C39434006D"
-			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$4" @8
-				Parent_View 	@7
-				location   	(389, -110)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"58C3943403A3"
-				client     	@7
-				supplier   	@2
-				vertices   	(list Points
-				    (1381, 1202)
-				    (1760, 1371))
-				line_style 	0)
-			    (object RoleView "$UNNAMED$5" @9
-				Parent_View 	@7
-				location   	(389, -110)
-				stereotype 	TRUE
-				line_color 	3342489
-				quidu      	"58C3943403A5"
-				client     	@7
-				supplier   	@3
-				vertices   	(list Points
-				    (1381, 1202)
-				    (1001, 1032))
-				line_style 	0)))
-		    (object UseCaseView "Use Case View::查询公告" @10
-			location   	(1872, 576)
+		    (object UseCaseView "Use Case View::审核公告" @4
+			location   	(1536, 1344)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -307,23 +243,62 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@10
-			    location   	(1872, 714)
+			    Parent_View 	@4
+			    location   	(1536, 1482)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	630
 			    justify    	0
-			    label      	"查询公告")
+			    label      	"审核公告")
 			icon_style 	"Icon"
 			line_color 	3342489
 			fill_color 	13434879
-			quidu      	"58C393FF0016"
+			quidu      	"58DF24CC01AD"
 			height     	118)
-		    (object ClassView "Class" "Use Case View::一般员工" @11
+		    (object AssociationViewNew "$UNNAMED$6" @5
+			location   	(997, 1344)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"58DF24F102F0"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @6
+				Parent_View 	@5
+				location   	(53, 336)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF24F300E0"
+				client     	@5
+				supplier   	@4
+				vertices   	(list Points
+				    (997, 1344)
+				    (1425, 1344))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$8" @7
+				Parent_View 	@5
+				location   	(53, 336)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF24F300E2"
+				client     	@5
+				supplier   	@3
+				vertices   	(list Points
+				    (997, 1344)
+				    (569, 1344))
+				line_style 	0)))
+		    (object ClassView "Class" "Use Case View::一般员工" @8
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
-			location   	(944, 576)
+			location   	(512, 912)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -334,8 +309,8 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@11
-			    location   	(944, 736)
+			    Parent_View 	@8
+			    location   	(512, 1072)
 			    anchor_loc 	1
 			    nlines     	2
 			    max_width  	325
@@ -347,18 +322,18 @@
 			quidu      	"58C393970335"
 			annotation 	8
 			autoResize 	TRUE)
-		    (object InheritView "" @12
+		    (object InheritView "" @9
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39471032A"
 			client     	@3
-			supplier   	@11
+			supplier   	@8
 			vertices   	(list Points
-			    (944, 928)
-			    (944, 761))
+			    (512, 1264)
+			    (512, 1097))
 			line_style 	0)
-		    (object AssociationViewNew "$UNNAMED$6" @13
-			location   	(1381, 576)
+		    (object AssociationViewNew "$UNNAMED$0" @10
+			location   	(949, 912)
 			font       	(object Font
 			    size       	10
 			    face       	"Arial"
@@ -372,29 +347,131 @@
 			line_color 	3342489
 			quidu      	"58C3947302FE"
 			roleview_list 	(list RoleViews
-			    (object RoleView "$UNNAMED$7" @14
-				Parent_View 	@13
-				location   	(437, 0)
+			    (object RoleView "$UNNAMED$1" @11
+				Parent_View 	@10
+				location   	(5, 336)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"58C394740202"
-				client     	@13
-				supplier   	@10
+				client     	@10
+				supplier   	@1
 				vertices   	(list Points
-				    (1381, 576)
-				    (1760, 576))
+				    (949, 912)
+				    (1330, 912))
 				line_style 	0)
-			    (object RoleView "$UNNAMED$8" @15
-				Parent_View 	@13
-				location   	(437, 0)
+			    (object RoleView "$UNNAMED$2" @12
+				Parent_View 	@10
+				location   	(5, 336)
 				stereotype 	TRUE
 				line_color 	3342489
 				quidu      	"58C394740204"
-				client     	@13
-				supplier   	@11
+				client     	@10
+				supplier   	@8
 				vertices   	(list Points
-				    (1381, 576)
-				    (1001, 576))
+				    (949, 912)
+				    (569, 912))
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$3" @13
+			location   	(949, 764)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"58DF24C70177"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$4" @14
+				Parent_View 	@13
+				location   	(5, 188)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF24C703D1"
+				client     	@13
+				supplier   	@2
+				vertices   	(list Points
+				    (949, 764)
+				    (1330, 640))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$5" @15
+				Parent_View 	@13
+				location   	(5, 188)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF24C703D3"
+				client     	@13
+				supplier   	@8
+				vertices   	(list Points
+				    (949, 764)
+				    (569, 889))
+				line_style 	0)))
+		    (object UseCaseView "Use Case View::修改公告" @16
+			location   	(1024, 416)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(1024, 554)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	630
+			    justify    	0
+			    label      	"修改公告")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF254E02C4"
+			height     	118)
+		    (object AssociationViewNew "$UNNAMED$9" @17
+			location   	(749, 678)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			stereotype 	TRUE
+			line_color 	3342489
+			quidu      	"58DF25540165"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$10" @18
+				Parent_View 	@17
+				location   	(-195, 102)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF255500F0"
+				client     	@17
+				supplier   	@16
+				vertices   	(list Points
+				    (749, 678)
+				    (929, 504))
+				line_style 	0)
+			    (object RoleView "$UNNAMED$11" @19
+				Parent_View 	@17
+				location   	(-195, 102)
+				stereotype 	TRUE
+				line_color 	3342489
+				quidu      	"58DF255500F2"
+				client     	@17
+				supplier   	@8
+				vertices   	(list Points
+				    (749, 678)
+				    (569, 852))
 				line_style 	0)))))))
     root_category 	(object Class_Category "Logical View"
 	quid       	"358536FC033F"
@@ -609,7 +686,169 @@
 		is_unit    	TRUE
 		is_loaded  	FALSE
 		file_name  	"$FRAMEWORK_PATH\\Shared Components\\sun.cat"
-		quid       	"358537B50114"))
+		quid       	"358537B50114")
+	    (object Mechanism @20
+		logical_models 	(list unit_reference_list
+		    (object Object "公告通知管理系统"
+			quid       	"58DF25B80333"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"58DF26FB01E8"
+				supplier   	"后台数据库"
+				quidu      	"58DF25C402FD"
+				messages   	(list Messages
+				    (object Message "系统将数据存入数据库"
+					quid       	"58DF26FB01E9"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"4"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"58DF270F0261"
+				supplier   	"公告通知管理系统"
+				quidu      	"58DF25B80333"
+				messages   	(list Messages
+				    (object Message "管理员审核通过后发布系统"
+					quid       	"58DF270F0262"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"5"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "后台数据库"
+			quid       	"58DF25C402FD"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "$UNNAMED$12"
+			quid       	"58DF260F0395"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"58DF26B8003F"
+				supplier   	"公告通知管理系统"
+				quidu      	"58DF25B80333"
+				messages   	(list Messages
+				    (object Message "发出发布信息请求"
+					quid       	"58DF26B80040"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "返回发布信息界面"
+					quid       	"58DF26D203BF"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"2"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "员工填写公告内容"
+					quid       	"58DF26E801D8"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"3"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::一般员工"
+			quidu      	"58C393970335"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)))
+	    (object Mechanism @21
+		logical_models 	(list unit_reference_list
+		    (object Object "$UNNAMED$13"
+			quid       	"58DF274E01E6"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"58DF27770178"
+				supplier   	"公告通知管理系统"
+				quidu      	"58DF275002FE"
+				messages   	(list Messages
+				    (object Message "请求查看待审核公告"
+					quid       	"58DF27770179"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"1"
+					ordinal    	0
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			class      	"Use Case View::管理层员工"
+			quidu      	"58C393FC03AE"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "公告通知管理系统"
+			quid       	"58DF275002FE"
+			collaborators 	(list link_list
+			    (object Link
+				quid       	"58DF27AF01D8"
+				supplier   	"后台数据库"
+				quidu      	"58DF2752020D"
+				messages   	(list Messages
+				    (object Message "系统查询待审核公告"
+					quid       	"58DF27AF01D9"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"2"
+					ordinal    	1
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "返回待审公告列表"
+					quid       	"58DF27D40377"
+					frequency  	"Aperiodic"
+					synchronization 	"Return"
+					dir        	"ToClientFromSupplier"
+					sequence   	"3"
+					ordinal    	2
+					quidu      	"000000000000"
+					creation   	FALSE)
+				    (object Message "系统修改公告状态"
+					quid       	"58DF28290340"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"5"
+					ordinal    	4
+					quidu      	"000000000000"
+					creation   	FALSE)))
+			    (object Link
+				quid       	"58DF27EC0004"
+				supplier   	"公告通知管理系统"
+				quidu      	"58DF275002FE"
+				messages   	(list Messages
+				    (object Message "管理员审核公告"
+					quid       	"58DF27EC0005"
+					frequency  	"Aperiodic"
+					synchronization 	"Simple"
+					dir        	"FromClientToSupplier"
+					sequence   	"4"
+					ordinal    	3
+					quidu      	"000000000000"
+					creation   	FALSE))))
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE)
+		    (object Object "后台数据库"
+			quid       	"58DF2752020D"
+			persistence 	"Transient"
+			creationObj 	FALSE
+			multi      	FALSE))))
 	logical_presentations 	(list unit_reference_list
 	    (object ClassDiagram "Main"
 		quid       	"3585370402DC"
@@ -620,7 +859,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::Notice" @16
+		    (object ClassView "Class" "Logical View::Notice" @22
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -635,7 +874,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@16
+			    Parent_View 	@22
 			    location   	(2794, 828)
 			    fill_color 	13434879
 			    nlines     	1
@@ -647,7 +886,7 @@
 			fill_color 	13434879
 			quidu      	"58C3957502A5"
 			compartment 	(object Compartment
-			    Parent_View 	@16
+			    Parent_View 	@22
 			    location   	(2794, 889)
 			    font       	(object Font
 				size       	10
@@ -668,7 +907,7 @@
 			height     	736
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Notice_Dao" @17
+		    (object ClassView "Class" "Logical View::Notice_Dao" @23
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -683,7 +922,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@17
+			    Parent_View 	@23
 			    location   	(1381, 1357)
 			    fill_color 	13434879
 			    nlines     	1
@@ -695,7 +934,7 @@
 			fill_color 	13434879
 			quidu      	"58C39B7F00AF"
 			compartment 	(object Compartment
-			    Parent_View 	@17
+			    Parent_View 	@23
 			    location   	(1381, 1418)
 			    font       	(object Font
 				size       	10
@@ -716,7 +955,7 @@
 			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Notice_service" @18
+		    (object ClassView "Class" "Logical View::Notice_service" @24
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -731,7 +970,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@18
+			    Parent_View 	@24
 			    location   	(1896, 1307)
 			    fill_color 	13434879
 			    nlines     	1
@@ -743,7 +982,7 @@
 			fill_color 	13434879
 			quidu      	"58C39BD100DE"
 			compartment 	(object Compartment
-			    Parent_View 	@18
+			    Parent_View 	@24
 			    location   	(1896, 1368)
 			    font       	(object Font
 				size       	10
@@ -764,7 +1003,7 @@
 			height     	386
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Notice_Dao_impl" @19
+		    (object ClassView "Class" "Logical View::Notice_Dao_impl" @25
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -779,7 +1018,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@19
+			    Parent_View 	@25
 			    location   	(713, 1437)
 			    fill_color 	13434879
 			    nlines     	1
@@ -794,37 +1033,37 @@
 			height     	126
 			annotation 	8
 			autoResize 	TRUE)
-		    (object InheritView "" @20
+		    (object InheritView "" @26
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39D5F030C"
-			client     	@19
-			supplier   	@17
+			client     	@25
+			supplier   	@23
 			vertices   	(list Points
 			    (1056, 1488)
 			    (1371, 1488))
 			line_style 	0)
-		    (object UsesView "" @21
+		    (object UsesView "" @27
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39D6D0185"
-			client     	@18
-			supplier   	@17
+			client     	@24
+			supplier   	@23
 			vertices   	(list Points
 			    (1886, 1488)
 			    (1636, 1488))
 			line_style 	0)
-		    (object UsesView "" @22
+		    (object UsesView "" @28
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39D7E006D"
-			client     	@18
-			supplier   	@16
+			client     	@24
+			supplier   	@22
 			vertices   	(list Points
 			    (2273, 1422)
 			    (2784, 1252))
 			line_style 	0)
-		    (object ClassView "Class" "Logical View::User_service" @23
+		    (object ClassView "Class" "Logical View::User_service" @29
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -839,7 +1078,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@23
+			    Parent_View 	@29
 			    location   	(1401, 669)
 			    fill_color 	13434879
 			    nlines     	1
@@ -851,7 +1090,7 @@
 			fill_color 	13434879
 			quidu      	"58C39DA20257"
 			compartment 	(object Compartment
-			    Parent_View 	@23
+			    Parent_View 	@29
 			    location   	(1401, 730)
 			    font       	(object Font
 				size       	10
@@ -872,7 +1111,7 @@
 			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::user" @24
+		    (object ClassView "Class" "Logical View::user" @30
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -887,7 +1126,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@24
+			    Parent_View 	@30
 			    location   	(1951, 594)
 			    fill_color 	13434879
 			    nlines     	1
@@ -899,7 +1138,7 @@
 			fill_color 	13434879
 			quidu      	"58C394DD03A6"
 			compartment 	(object Compartment
-			    Parent_View 	@24
+			    Parent_View 	@30
 			    location   	(1951, 655)
 			    font       	(object Font
 				size       	10
@@ -920,17 +1159,17 @@
 			height     	436
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UsesView "" @25
+		    (object UsesView "" @31
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39E22024C"
-			client     	@24
-			supplier   	@23
+			client     	@30
+			supplier   	@29
 			vertices   	(list Points
 			    (1941, 800)
 			    (1776, 800))
 			line_style 	0)
-		    (object ClassView "Class" "Logical View::User_Dao" @26
+		    (object ClassView "Class" "Logical View::User_Dao" @32
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -945,7 +1184,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@26
+			    Parent_View 	@32
 			    location   	(904, 669)
 			    fill_color 	13434879
 			    nlines     	1
@@ -957,7 +1196,7 @@
 			fill_color 	13434879
 			quidu      	"58C39E2B00F0"
 			compartment 	(object Compartment
-			    Parent_View 	@26
+			    Parent_View 	@32
 			    location   	(904, 730)
 			    font       	(object Font
 				size       	10
@@ -978,27 +1217,27 @@
 			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object UsesView "" @27
+		    (object UsesView "" @33
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39E9C000C"
-			client     	@16
-			supplier   	@24
+			client     	@22
+			supplier   	@30
 			vertices   	(list Points
 			    (2784, 1096)
 			    (2218, 858))
 			line_style 	0)
-		    (object UsesView "" @28
+		    (object UsesView "" @34
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39EA9018C"
-			client     	@23
-			supplier   	@26
+			client     	@29
+			supplier   	@32
 			vertices   	(list Points
 			    (1391, 800)
 			    (1121, 800))
 			line_style 	0)
-		    (object ClassView "Class" "Logical View::User_Dao_impl" @29
+		    (object ClassView "Class" "Logical View::User_Dao_impl" @35
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -1013,7 +1252,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@29
+			    Parent_View 	@35
 			    location   	(246, 749)
 			    fill_color 	13434879
 			    nlines     	1
@@ -1028,12 +1267,12 @@
 			height     	126
 			annotation 	8
 			autoResize 	TRUE)
-		    (object InheritView "" @30
+		    (object InheritView "" @36
 			stereotype 	TRUE
 			line_color 	3342489
 			quidu      	"58C39EC8017D"
-			client     	@29
-			supplier   	@26
+			client     	@35
+			supplier   	@32
 			vertices   	(list Points
 			    (563, 800)
 			    (894, 800))
@@ -1047,7 +1286,7 @@
 		origin_x   	0
 		origin_y   	0
 		items      	(list diagram_item_list
-		    (object ClassView "Class" "Logical View::user" @31
+		    (object ClassView "Class" "Logical View::user" @37
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -1062,7 +1301,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@31
+			    Parent_View 	@37
 			    location   	(143, 786)
 			    fill_color 	13434879
 			    nlines     	1
@@ -1074,7 +1313,7 @@
 			fill_color 	13434879
 			quidu      	"58C394DD03A6"
 			compartment 	(object Compartment
-			    Parent_View 	@31
+			    Parent_View 	@37
 			    location   	(143, 847)
 			    font       	(object Font
 				size       	10
@@ -1095,7 +1334,7 @@
 			height     	436
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Notice" @32
+		    (object ClassView "Class" "Logical View::Notice" @38
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -1110,7 +1349,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@32
+			    Parent_View 	@38
 			    location   	(602, 780)
 			    fill_color 	13434879
 			    nlines     	1
@@ -1122,7 +1361,7 @@
 			fill_color 	13434879
 			quidu      	"58C3957502A5"
 			compartment 	(object Compartment
-			    Parent_View 	@32
+			    Parent_View 	@38
 			    location   	(602, 841)
 			    font       	(object Font
 				size       	10
@@ -1143,7 +1382,7 @@
 			height     	736
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Department" @33
+		    (object ClassView "Class" "Logical View::Department" @39
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -1158,7 +1397,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@33
+			    Parent_View 	@39
 			    location   	(1143, 781)
 			    fill_color 	13434879
 			    nlines     	1
@@ -1170,7 +1409,7 @@
 			fill_color 	13434879
 			quidu      	"58C397BE0267"
 			compartment 	(object Compartment
-			    Parent_View 	@33
+			    Parent_View 	@39
 			    location   	(1143, 842)
 			    font       	(object Font
 				size       	10
@@ -1191,7 +1430,7 @@
 			height     	286
 			annotation 	8
 			autoResize 	TRUE)
-		    (object ClassView "Class" "Logical View::Eclosure" @34
+		    (object ClassView "Class" "Logical View::Eclosure" @40
 			ShowCompartmentStereotypes 	TRUE
 			IncludeAttribute 	TRUE
 			IncludeOperation 	TRUE
@@ -1206,7 +1445,7 @@
 			    color      	0
 			    default_color 	TRUE)
 			label      	(object ItemLabel
-			    Parent_View 	@34
+			    Parent_View 	@40
 			    location   	(1570, 788)
 			    fill_color 	13434879
 			    nlines     	1
@@ -1218,7 +1457,7 @@
 			fill_color 	13434879
 			quidu      	"58C3B13F011B"
 			compartment 	(object Compartment
-			    Parent_View 	@34
+			    Parent_View 	@40
 			    location   	(1570, 849)
 			    font       	(object Font
 				size       	10
@@ -1233,12 +1472,752 @@
 			    fill_color 	13434879
 			    anchor     	2
 			    nlines     	5
-			    max_width  	150
+			    max_width  	159
 			    justify    	1)
 			width      	206
 			height     	336
 			annotation 	8
-			autoResize 	TRUE)))))
+			autoResize 	TRUE)))
+	    (object InteractionDiagram "normal_employee"
+		mechanism_ref 	@20
+		quid       	"58DF25B301C5"
+		title      	"normal_employee"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$12" @41
+			location   	(176, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@41
+			    location   	(176, 249)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF260F0395"
+			width      	300
+			height     	1092
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @42
+			    location   	(176, 384)
+			    line_color 	3342489
+			    InterObjView 	@41
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @43
+			    location   	(176, 592)
+			    line_color 	3342489
+			    InterObjView 	@41
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @44
+			    location   	(176, 752)
+			    line_color 	3342489
+			    InterObjView 	@41
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "公告通知管理系统" @45
+			location   	(768, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@45
+			    location   	(768, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"公告通知管理系统")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF25B80333"
+			width      	300
+			height     	1092
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @46
+			    location   	(768, 384)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @47
+			    location   	(768, 592)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @48
+			    location   	(768, 752)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @49
+			    location   	(768, 896)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @50
+			    location   	(768, 1104)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	92
+			    y_coord    	2
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @51
+			    location   	(768, 1136)
+			    line_color 	3342489
+			    InterObjView 	@45
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE))
+		    (object InterObjView "后台数据库" @52
+			location   	(1248, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@52
+			    location   	(1248, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"后台数据库")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF25C402FD"
+			width      	300
+			height     	1092
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @53
+			    location   	(1248, 896)
+			    line_color 	3342489
+			    InterObjView 	@52
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "发出发布信息请求" @54
+			location   	(16, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @55
+			    Parent_View 	@54
+			    location   	(471, 340)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF26B80040"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	360
+			    justify    	0
+			    label      	"发出发布信息请求"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@41
+			supplier   	@45
+			Focus_Src  	@42
+			Focus_Entry 	@46
+			origin     	(191, 384)
+			terminus   	(752, 384)
+			ordinal    	0)
+		    (object InterMessView "返回发布信息界面" @56
+			location   	(16, 592)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @57
+			    Parent_View 	@56
+			    location   	(472, 548)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF26D203BF"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	360
+			    justify    	0
+			    label      	"返回发布信息界面"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@45
+			supplier   	@41
+			Focus_Src  	@47
+			Focus_Entry 	@43
+			origin     	(752, 592)
+			terminus   	(192, 592)
+			ordinal    	1)
+		    (object InterMessView "员工填写公告内容" @58
+			location   	(16, 752)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @59
+			    Parent_View 	@58
+			    location   	(471, 708)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF26E801D8"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	360
+			    justify    	0
+			    label      	"员工填写公告内容"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@41
+			supplier   	@45
+			Focus_Src  	@44
+			Focus_Entry 	@48
+			origin     	(191, 752)
+			terminus   	(752, 752)
+			ordinal    	2)
+		    (object InterMessView "系统将数据存入数据库" @60
+			location   	(16, 896)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @61
+			    Parent_View 	@60
+			    location   	(1007, 852)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF26FB01E9"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	448
+			    justify    	0
+			    label      	"系统将数据存入数据库"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@45
+			supplier   	@52
+			Focus_Src  	@49
+			Focus_Entry 	@53
+			origin     	(783, 896)
+			terminus   	(1232, 896)
+			ordinal    	3)
+		    (object SelfMessView "管理员审核通过后发布系统" @62
+			location   	(16, 1104)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @63
+			    Parent_View 	@62
+			    location   	(859, 1060)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF270F0262"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	535
+			    justify    	0
+			    label      	"管理员审核通过后发布系统"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@45
+			supplier   	@45
+			Focus_Src  	@50
+			Focus_Entry 	@51
+			origin     	(784, 1104)
+			terminus   	(934, 1104)
+			ordinal    	4)))
+	    (object InteractionDiagram "Manger"
+		mechanism_ref 	@21
+		quid       	"58DF272C0388"
+		title      	"Manger"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object InterObjView "$UNNAMED$13" @64
+			location   	(336, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@64
+			    location   	(336, 249)
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	324
+			    justify    	0
+			    label      	"")
+			icon       	"Actor"
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF274E01E6"
+			width      	300
+			height     	1140
+			icon_height 	150
+			icon_width 	108
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @65
+			    location   	(336, 384)
+			    line_color 	3342489
+			    InterObjView 	@64
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "公告通知管理系统" @66
+			location   	(960, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(960, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"公告通知管理系统")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF275002FE"
+			width      	300
+			height     	1140
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @67
+			    location   	(960, 384)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @68
+			    location   	(960, 544)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @69
+			    location   	(960, 800)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @70
+			    location   	(960, 1008)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	92
+			    y_coord    	2
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @71
+			    location   	(960, 1040)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	90
+			    y_coord    	0
+			    Nested     	TRUE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @72
+			    location   	(960, 1184)
+			    line_color 	3342489
+			    InterObjView 	@66
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterObjView "后台数据库" @73
+			location   	(1648, 224)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	TRUE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object ItemLabel
+			    Parent_View 	@73
+			    location   	(1648, 224)
+			    fill_color 	13434879
+			    anchor_loc 	1
+			    nlines     	2
+			    max_width  	282
+			    justify    	0
+			    label      	"后台数据库")
+			icon_style 	"Icon"
+			line_color 	3342489
+			fill_color 	13434879
+			quidu      	"58DF2752020D"
+			width      	300
+			height     	1140
+			icon_height 	0
+			icon_width 	0
+			icon_y_offset 	0
+			annotation 	1
+			Focus_Of_Control 	(object Focus_Of_Control "" @74
+			    location   	(1648, 544)
+			    line_color 	3342489
+			    InterObjView 	@73
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @75
+			    location   	(1648, 800)
+			    line_color 	3342489
+			    InterObjView 	@73
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE)
+			Focus_Of_Control 	(object Focus_Of_Control "" @76
+			    location   	(1648, 1184)
+			    line_color 	3342489
+			    InterObjView 	@73
+			    height     	90
+			    y_coord    	0
+			    Nested     	FALSE))
+		    (object InterMessView "请求查看待审核公告" @77
+			location   	(16, 384)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @78
+			    Parent_View 	@77
+			    location   	(647, 340)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF27770179"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	404
+			    justify    	0
+			    label      	"请求查看待审核公告"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@64
+			supplier   	@66
+			Focus_Src  	@65
+			Focus_Entry 	@67
+			origin     	(351, 384)
+			terminus   	(944, 384)
+			ordinal    	0)
+		    (object InterMessView "系统查询待审核公告" @79
+			location   	(16, 544)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @80
+			    Parent_View 	@79
+			    location   	(1303, 500)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF27AF01D9"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	404
+			    justify    	0
+			    label      	"系统查询待审核公告"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@66
+			supplier   	@73
+			Focus_Src  	@68
+			Focus_Entry 	@74
+			origin     	(975, 544)
+			terminus   	(1632, 544)
+			ordinal    	1)
+		    (object InterMessView "返回待审公告列表" @81
+			location   	(16, 800)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @82
+			    Parent_View 	@81
+			    location   	(1304, 756)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF27D40377"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	360
+			    justify    	0
+			    label      	"返回待审公告列表"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	1)
+			line_color 	3342489
+			client     	@73
+			supplier   	@66
+			Focus_Src  	@75
+			Focus_Entry 	@69
+			origin     	(1632, 800)
+			terminus   	(976, 800)
+			ordinal    	2)
+		    (object SelfMessView "管理员审核公告" @83
+			location   	(16, 1008)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @84
+			    Parent_View 	@83
+			    location   	(1051, 964)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF27EC0005"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	316
+			    justify    	0
+			    label      	"管理员审核公告"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@66
+			supplier   	@66
+			Focus_Src  	@70
+			Focus_Entry 	@71
+			origin     	(976, 1008)
+			terminus   	(1126, 1008)
+			ordinal    	3)
+		    (object InterMessView "系统修改公告状态" @85
+			location   	(16, 1184)
+			font       	(object Font
+			    size       	10
+			    face       	"Arial"
+			    bold       	FALSE
+			    italics    	FALSE
+			    underline  	FALSE
+			    strike     	FALSE
+			    color      	0
+			    default_color 	TRUE)
+			label      	(object SegLabel @86
+			    Parent_View 	@85
+			    location   	(1303, 1140)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    quidu      	"58DF28290340"
+			    anchor_loc 	1
+			    nlines     	1
+			    max_width  	360
+			    justify    	0
+			    label      	"系统修改公告状态"
+			    pctDist    	0.500000
+			    height     	45
+			    orientation 	0)
+			line_color 	3342489
+			client     	@66
+			supplier   	@73
+			Focus_Src  	@72
+			Focus_Entry 	@76
+			origin     	(975, 1184)
+			terminus   	(1632, 1184)
+			ordinal    	4)))))
     root_subsystem 	(object SubSystem "Component View"
 	quid       	"358536FC0341"
 	physical_models 	(list unit_reference_list

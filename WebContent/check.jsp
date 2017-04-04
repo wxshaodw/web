@@ -13,14 +13,14 @@
     int no=Integer.parseInt(request.getParameter("no"));
     Notive notive=p.getList().get(no);
 %>
-<table>
-<tr height="60"></tr>
-<tr>
+<table width="1000" >
+<tr  width="1000"   height="60"></tr>
+<tr width="1000"  align="center">
 <table >
-    <tr>
+    <tr align="center">
     <td align="center"><h1><%=notive.getN_title() %></h1></td>
     </tr>
-    <tr>
+    <tr align="left">
     <td><%=notive.getN_context() %></td>
     </tr>
 </table>

@@ -13,8 +13,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.csxy.gggl.Dao.Dao;
 import com.csxy.gggl.db.JDBCUtils;
-import com.csxy.gggl.domain.Notive;
-import com.csxy.gggl.domain.User;
 import com.csxy.gggl.utils.ReflectionUtils;
 import com.csxy.gggl.web.ConnectionContext;
 

@@ -1,9 +1,6 @@
 package com.csxy.gggl.Dao;
 
-import java.sql.ResultSet;
 import java.util.List;
-
-import com.csxy.gggl.domain.User;
 
 public interface Dao<T> {
 	

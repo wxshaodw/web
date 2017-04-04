@@ -22,8 +22,58 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	}
 
 	@Override
-	public List<Notive> getNotivebycondition(Condition condition,int page_no) {
-		String sql="select * from notive";
+	public List<Notive> getNotivebycondition(String condition,int page_no) {
+		String sql="select * from Notive";
+		sql=sql+condition+"limit ?,?";
+		// TODO Auto-generated method stub
+		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
+	}
+
+	@Override
+	public int releaseNotive(Notive new_notive) {
+		String sql="insert into notive(N_author, N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context,N_run_state) values"+"(?,?,?,?,?,?,?,?,?,?)";
+		int notive_id=insert(sql,new_notive.getN_author(),new_notive.getN_title(),new_notive.getN_type(),new_notive.getN_state(),new_notive.getN_top(),new_notive.getN_release_time(),new_notive.getN_begin_time(),new_notive.getN_end_time(),new_notive.getN_context(),new_notive.getN_run_state());
+		new_notive.setN_id(notive_id);// TODO Auto-generated method stub
+		return new_notive.getN_id();
+	}
+
+	@Override
+	public boolean updateNotive(Notive notive) {
+		String sql="update Notive set N_author=?,N_title=?,N_type=?,N_state=?,N_top=?,N_release_time=?,N_begin_time=?,N_end_time=?,N_context=?,N_run_state=? where N_id=?";// TODO Auto-generated method stub
+		return update(sql, notive.getN_author(),notive.getN_title(),notive.getN_type(),notive.getN_state(),notive.getN_top(),notive.getN_release_time(),notive.getN_begin_time(),notive.getN_end_time(),notive.getN_context(),notive.getN_run_state(),notive.getN_id());
+	}
+
+	@Override
+	public boolean delectNotive(int id) {
+		String sql="delete from notive where N_id=?";
+		return delect(sql, id);
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public List<Notive> queryforpage(int page_no) {
+		String sql="select * from notive limit ?,?";
+		// TODO Auto-generated method stub
+		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
+	}
+
+	@Override
+	public int Count_Notive() {
+		String sql="select count(*)from notive ";
+		// TODO Auto-generated method stub
+		return Countfordate(sql);
+	}
+
+	@Override
+	public int Count_Notive(String condition) {
+		String sql="select count(*) from Notive";
+		sql=sql+condition;
+		// TODO Auto-generated method stub
+		return Countfordate(sql);
+	}
+
+	@Override
+	public String create_query_sql(Condition condition) {
 		String condition_str=" where ";
 		int condition_mun=0;
 		if(!condition.getType().equals("")){
@@ -56,47 +106,10 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 			condition_str=condition_str+"N_run_state ='"+condition.getRun_state()+"'";
 			condition_mun++;
 		}
-		if(condition_mun!=0){
-			sql=sql+condition_str;
+		if(condition_mun==0){
+			condition_str="";
 		}
-		sql=sql+"limit ?,?";
-		// TODO Auto-generated method stub
-		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
-	}
-
-	@Override
-	public boolean releaseNotive(Notive new_notive) {
-		String sql="insert into notive(N_author, N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context,N_run_state) values"+"(?,?,?,?,?,?,?,?,?,?)";
-		int notive_id=insert(sql,new_notive.getN_author(),new_notive.getN_title(),new_notive.getN_type(),new_notive.getN_state(),new_notive.getN_top(),new_notive.getN_release_time(),new_notive.getN_begin_time(),new_notive.getN_end_time(),new_notive.getN_context(),new_notive.getN_run_state());
-		new_notive.setN_id(notive_id);// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean updateNotive(Notive notive) {
-		String sql="update Notive set N_author=?,N_title=?,N_type=?,N_state=?,N_top=?,N_release_time=?,N_begin_time=?,N_end_time=?,N_context=?,N_run_state=? where N_id=?";// TODO Auto-generated method stub
-		return update(sql, notive.getN_author(),notive.getN_title(),notive.getN_type(),notive.getN_state(),notive.getN_top(),notive.getN_release_time(),notive.getN_begin_time(),notive.getN_end_time(),notive.getN_context(),notive.getN_run_state(),notive.getN_id());
-	}
-
-	@Override
-	public boolean delectNotive(int id) {
-		String sql="delete from notive where N_id=?";
-		return delect(sql, id);
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public List<Notive> queryforpage(int page_no) {
-		String sql="select * from notive limit ?,?";
-		// TODO Auto-generated method stub
-		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
-	}
-
-	@Override
-	public int Count_Notive() {
-		String sql="select count(*)from notive ";
-		// TODO Auto-generated method stub
-		return Countfordate(sql);
+		return condition_str;
 	}
 
 

@@ -1,6 +1,8 @@
 package com.csxy.gggl.servlet;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,8 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
+import com.csxy.gggl.domain.Department;
 import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.User;
+import com.csxy.gggl.service.Department_service;
+import com.csxy.gggl.service.Employee_service;
 import com.csxy.gggl.service.User_service;
 
 /**
@@ -22,6 +27,8 @@ public class user_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	User_service user_service=new User_service();
+	Employee_service employee_service=new Employee_service();
+	Department_service department_service=new Department_service();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -44,6 +51,12 @@ public class user_servlet extends HttpServlet {
 			user=user_service.login(user.getU_name(),user.getU_password());
 			if(user!=null){
 				session.setAttribute("User", user);
+				List<Employee> emoloyee_list=employee_service.get_employeelist();
+				List<Department> department_list=department_service.get_dept_list();
+				Employee employee=employee_service.get_employee(user.getU_owner());
+				session.setAttribute("Employee", employee);
+				session.setAttribute("Department_list", department_list);
+				session.setAttribute("Employ_list",emoloyee_list);
 				request.getRequestDispatcher("Notive_servlet?method=getPage").forward(request,response);
 			}
 			else{

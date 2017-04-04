@@ -5,7 +5,6 @@ public class Employee {
 	String P_name;
 	String P_mobile;
 	String P_address;
-	int U_id;
 	int P_department;
 	public int getP_id() {
 		return P_id;
@@ -30,12 +29,6 @@ public class Employee {
 	}
 	public void setP_address(String p_address) {
 		P_address = p_address;
-	}
-	public int getU_id() {
-		return U_id;
-	}
-	public void setU_id(int u_id) {
-		U_id = u_id;
 	}
 	public int getP_department() {
 		return P_department;
