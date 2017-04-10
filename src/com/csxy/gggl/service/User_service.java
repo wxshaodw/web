@@ -15,9 +15,9 @@ public class User_service {
 		return user_dao.insert_Employee(new_employee);
 	}
 	
-	public User login(String username ,String password){
+	public User login(String username ,String password,String type){
 		User user=user_dao.get_User(username);
-		if(user.getU_password()!=null&&user.getU_password().equals(password)){
+		if(user.getU_password()!=null&&user.getU_password().equals(password)&&user.getU_type().equals(type)){
 			return user;
 		}
 		return null;

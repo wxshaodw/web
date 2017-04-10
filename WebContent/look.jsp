@@ -18,18 +18,8 @@
         <div id="control">
             <form>
                 <div id="control_left">
-                    <img />
-                    <font>公告通知</font>
-                    <select id="type">
-                        <option value=""></option>
-                        <option value="决定">决定</option>
-                        <option value="通知">通知</option>
-                        <option value="报告">报告</option>
-                        <option value="其他">其他</option>
-                    </select>
-                    <font>发布日期：</font>
-                    <input type="date"/>
-                    <input type="button" value="确定" />
+                <button>未读公告</button>
+                <button>已读公告</button>
                 </div>
                 <div id="control_right">
                     <font id=page>${Page.getPageNo()} / ${Page.getTotalPageNumber()}页</font>

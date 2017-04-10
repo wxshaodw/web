@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <%@ page import="com.csxy.gggl.web.Page" %>
 <%@ page import="com.csxy.gggl.domain.Notive" %>
+<%@ page import="com.csxy.gggl.domain.User" %>
 <link rel='stylesheet' type='text/css' href='main.css'>
 <script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
 <script charset="utf-8" type="text/javascript">
@@ -177,7 +179,10 @@ body {
     background-color: white;
 }
 -->
-</style></head>
+</style>
+<% User User=(User)session.getAttribute("User"); %>
+<c:set var="user_type" ><%=User.getU_type() %></c:set>
+</head>
 <body>
     <div id="north">
         <div id="north_left"><img src="./image/logo.png" height="119" id=logo></div>
@@ -195,12 +200,16 @@ body {
         </div>
     </div>
     <div id="funcbar">
-        <button name="Manger" onClick="flush('Notive_servlet?method=getPage')">公共管理</button>
+        <c:if test="${sessionScope.User_type=='管理员'}"><button name="Manger" onClick="flush('Notive_servlet?method=getPage')">公告管理</button></c:if>
+        <c:if test="${sessionScope.User_type=='一般用户' }"><button name="" onClick="flush('Notive_servlet?method=getPage')">公告查看</button></c:if>
         <button name="release" onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')">新建公告</button>
         <button name="query" onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')">公告查询</button>
     </div>    
     <form id="function" action="Notive_servlet?method=getpage"  method="post">
-    <div id="center"><jsp:include page="massage.jsp" ></jsp:include></div>
+    <div id="center">
+        <c:if test="${sessionScope.User_type=='管理员' }"><jsp:include page="massage.jsp" ></jsp:include></c:if>
+        <c:if test="${sessionScope.User_type=='一般用户' }"><jsp:include page="look.jsp" ></jsp:include></c:if>
+    </div>
     </form>
 
    <!--<div id="south">

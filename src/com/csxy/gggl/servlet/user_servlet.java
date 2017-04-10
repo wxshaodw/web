@@ -48,7 +48,7 @@ public class user_servlet extends HttpServlet {
 			HttpSession session=request.getSession();
 			
 			user_servlet.create_user(user, request, response);		
-			user=user_service.login(user.getU_name(),user.getU_password());
+			user=user_service.login(user.getU_name(),user.getU_password(),user.getU_type());
 			if(user!=null){
 				session.setAttribute("User", user);
 				List<Employee> emoloyee_list=employee_service.get_employeelist();
@@ -85,6 +85,7 @@ public class user_servlet extends HttpServlet {
 	protected static void create_user(User user,HttpServletRequest request, HttpServletResponse response){
 		user.setU_name(request.getParameter("username"));	
 		user.setU_password(request.getParameter("password"));
+		user.setU_type(request.getParameter("type"));
 	}
 	
 	protected static void create_employee(Employee employee,HttpServletRequest request, HttpServletResponse response){

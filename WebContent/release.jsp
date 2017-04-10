@@ -56,7 +56,7 @@ text-decoration: none;
         <td>类别：</td>
         <td>
             <select name="type">
-                <option value="null"></option>
+                <option value=""></option>
                 <option value="决定">决定</option>
                 <option value="通知">通知</option>
                 <option value="报告">报告</option>

@@ -34,7 +34,7 @@
 <title>用户登录</title>
 </head>
 <body >
-    <div id="login_panel" align="center">
+    <div id="login_panel">
     <form id="chat" action="user_servlet?methods=login" method="post">
     <div align="center"><label id="tip">用户登录</label></div>
     <div id="username_box">
@@ -43,7 +43,12 @@
     </div>
     <div id="password_box">
         <label for="password">密&nbsp;&nbsp;&nbsp;码：</label>
-        <input type="password" id="password" name="password" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入密码"><br>        
+        <input type="password" id="password" name="password" maxlength="20" onmouseover="this.focus()" onfocus="this.select()" value="" placeholder="请输入密码">       
+    </div>
+    <div id="select_type">
+        <h4>用户类别：</h4>
+        <input type="radio" name="type" value="一般用户" checked="checked" />一般用户
+        <input type="radio" name="type" value="管理员" />管理员
     </div>
     <div id="function" align="center">
         <button type="button" onclick="turn('login')" title="登录">登录</button>

@@ -48,6 +48,7 @@ public class Notive_servlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
+		session.setAttribute("User_type", user.getU_type());
 		Employee employee=(Employee)session.getAttribute("Employee");
 		String state=(String)session.getAttribute("running_state");
 		Condition condition=(Condition) session.getAttribute("condition");
