@@ -14,7 +14,7 @@ public interface Employee_Dao {
 	/**
 	 * 建立公告与员工关系
 	 * **/
-	public boolean link_employee_to_notive(int N_id,int P_id);
+	public boolean link_employee_to_notive(int N_id,int P_id,String read_state);
 	
 	/**返回员工列表**/
 	public List<Employee> get_employee_list();

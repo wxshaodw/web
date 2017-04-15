@@ -207,8 +207,7 @@ body {
     </div>    
     <form id="function" action="Notive_servlet?method=getpage"  method="post">
     <div id="center">
-        <c:if test="${sessionScope.User_type=='管理员' }"><jsp:include page="massage.jsp" ></jsp:include></c:if>
-        <c:if test="${sessionScope.User_type=='一般用户' }"><jsp:include page="look.jsp" ></jsp:include></c:if>
+        <jsp:include page="massage.jsp" ></jsp:include>
     </div>
     </form>
 

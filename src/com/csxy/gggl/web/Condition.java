@@ -1,13 +1,20 @@
 package com.csxy.gggl.web;
 
 public class Condition {
+	int author=0;
 	String type="";
 	String state="";
 	String top="";
 	String title="";
 	String begin_time="";
 	String end_time="";
-	String run_state="";
+	
+	public int getAuthor() {
+		return author;
+	}
+	public void setAuthor(int author) {
+		this.author = author;
+	}
 	public String getType() {
 		return type;
 	}
@@ -43,12 +50,6 @@ public class Condition {
 	}
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
-	}
-	public String getRun_state() {
-		return run_state;
-	}
-	public void setRun_state(String run_state) {
-		this.run_state = run_state;
 	}
 
 }

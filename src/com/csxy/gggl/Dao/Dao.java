@@ -43,5 +43,5 @@ public interface Dao<T> {
 	
 	/**
 	 * 返回数据总条数**/
-	int Countfordate(String sql);
+	int Countfordate(String sql,Object...args);
 }

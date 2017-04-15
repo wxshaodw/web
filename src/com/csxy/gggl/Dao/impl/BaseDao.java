@@ -133,13 +133,18 @@ public class BaseDao<T> implements Dao<T>{
 	}
 
 	@Override
-	public int Countfordate(String sql) {
+	public int Countfordate(String sql,Object...args) {
 		int sum=0;
 		Connection connection=ConnectionContext.getinstance().get();
 		PreparedStatement preparedStatement=null;
 		ResultSet rs=null;
 		try {
 			preparedStatement=connection.prepareStatement(sql);
+			if(args!=null){
+				for(int i=0;i<args.length;i++){
+					preparedStatement.setObject(i+1, args[i]);
+				}
+			}
 			rs=preparedStatement.executeQuery();
 			rs.next();
 			sum=rs.getInt(1);

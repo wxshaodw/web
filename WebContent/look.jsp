@@ -53,7 +53,7 @@
                                                                                                     员工：<c:forEach items="${notive.getLink_employee()}" var="employee">${employee} &nbsp;</c:forEach>
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
-                        <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_run_state() }</td>
+                        <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>
                         <td style="width:180px;overflow: hidden;" align=center>
                             <input type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
                             <input type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />

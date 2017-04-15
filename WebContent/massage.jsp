@@ -10,7 +10,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <% Page<normal_Notive> p=(Page<normal_Notive>)session.getAttribute("Page");
    List<normal_Notive> list=p.getList();
-   list.get(1).getLink_employee();
    %>
 </head>
 <body>
@@ -18,6 +17,17 @@
         <div id="control">
             <form>
                 <div id="control_left">
+                   <c:if test="${sessionScope.User_type=='管理员' }">
+                       <button onclick="flush('Notive_servlet?method=getPage')">全部公告</button>
+                       <button onclick="flush('Notive_servlet?method=Pending_audit')">待审核公告</button>
+                       <button onclick="flush('Notive_servlet?method=audit')">已审核公告</button>
+                   </c:if>
+                   <c:if test="${sessionScope.User_type=='一般用户' }">
+                   <button onclick="flush('Notive_servlet?method=getPage')">与我相关</button>
+                   <button onclick="flush('Notive_servlet?method=getMy_Notive')">我的公告</button>
+                   <button onclick="flush('Notive_servlet?method=getUnread')">未读公告</button>
+                   <button onclick="flush('Notive_servlet?method=getread')">已读公告</button>
+                   </c:if>
                     <img />
                     <font>公告通知</font>
                     <select id="type">
@@ -51,7 +61,9 @@
                     <td style="width:400px;overflow: hidden;" align=center>发布范围</td>
                     <td style="width:500px;overflow: hidden;" align=center>生效日期</td>
                     <td style="width:100px;overflow: hidden;" align=center>生效状态</td>
+                    <c:if test="${sessionScope.User_type!='一般用户' }">
                     <td style="width:180px;overflow: hidden;" align=center>操作</td>
+                    </c:if>
                 </tr>
                 <c:forEach items="${Page.getList()}" var="notive" varStatus="no" >
                     <tr>
@@ -63,11 +75,13 @@
                                                                                                     员工：<c:forEach items="${notive.getLink_employee()}" var="employee">${employee} &nbsp;</c:forEach>
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
-                        <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_run_state() }</td>
+                        <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>
+                        <c:if test="${sessionScope.User_type!='一般用户' }">
                         <td style="width:180px;overflow: hidden;" align=center>
                             <input type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
                             <input type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
+                        </c:if>
                     </tr>
                 </c:forEach>
         </table>

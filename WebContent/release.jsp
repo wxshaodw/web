@@ -76,15 +76,6 @@ text-decoration: none;
         </td>
     </tr>
     <tr>
-        <td>发布状态：</td>
-        <td width="500px">
-        <select name="state">
-            <option value="未发布">未发布</option>
-            <option value="已发布">已发布</option>
-        </select>
-        </td>
-    </tr>
-        <tr>
         <td>是否顶置：</td>
         <td width="500px">
         <select name="top">

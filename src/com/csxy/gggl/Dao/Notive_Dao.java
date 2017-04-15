@@ -45,6 +45,48 @@ public interface Notive_Dao {
 	public abstract int Count_Notive(String condition);
 	
 	/**
+	 * 获取公告数量**/
+	public abstract int Count_Notive(int P_id,String read_state);
+	
+	/**
+	 * 获取公告数量**/
+	public abstract int Count_Notive(int P_id);
+	
+	/**
 	 * 生成查询sql语句**/
 	public abstract String create_query_sql(Condition condition);
+	
+	/**
+	 * 生成查询sql语句**/
+	public abstract String create_query_sqlbyuser(Condition condition);
+	
+	/**
+	 * 根据状态查询公告
+	 * @Param P_id:用户id
+	 * @Param read_state
+	 * **/
+	public abstract List<Notive> getNotivebyread_state(int P_id,String read_state,int page_no);
+	
+	/**
+	 * 获取一般用户相关公告
+	 * @param P_id:用户id
+	 * @param page_no:页号**/
+	public abstract List<Notive> getNotivebyUser_id(int P_id,int page_no);
+	
+	/**管理员获取已审核公告
+	 * @param page_no:页号**/
+	public abstract List<Notive> get_audit_Notive(int page_no);
+	
+	/**
+	 * 获取已审核公告数量**/
+	public abstract int Count_audit_Notive();
+	
+	/**
+	 * 通过条件查询
+	 * @return 获取结果列表**/
+	public abstract List<Notive> getNotivebycondition(int P_id,String condition,int page_no);
+	
+	/**
+	 * 获取公告数量**/
+	public abstract int Count_Notivebycondition(int P_id,String condition);
 }

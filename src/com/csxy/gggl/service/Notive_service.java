@@ -16,6 +16,7 @@ import com.csxy.gggl.web.Page;
 import com.csxy.gggl.web.normal_Notive;
 
 public class Notive_service {
+	private static final String DEFAULT_READ_STATE="Î´¶Á";
 	private static Notive_Dao notive_Dao=new Notive_Dao_impl();
 	private static Employee_Dao employee_Dao=new Employee_Dao_impl();
 	private static Department_Dao department_Dao=new Department_Dao_impl();
@@ -26,7 +27,7 @@ public class Notive_service {
 		n_id=notive_Dao.releaseNotive(new_notive);
 		if(notive.getLink_employee()!=null){
 			for(int i=0;i<notive.getLink_employee().size();i++){
-				employee_Dao.link_employee_to_notive(n_id,Integer.parseInt(notive.getLink_employee().get(i)));
+				employee_Dao.link_employee_to_notive(n_id,Integer.parseInt(notive.getLink_employee().get(i)),DEFAULT_READ_STATE);
 			}
 		}
 		if(notive.getLink_dept()!=null){
@@ -51,7 +52,6 @@ public class Notive_service {
 			r.setN_begin_time(notives.get(i).getN_begin_time());
 			r.setN_end_time(notives.get(i).getN_end_time());
 			r.setN_context(notives.get(i).getN_context());
-			r.setN_run_state(notives.get(i).getN_run_state());
 			List<String> selected_employee_list= employee_Dao.get_link_employee(r.getN_id());
 			if(selected_employee_list.size()!=0)r.setLink_employee(selected_employee_list);
 			List<String> selected_dept_list=department_Dao.get_link_dept(r.getN_id());
@@ -76,6 +76,42 @@ public class Notive_service {
 	public Page<normal_Notive> createPage(Condition condition,int Page_no){
 		int sum=notive_Dao.Count_Notive(notive_Dao.create_query_sql(condition));
 		List<Notive> list=notive_Dao.getNotivebycondition(notive_Dao.create_query_sql(condition), Page_no);
+		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
+		page.setList(create_normalNotive(list));
+		page.setTotalItemNumber(sum);
+		return page;
+	}
+	
+	public Page<normal_Notive> createPage(int P_id,String read_state,int Page_no){
+		int sum=notive_Dao.Count_Notive(P_id, read_state);
+		List<Notive> list=notive_Dao.getNotivebyread_state(P_id, read_state, Page_no);
+		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
+		page.setList(create_normalNotive(list));
+		page.setTotalItemNumber(sum);
+		return page;
+	}
+	
+	public Page<normal_Notive> createPage(int P_id,int Page_no){
+		int sum=notive_Dao.Count_Notive(P_id);
+		List<Notive> list=notive_Dao.getNotivebyUser_id(P_id, Page_no);
+		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
+		page.setList(create_normalNotive(list));
+		page.setTotalItemNumber(sum);
+		return page;
+	}
+	
+	public Page<normal_Notive> createPage(int P_id,int Page_no,Condition condition){
+		int sum=notive_Dao.Count_Notivebycondition(P_id, notive_Dao.create_query_sqlbyuser(condition));
+		List<Notive> list=notive_Dao.getNotivebycondition(P_id, notive_Dao.create_query_sqlbyuser(condition), Page_no);
+		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
+		page.setList(create_normalNotive(list));
+		page.setTotalItemNumber(sum);
+		return page;
+	}
+	
+	public Page<normal_Notive> create_audit_Page(int Page_no){
+		int sum=notive_Dao.Count_audit_Notive();
+		List<Notive> list=notive_Dao.get_audit_Notive(Page_no);
 		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
 		page.setList(create_normalNotive(list));
 		page.setTotalItemNumber(sum);

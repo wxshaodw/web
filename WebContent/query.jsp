@@ -26,8 +26,10 @@
         <td width="500px">
         <select name="state">
             <option value="全部">全部</option>
-            <option value="未发布">未发布</option>
-            <option value="已发布">已发布</option>
+           <option value="待审核">待审核</option>
+            <option value="待生效">待生效</option>
+            <option value="已生效">已生效</option>
+            <option value="已失效">已失效</option>
         </select>
         </td>
     </tr>
@@ -51,17 +53,6 @@
             <input name="begin_time" type="date">
             <label>至</label>
             <input name="end_time" type="date">
-        </td>
-    </tr>   
-        <tr>
-        <td>生效状态：</td>
-        <td width="500px">
-            <select name="run_state">
-                <option value="全部">全部</option>
-                <option value="待生效">待生效</option>
-                <option value="已生效">已生效</option>
-                <option value="已失效">已失效</option>
-            </select>
         </td>
     </tr>    
     <tr>

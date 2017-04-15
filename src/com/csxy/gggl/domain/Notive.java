@@ -11,8 +11,6 @@ public class Notive {
 	private String N_release_time;
 	private String N_begin_time;
 	private String N_end_time;
-	private String N_run_state;
-	
 	
 	public int getN_id() {
 		return N_id;
@@ -76,12 +74,6 @@ public class Notive {
 	}
 	public void setN_type(String n_type) {
 		N_type = n_type;
-	}
-	public String getN_run_state() {
-		return N_run_state;
-	}
-	public void setN_run_state(String n_run_state) {
-		N_run_state = n_run_state;
 	}
 	
 	
