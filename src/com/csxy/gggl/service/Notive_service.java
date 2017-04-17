@@ -57,7 +57,6 @@ public class Notive_service {
 			List<String> selected_dept_list=department_Dao.get_link_dept(r.getN_id());
 			if(selected_dept_list.size()!=0)r.setLink_dept(selected_dept_list);
 			Employee author=employee_Dao.getemployee(r.getN_author());
-			System.out.println(r.getN_author());
 			r.setN_authorname(author.getP_name());
 			notive_list.add(r);
 		}

@@ -147,7 +147,8 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
 	@Override
 	public int Count_audit_Notive() {
-		String sql="select count(*) from notive where NOT N_state='´ıÉóºË' ";// TODO Auto-generated method stub
+		String sql="select count(*) from notive where NOT N_state='´ıÉóºË' ";
+		// TODO Auto-generated method stub
 		return Countfordate(sql);
 	}
 

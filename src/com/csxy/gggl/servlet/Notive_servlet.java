@@ -50,6 +50,7 @@ public class Notive_servlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
 		session.setAttribute("User_type", user.getU_type());
+		session.setAttribute("function",methodName);
 		Employee employee=(Employee)session.getAttribute("Employee");
 		String state=(String)session.getAttribute("running_state");
 		Condition condition=(Condition) session.getAttribute("condition");
@@ -77,7 +78,6 @@ public class Notive_servlet extends HttpServlet {
 			session.setAttribute("condition", new Condition());
 			if(notive_service.delect_Notive(Integer.parseInt(request.getParameter("delect")))){
 				flush(session, user, notive_service);
-				System.out.println("删除成功");
 				response.sendRedirect("main.jsp");
 			}
 		}
@@ -122,7 +122,6 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("turn")){
 			int page_no=Integer.parseInt(request.getParameter("page_no"));
 			if(page_no==0)page_no=Integer.parseInt(request.getParameter("target"));
-			System.out.println(state);
 			if(state.equals("normal")){
 				if(user.getU_type().equals("管理员")){
 					Page<normal_Notive> page=notive_service.createPage(page_no);
@@ -139,7 +138,6 @@ public class Notive_servlet extends HttpServlet {
 			}
 			else{
 				if(user.getU_type().equals("管理员")){
-					System.out.println("查询翻页");
 					Page<normal_Notive> page=notive_service.createPage(condition,page_no);
 					session.setAttribute("Page",page);
 				}
@@ -239,6 +237,5 @@ public class Notive_servlet extends HttpServlet {
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),1);
 			session.setAttribute("Page",page);
 		}
-		System.out.println("刷新主页");
 	}
 }

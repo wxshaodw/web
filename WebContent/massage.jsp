@@ -61,8 +61,13 @@
                     <td style="width:400px;overflow: hidden;" align=center>发布范围</td>
                     <td style="width:500px;overflow: hidden;" align=center>生效日期</td>
                     <td style="width:100px;overflow: hidden;" align=center>生效状态</td>
-                    <c:if test="${sessionScope.User_type!='一般用户' }">
-                    <td style="width:180px;overflow: hidden;" align=center>操作</td>
+                    <c:if test="${sessionScope.User_type=='管理员' }">
+                        <td style="width:180px;overflow: hidden;" align=center>操作</td>
+                    </c:if>
+                    <c:if test="${sessionScope.User_type=='一般用户' }">
+                        <c:if test="${sessionScope.function=='getMy_Notive' }">
+                            <td style="width:180px;overflow: hidden;" align=center>操作</td>
+                        </c:if>
                     </c:if>
                 </tr>
                 <c:forEach items="${Page.getList()}" var="notive" varStatus="no" >
@@ -76,21 +81,23 @@
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>
-                        <c:if test="${sessionScope.User_type!='一般用户' }">
+                        <c:if test="${sessionScope.User_type=='管理员' }">
                         <td style="width:180px;overflow: hidden;" align=center>
                             <input type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
                             <input type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
                         </c:if>
+                        <c:if test="${sessionScope.User_type=='一般用户' }">
+                            <c:if test="${sessionScope.function=='getMy_Notive' }">
+                                <td style="width:180px;overflow: hidden;" align=center>
+                                <input type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
+                                </td>
+                            </c:if>
+                        </c:if>
                     </tr>
                 </c:forEach>
         </table>
         </div>
-        <!--         <div id="quicket">
-            <font>快捷操作：</font>
-            <button>标记所有公告为已读</button>
-            <button>按生效日期排列</button>
-        </div> -->
     </form>
 </body>
 </html>

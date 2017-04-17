@@ -41,7 +41,6 @@ public class BaseDao<T> implements Dao<T>{
 			if(args!=null){
 				for(int i=0;i<args.length;i++){
 					prepareStatement.setObject(i+1, args[i]);
-					System.out.println(args[i]);
 				}
 			}
 			
