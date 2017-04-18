@@ -59,16 +59,10 @@
         </td>
     </tr>
     <tr>
-        <td>相关部门:</td>
-        <td><input id="dept" type="text" readonly="readonly" >
-        <input type="button" name="add_dept" value="增加" onclick="locking('dept_add')" ></td>
-    </tr>
-    <tr>
-        <td>相关人员:</td>
-        <td><input id="employee" type="text" readonly="readonly">
-        <input type="button" name="add_employee" value="增加"  onClick="locking('employee_add')">
+        <td >相关人员:</td>
+        <td width="350px" height="100px"><textarea id="employee" readonly="readonly" rows="4" cols="40" style="resize: none;"></textarea>
+        <input class="btn btn-link" type="button" name="add_employee" value="增加"  onClick="locking('employee_add')">
         </td>
-    </tr>
     <tr>
         <td>发布状态：</td>
         <td width="500px">
@@ -116,7 +110,6 @@
 </tr>
 </table>
 
-
     <div id="ly" style="position: absolute; top: 0px; filter: alpha(opacity=60); background-color: #777;
          z-index: 2; left: 0px; display: none;">
     </div>
@@ -129,78 +122,30 @@
                      font-weight: bold; font-size: 12px;" height="35" valign="middle">
                      <div align="right"><a href=JavaScript:; class="STYLE1" onclick="Lock_CheckForm_clean('employee_add','employee_selected')">[关闭]</a> &nbsp;&nbsp;&nbsp;&nbsp;</div></td>
             </tr>
-            <tr align="center">
-                <td valign="top" align="center">
-                <table   border="0" >
-                    <tr align="center">
-                        <td width="70">选择</td>
-                        <td width="160">工号</td>
-                        <td width="160">姓名</td>
-                        <td width="170">所属部门</td>
-                   </tr>
-                   <tr>
-                   <td valign="top" colspan="4">
-                    <div style="overflow: auto;height:300;width: 500" >
-                    <table align="center" border="1">
-                        <c:forEach items="<%=employee_list %>" var="employee" varStatus="no">
-                        <tr>
-                        <td width="70"><input type="checkbox" name="employee_selected" <c:forEach items="${e1 }" var="select_e"><c:if test="${employee.getP_id()==select_e}">checked=true;</c:if></c:forEach> value="${employee.getP_id()}" /></td>
-                        <td width="160">${employee.getP_id()}</td>
-                        <td width="160">${employee.getP_name()}</td>
-                        <td width="170">${employee.getP_department()}</td>
-                        </tr>
-                        </c:forEach>
-                    </table>
-                    </div>
-                </td>
-                </tr>
-                </table>
+            <tr >
+                <td class="row" valign="top" >  
+                <div class="col-md-4">         
+                    <ul class="nav nav-pills nav-stacked">
+                        <c:forEach items="${sessionScope.Department_list}" var="dept" varStatus="no">
+                            <li>
+                            <a  data-toggle="tab" >${dept.getD_name()}</a>
+                            </li>
+                        </c:forEach> 
+                    </ul>
+                </div>
+                <div class="col-md-8" style=" overflow:scroll;height:250px;" align="left">
+                        <c:forEach items="${sessionScope.Employ_list}" var="employee" varStatus="no">
+                        <label class=" btn btn-default btn-block">
+                           <input name="employee_selected" type="checkbox"  <c:forEach items="${e1 }" var="select_e"><c:if test="${employee.getP_id()==select_e}">checked=true;</c:if></c:forEach>  value="${employee.getP_id()}">
+                                                                                               员工号：${employee.getP_id()}
+                                                                                               姓名：${employee.getP_name()}
+                        </label>
+                        </c:forEach> 
+                </div>
                 </td>
             </tr>
             <tr align="center">
-                        <td valign="bottom" ><input width="40" height="30" type="button" value="增加" onclick="get_checkbox_value('employee_selected','employee','employee_add')"></td>
-            </tr>
-        </table>
-    </div>
-        <!--          浮层框架开始         -->
-    <div id="dept_add"style="position: absolute; top: 20%; left: 33%; z-index: 3;background-color: #fff; display: none;" >
-        <table align="center" width="500" height="500" border="0" cellpadding="0" cellspacing="0" style="border: 0    solid    #e7e3e7;
-             border-collapse: collapse ;" >
-            <tr align="center">
-                <td style="background-color: #73A2d6; color: #fff;
-                     font-weight: bold; font-size: 12px;" height="35" valign="middle">
-                     <div align="right"><a href=JavaScript:; class="STYLE1" onclick="Lock_CheckForm_clean('dept_add','department_selected');">[关闭]</a> &nbsp;&nbsp;&nbsp;&nbsp;</div></td>
-            </tr>
-            <tr align="center">
-                <td valign="top" align="center">
-                <table >
-                    <tr align="center">
-                        <td width="70">选择</td>
-                        <td width="160">部门编号</td>
-                        <td width="160">部门名称</td>
-                        <td width="170">总人数</td>
-                   </tr>
-                  <tr>
-                   <td valign="top" colspan="4">
-                    <div style="overflow: auto;height:300;width: 500" >
-                    <table align="center" border="1">
-                        <c:forEach items="<%=department_list %>" var="department" varStatus="no">
-                        <tr>
-                        <td width="70"><input type="checkbox" name="department_selected" <c:forEach items="${d1 }" var="select_d"><c:if test="${department.getD_id()==select_d}">checked=true;</c:if></c:forEach>  value="${department.getD_id()}"/></td>
-                        <td width="160">${department.getD_id()}</td>
-                        <td width="160">${department.getD_name()}</td>
-                        <td width="170">${department.getD_amount()}</td>
-                        </tr>
-                        </c:forEach>
-                    </table>
-                    </div>
-                </td>
-                </tr>
-                </table>
-                </td>
-            </tr>
-            <tr align="center">
-                <td valign="bottom" ><input width="40" height="30" type="button" value="增加" onclick="get_checkbox_value('department_selected','dept','dept_add')"></td>
+                <td valign="bottom" ><input class="btn btn-success" width="40" height="30" type="button" value="增加" onclick="get_checkbox_value('employee_selected','employee','employee_add')"></td>
             </tr>
         </table>
     </div>

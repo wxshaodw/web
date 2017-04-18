@@ -50,7 +50,6 @@ public class Notive_servlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
 		session.setAttribute("User_type", user.getU_type());
-		session.setAttribute("function",methodName);
 		Employee employee=(Employee)session.getAttribute("Employee");
 		String state=(String)session.getAttribute("running_state");
 		Condition condition=(Condition) session.getAttribute("condition");
@@ -69,6 +68,7 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("getPage")){
+			session.setAttribute("function",methodName);
 			flush(session, user, notive_service);
 			response.sendRedirect("main.jsp");
 		}
@@ -83,6 +83,7 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("query")){
+			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
             if(!request.getParameter("type").equals("È«²¿")){
                 condition.setType(request.getParameter("type"));
@@ -150,6 +151,7 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("Pending_audit")){
+			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
 			condition.setState(DEFAULT_STATE);
 			session.setAttribute("condition", condition);
@@ -159,6 +161,7 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("audit")){
+			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "audit");
 			Page<normal_Notive> page=notive_service.create_audit_Page(1);
 			session.setAttribute("Page",page);
@@ -166,6 +169,7 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("getMy_Notive")){
+			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
 			condition.setAuthor(user.getU_owner());
 			session.setAttribute("condition", condition);
@@ -175,12 +179,14 @@ public class Notive_servlet extends HttpServlet {
 		}
 		
 		if(methodName.equals("getUnread")){
+			session.setAttribute("function",methodName);
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"Î´¶Á", 1);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
 		
 		if(methodName.equals("getread")){
+			session.setAttribute("function",methodName);
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"ÒÑ¶Á", 1);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");

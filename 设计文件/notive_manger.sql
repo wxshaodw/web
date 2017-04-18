@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2017-04-15 18:38:33
+Date: 2017-04-18 20:26:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -102,7 +102,7 @@ CREATE TABLE `notive` (
   PRIMARY KEY (`N_id`),
   KEY `notive_ibfk_1` (`N_author`),
   CONSTRAINT `notive_ibfk_1` FOREIGN KEY (`N_author`) REFERENCES `user` (`U_owner`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notive
@@ -130,7 +130,7 @@ INSERT INTO `notive` VALUES ('70', '15', '测试01', '通知', '待审核', '未
 INSERT INTO `notive` VALUES ('71', '15', '测试002', '决定', '已发布', '已顶置', '2017-04-09', '2017-04-23', '2017-05-04', 0xE4BCBCE68782E99D9EE68782);
 INSERT INTO `notive` VALUES ('72', '15', '测试003', '通知', '已发布', '未顶置', '2017-03-26', '2017-04-23', '2017-04-29', 0xE6B58BE8AF95E8AF95E8AF95);
 INSERT INTO `notive` VALUES ('73', '15', '测试005', '通知', '待审核', '未顶置', '2017-04-09', '2017-04-30', '2017-05-06', 0xE6B58BE8AF95E5939F);
-INSERT INTO `notive` VALUES ('74', '15', '测试004', '通知', '待审核', '未顶置', '2017-04-04', '2017-04-16', '2017-05-04', 0xE8AF95E8AF95EFBC8CE69C89E782B9E7B4AFE4BA86);
+INSERT INTO `notive` VALUES ('75', '1', '', '', '待审核', '未顶置', '2017-04-09', '2017-04-23', '2017-04-29', '');
 
 -- ----------------------------
 -- Table structure for notive_dept
@@ -220,7 +220,6 @@ INSERT INTO `notive_employee` VALUES ('72', '10', '未读');
 INSERT INTO `notive_employee` VALUES ('72', '14', '未读');
 INSERT INTO `notive_employee` VALUES ('72', '15', '未读');
 INSERT INTO `notive_employee` VALUES ('73', '15', '未读');
-INSERT INTO `notive_employee` VALUES ('74', '15', '未读');
 
 -- ----------------------------
 -- Table structure for user

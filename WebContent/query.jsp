@@ -57,8 +57,7 @@
     </tr>    
     <tr>
         <td align="center" colspan="2">
-        <button type="submit">确定</button>
-        <button type="reset">重置</button>
+        <button class="btn btn-primary" type="submit">确定</button>
         </td>
     </tr>
 </table>

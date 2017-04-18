@@ -7,12 +7,15 @@
 <%@ page import="com.csxy.gggl.web.Page" %>
 <%@ page import="com.csxy.gggl.domain.Notive" %>
 <%@ page import="com.csxy.gggl.domain.User" %>
-<link rel='stylesheet' type='text/css' href='main.css'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" media="screen" />
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
 <script charset="utf-8" type="text/javascript">
     var Editor;
     var xmlhttp;
-    function reflush(page,method){
+    function reflush(page,method,guideid){
     	document.getElementById("function").action=method;
     	if(window.XMLHttpRequest){
     		xmlhttp=new XMLHttpRequest();
@@ -163,48 +166,39 @@
     	}
     	t.value=str;
     	Lock_CheckForm(theForm)
+    	
     }
+    function details(N_id){
+		var url="/gggl/check.jsp?no="+N_id
+		window.open(url,"","width=900,height=700,Left=250,Top=30");
+	}
 </script>
 <title>公告管理系统</title>
-<style type="text/css">
-<!--
-body {
-	background-image: url(image/main_bg.jpg);
-	background-size:100%;
-	background-repeat: no-repeat;
-}
-#center{
-    width:100%;
-    height:78%;
-    background-color: white;
-}
--->
-</style>
 <% User User=(User)session.getAttribute("User"); %>
 <c:set var="user_type" ><%=User.getU_type() %></c:set>
 </head>
-<body>
-    <div id="north">
-        <div id="north_left"><img src="./image/logo.png" height="119" id=logo></div>
-        <div id="north_right">
-            <div id="datetime">
+<body  class="container-fluid">
+    <div id="north" class="row">
+        <div class="col-md-4" id="north_left"><img class="img-rounded" src="./image/logo.png" height="119" id=logo></div>
+        <div class="row"  id="north_right">
+            <div class="col-md-1 pull-right" id="datetime">
                 <div name="time">10:08</div>
                 <div name="date">2017/2/22</div>
                 <div name="">农历</div>
             </div>
-            <div id="weather">
+            <div class="col-md-1 pull-right" id="weather">
                 <div name="area">东莞</div>
                 <div name="weather">雨天</div>
                 <div name="nl">温度</div>
             </div>
         </div>
     </div>
-    <div id="funcbar">
-        <c:if test="${sessionScope.User_type=='管理员'}"><button name="Manger" onClick="flush('Notive_servlet?method=getPage')">公告管理</button></c:if>
-        <c:if test="${sessionScope.User_type=='一般用户' }"><button name="" onClick="flush('Notive_servlet?method=getPage')">公告查看</button></c:if>
-        <button name="release" onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')">新建公告</button>
-        <button name="query" onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')">公告查询</button>
-    </div>    
+    <ul id="guide" class="nav nav-tabs">
+      <c:if test="${sessionScope.User_type=='管理员'}"><li role="presentation" class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告管理</a></li></c:if>
+      <c:if test="${sessionScope.User_type=='一般用户' }"><li role="presentation"  class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告查看</a></li></c:if>
+      <li role="presentation" class=""><a onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')" data-toggle="tab">新建公告</a></li>
+      <li role="presentation" class=""><a onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')" data-toggle="tab">公告查询</a>
+    </ul>
     <form id="function" action="Notive_servlet?method=getpage"  method="post">
     <div id="center">
         <jsp:include page="massage.jsp" ></jsp:include>
