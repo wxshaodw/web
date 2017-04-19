@@ -9,11 +9,13 @@ import com.csxy.gggl.Dao.Notive_Dao;
 import com.csxy.gggl.Dao.impl.Department_Dao_impl;
 import com.csxy.gggl.Dao.impl.Employee_Dao_impl;
 import com.csxy.gggl.Dao.impl.Notive_Dao_impl;
+import com.csxy.gggl.domain.Department;
 import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.Notive;
 import com.csxy.gggl.utils.run_state_Utils;
 import com.csxy.gggl.web.Condition;
 import com.csxy.gggl.web.Page;
+import com.csxy.gggl.web.normal_Dept;
 import com.csxy.gggl.web.normal_Notive;
 
 public class Notive_service {
@@ -29,11 +31,6 @@ public class Notive_service {
 		if(notive.getLink_employee()!=null){
 			for(int i=0;i<notive.getLink_employee().size();i++){
 				employee_Dao.link_employee_to_notive(n_id,Integer.parseInt(notive.getLink_employee().get(i)),DEFAULT_READ_STATE);
-			}
-		}
-		if(notive.getLink_dept()!=null){
-			for(int i=0;i<notive.getLink_dept().size();i++){
-				department_Dao.link_dept_to_notive(n_id, Integer.parseInt(notive.getLink_dept().get(i)));
 			}
 		}
 		return true;
@@ -55,8 +52,6 @@ public class Notive_service {
 			r.setN_context(notives.get(i).getN_context());
 			List<String> selected_employee_list= employee_Dao.get_link_employee(r.getN_id());
 			if(selected_employee_list.size()!=0)r.setLink_employee(selected_employee_list);
-			List<String> selected_dept_list=department_Dao.get_link_dept(r.getN_id());
-			if(selected_dept_list.size()!=0)r.setLink_dept(selected_dept_list);
 			Employee author=employee_Dao.getemployee(r.getN_author());
 			r.setN_authorname(author.getP_name());
 			notive_list.add(r);
@@ -134,7 +129,6 @@ public class Notive_service {
 		else{
 			N_state="²»Í¨¹ý";
 		}
-		System.out.println(notive.getN_id());
 		return notive_Dao.Notive_audit(notive.getN_id(), N_state);
 	}
 	
@@ -143,4 +137,5 @@ public class Notive_service {
 		return false;
 		
 	}
+	
 }

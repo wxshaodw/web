@@ -64,4 +64,10 @@ public class Employee_Dao_impl extends BaseDao<Employee> implements Employee_Dao
 		return list;
 	}
 
+	@Override
+	public List<Employee> get_employee_list(int D_id) {
+		String sql="select * from employee where P_department=?";// TODO Auto-generated method stub
+		return queryforList(sql, D_id);
+	}
+
 }

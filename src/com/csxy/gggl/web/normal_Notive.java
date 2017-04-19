@@ -7,7 +7,6 @@ import com.csxy.gggl.domain.Notive;
 public class normal_Notive extends Notive{
 	String N_authorname;
 	List<String> Link_employee;
-	List<String> Link_dept;
 	
 	public normal_Notive(){}
 	
@@ -33,17 +32,6 @@ public class normal_Notive extends Notive{
 		Link_employee = link_employee;
 	}
 
-
-
-	public List<String> getLink_dept() {
-		return Link_dept;
-	}
-
-
-
-	public void setLink_dept(List<String> link_dept) {
-		Link_dept = link_dept;
-	}
 
 	
 }

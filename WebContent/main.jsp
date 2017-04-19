@@ -15,6 +15,7 @@
 <script charset="utf-8" type="text/javascript">
     var Editor;
     var xmlhttp;
+    var checkedIds=[];
     function reflush(page,method,guideid){
     	document.getElementById("function").action=method;
     	if(window.XMLHttpRequest){
@@ -59,6 +60,7 @@
     	var release_time=document.getElementById("release_time").value;
     	var begin_time=document.getElementById("begin_time").value;
     	var end_time=document.getElementById("end_time").value;
+    	var method_1=document.getElementById("function").action;
     	document.getElementById("r_time_error").innerHTML="";
     	document.getElementById("b_e_time_error").innerHTML="";
     	if(release_time==""){
@@ -71,6 +73,8 @@
     		document.getElementById("b_e_time_error").innerHTML="起始时间不能大于终止时间";
     	}
     	else{
+    		method_1=method_1+"&employee_selected="+checkedIds;
+    		document.getElementById("function").action=method_1;
         	document.getElementById("function").submit();
         	alert("添加成功");
     	}
@@ -135,13 +139,10 @@
     	   }
     
     function    Lock_CheckForm_clean(theForm,box){   
-    	var boxs=document.getElementsByName(box);
-    	var length=boxs.length;
-    	for(i=0;i<length;i++){
-    		boxs[i].checked=false;
-    	}
- 	   document.all.ly.style.display='none';
- 	   document.getElementById(theForm).style.display='none';
+    	checkedIds=[];
+    	document.getElementById("eployee_list").innerHTML="";
+ 	    document.all.ly.style.display='none';
+ 	    document.getElementById(theForm).style.display='none';
  	   }
     	  
     function createEditor(){
@@ -154,24 +155,90 @@
 			});
     }
     
-    function get_checkbox_value(box,text,theForm){
-    	var boxs=document.getElementsByName(box);
+    function get_checkbox_value(text,theForm){
     	var t=document.getElementById(text);
-    	var length=boxs.length;
-    	var str="";
-    	for(i=0;i<length;i++){
-    		if(boxs[i].checked==true){
-    			str+=boxs[i].value+'、';
-    		}
-    	}
-    	t.value=str;
+    	t.value=checkedIds;
     	Lock_CheckForm(theForm)
     	
     }
+    
     function details(N_id){
 		var url="/gggl/check.jsp?no="+N_id
 		window.open(url,"","width=900,height=700,Left=250,Top=30");
 	}
+    
+    function get_employee_list(no){
+    	var url="/gggl/employee_list.jsp?no="+no;
+    	if(window.XMLHttpRequest){
+    		xmlhttp=new XMLHttpRequest();
+    	}
+    	else{
+    		xmlhttp=new ActivexOject("Microsoft.XMLHTTP");
+    	}
+    	if(xmlhttp!=null){
+    		xmlhttp.onreadystatechange=state_Change_1;
+    		xmlhttp.open("GET",url,true);
+    		xmlhttp.send();
+    	}
+    	else{
+    		alert("浏览器不支持");
+    	}
+    }
+    function state_Change_1()
+    {
+    if (xmlhttp.readyState==4)
+      {// 4 = "loaded"
+      if (xmlhttp.status==200)
+        {// 200 = "OK"
+        document.getElementById("eployee_list").innerHTML=xmlhttp.responseText;
+    	getChecked();
+        }
+      else
+        {
+        alert("Problem retrieving data:" + xmlhttp.statusText);
+        }
+      }
+    }
+    
+    function changeIds(){
+        var oneches=document.getElementsByName("employee_selected");
+        var num=0;
+      for(var i=0;i<oneches.length;i++){
+          if(oneches[i].checked==true){
+              //避免重复累计id （不含该id时进行累加）
+              for(var j=0;j<checkedIds.length;j++){
+            	  if(oneches[i].value==checkedIds[j]){
+            		  num=1;
+            		  break;
+            	  }
+              }
+              if(num==0){
+            	  checkedIds.push(oneches[i].value);
+              }
+              num=0;
+          }
+          if(oneches[i].checked==false){
+              //取消复选框时 含有该id时将id从全局变量中去除
+              for(var j=0;j<checkedIds.length;j++){
+            	  if(oneches[i].value==checkedIds[j]){
+            		  checkedIds.splice(j, 1);
+            	  }
+              }
+          }
+      }
+   }
+
+function getChecked(){
+         var oneches=document.getElementsByName("employee_selected");
+      for(var i=0;i<oneches.length;i++){
+    	  for(var j=0;j<checkedIds.length;j++){
+    		  if(oneches[i].value==checkedIds[j]){
+                  oneches[i].checked=true;
+    		  }
+    	  }
+          }
+   }
+
 </script>
 <title>公告管理系统</title>
 <% User User=(User)session.getAttribute("User"); %>

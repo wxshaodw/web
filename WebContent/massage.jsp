@@ -37,9 +37,9 @@
             </form>
         </div>
         <div id="data">
-            <table align=center id="rs" border="2" class="table-striped">
+            <table id="rs" border="2" class="table-striped">
                 <thead>
-                <tr>
+                <tr align="center">
                     <th style="width:150px;overflow: hidden;" align=center>发布人</th>
                     <th style="width:120px;overflow: hidden;" align=center>类型</th>
                     <th style="width:300px;overflow: hidden;" align=center>标题</th>
@@ -63,8 +63,7 @@
                         <td style="width:120px;overflow: hidden;" align=center>${notive.getN_type()}</td>
                         <td style="width:300px;overflow: hidden;" align=center><input type="button" class="btn btn-link" onclick="details('${no.index}')" value="${notive.getN_title()}" /></td>
                         <td style="width:400px;overflow: hidden;" align="left">
-                                                                                                    部门：<c:forEach items="${notive.getLink_dept()}" var="dept">${dept}&nbsp;</c:forEach><br/>
-                                                                                                    员工：<c:forEach items="${notive.getLink_employee()}" var="employee">${employee} &nbsp;</c:forEach>
+                                                                                    员工：<c:forEach items="${notive.getLink_employee()}" var="employee">${employee} &nbsp;</c:forEach>
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>

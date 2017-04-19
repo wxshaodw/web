@@ -18,8 +18,6 @@ private String htmlspecialchars(String str) {
 	return str;
 }
 %>
-<% List<Employee> employee_list=(List<Employee>)session.getAttribute("Employ_list"); %>
-<% List<Department> department_list=(List<Department>)session.getAttribute("Department_list"); %>
     <style type="text/css">
 <!--
 .STYLE1 {font-size: 12px}
@@ -70,7 +68,7 @@ text-decoration: none;
     </tr>
     <tr>
         <td >相关人员:</td>
-        <td width="350px" height="100px"><textarea id="employee" readonly="readonly" rows="4" cols="40" style="resize: none;"></textarea>
+        <td width="350px" height="100px"><textarea id="employee" name="employee" readonly="readonly" rows="4" cols="40" style="resize: none;"></textarea>
         <input class="btn btn-link" type="button" name="add_employee" value="增加"  onClick="locking('employee_add')">
         </td>
     </tr>
@@ -128,26 +126,19 @@ text-decoration: none;
                 <td class="row" valign="top" >  
                 <div class="col-md-4">         
                     <ul class="nav nav-pills nav-stacked">
-                        <c:forEach items="${sessionScope.Department_list}" var="dept" varStatus="no">
+                        <c:forEach items="${sessionScope.dept_list}" var="dept" varStatus="no">
                             <li>
-                            <a  data-toggle="tab" >${dept.getD_name()}</a>
+                            <a  data-toggle="tab" onclick="get_employee_list('${no.index}')">${dept.getD_name()}</a>
                             </li>
                         </c:forEach> 
                     </ul>
                 </div>
-                <div class="col-md-8" style=" overflow:scroll;height:250px;" align="left">
-                        <c:forEach items="${sessionScope.Employ_list}" var="employee" varStatus="no">
-                        <label class=" btn btn-default btn-block">
-                           <input name="employee_selected" type="checkbox"  value="${employee.getP_id()}">
-                                                                                               员工号：${employee.getP_id()}
-                                                                                               姓名：${employee.getP_name()}
-                        </label>
-                        </c:forEach> 
+                <div id="eployee_list" class="col-md-8" style=" overflow:scroll;height:250px;" align="left">
                 </div>
                 </td>
             </tr>
             <tr align="center">
-                <td valign="bottom" ><input class="btn btn-success" width="40" height="30" type="button" value="增加" onclick="get_checkbox_value('employee_selected','employee','employee_add')"></td>
+                <td valign="bottom" ><input class="btn btn-success" width="40" height="30" type="button" value="增加" onclick="get_checkbox_value('employee','employee_add')"></td>
             </tr>
         </table>
     </div>
