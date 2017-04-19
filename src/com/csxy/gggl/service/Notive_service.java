@@ -11,6 +11,7 @@ import com.csxy.gggl.Dao.impl.Employee_Dao_impl;
 import com.csxy.gggl.Dao.impl.Notive_Dao_impl;
 import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.Notive;
+import com.csxy.gggl.utils.run_state_Utils;
 import com.csxy.gggl.web.Condition;
 import com.csxy.gggl.web.Page;
 import com.csxy.gggl.web.normal_Notive;
@@ -123,5 +124,23 @@ public class Notive_service {
 	
 	public boolean update(Notive notive){
 		return notive_Dao.updateNotive(notive);
+	}
+	
+	public boolean Noitve_audit(normal_Notive notive,String state){
+		String N_state;
+		if(state.equals("通过")){
+			N_state=run_state_Utils.return_state(notive.getN_begin_time(), notive.getN_end_time());
+		}
+		else{
+			N_state="不通过";
+		}
+		System.out.println(notive.getN_id());
+		return notive_Dao.Notive_audit(notive.getN_id(), N_state);
+	}
+	
+	public boolean Notive_read(int N_id,int P_id,String read_state){
+		notive_Dao.Notive_read(N_id, P_id, read_state);
+		return false;
+		
 	}
 }

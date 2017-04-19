@@ -192,6 +192,21 @@ public class Notive_servlet extends HttpServlet {
 			response.sendRedirect("main.jsp");
 		}
 		
+		if(methodName.equals("Noitve_audit")){
+			String a_state=request.getParameter("state");
+		    Page<normal_Notive> p=(Page<normal_Notive>)session.getAttribute("Page");
+		    int no=Integer.parseInt(request.getParameter("no"));
+		    normal_Notive audit_notive=p.getList().get(no);
+		    System.out.println(audit_notive.getN_id());
+			notive_service.Noitve_audit(audit_notive, a_state);
+		}
+		
+		if(methodName.equals("Noitve_read")){
+			String read_state=request.getParameter("state");
+			int N_id=Integer.parseInt(request.getParameter("id"));
+			notive_service.Notive_read(N_id, user.getU_owner(), read_state);
+		}
+		
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		

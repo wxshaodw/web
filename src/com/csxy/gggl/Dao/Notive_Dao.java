@@ -89,4 +89,11 @@ public interface Notive_Dao {
 	/**
 	 * 获取公告数量**/
 	public abstract int Count_Notivebycondition(int P_id,String condition);
+	
+	/**
+	 * 审核公告**/
+	public abstract boolean Notive_audit(int N_id,String N_state);
+	
+	/**标记已读**/
+	public abstract boolean Notive_read(int N_id,int P_id,String readstate);
 }

@@ -195,5 +195,16 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		return Countfordate(sql,P_id);
 	}
 
+	@Override
+	public boolean Notive_audit(int N_id, String N_state) {
+		String sql="update Notive set N_state=? where N_id=?";// TODO Auto-generated method stub
+		return update(sql,N_state,N_id);
+	}
+
+	@Override
+	public boolean Notive_read(int N_id, int P_id, String read_state) {
+		String sql="update notive_employee set read_state=? where N_id=? and P_id=?";// TODO Auto-generated method stub
+		return update(sql,read_state,N_id,P_id);
+	}
 
 }

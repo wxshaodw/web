@@ -18,6 +18,7 @@
     int no=Integer.parseInt(request.getParameter("no"));
     normal_Notive notive=p.getList().get(no);
 %>
+<c:set var="notive" value="<%=notive %>"></c:set>
 <body class="container-fluid">
 
 <div class="row">
@@ -33,11 +34,13 @@
 </div>
 <div align="center" class="navbar-fixed-bottom">
     <c:if test="${sessionScope.User_type=='管理员'}">
-    <button class="col-md-3 col-md-offset-5 btn btn-success" >审核通过</button>
-    <button class="btn btn-danger" >审核不通过</button>
+    <c:if test="${notive.getN_state()=='待审核'}">
+    <a class="col-md-3 col-md-offset-5 btn btn-success" href="Notive_servlet?method=Noitve_audit&no=<%=no%>&state='通过'">审核通过</a>
+    <a class="btn btn-danger" href="Notive_servlet?method=Noitve_audit&no=<%=no%>&state='不通过'" >审核不通过</a>
+    </c:if>
     </c:if>
     <c:if test="${sessionScope.User_type=='一般用户'}">
-    <button class="col-md-3 col-md-offset-5 btn btn-success" >已读</button>
+    <a class="col-md-3 col-md-offset-5 btn btn-success" href="Notive_servlet?method=Noitve_read&id=<%=notive.getN_id()%>&state='已读'" >已读</a>
     </c:if>
 </div>
 </body>
