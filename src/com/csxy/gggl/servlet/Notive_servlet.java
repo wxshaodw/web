@@ -55,7 +55,6 @@ public class Notive_servlet extends HttpServlet {
 		
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("User");
-		session.setAttribute("User_type", user.getU_type());
 		Employee employee=(Employee)session.getAttribute("Employee");
 		String state=(String)session.getAttribute("running_state");
 		Condition condition=(Condition) session.getAttribute("condition");
@@ -116,8 +115,10 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("update")){
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
-			Notive change_notive=(Notive)session.getAttribute("change_notive");
-			//create_Notive(change_notive, user, request, response);
+			normal_Notive change_notive=(normal_Notive)session.getAttribute("change_notive");
+			List<String> employee_selected=get_selected_employee(request.getParameter("employee_selected"));
+			create_Notive(change_notive,user,employee,employee_selected, request, response);
+			System.out.println(request.getParameter("begin_time"));
 			if(notive_service.update(change_notive)){
 				flush(session, user, notive_service);
 				response.sendRedirect("main.jsp");
@@ -254,14 +255,15 @@ public class Notive_servlet extends HttpServlet {
 	
 	public List<String> get_selected_employee(String selected_employee){
 		List<String> result = Arrays.asList(selected_employee.split(","));
-		for(int i=0;i<result.size();i++){
-		}
+		if(result.get(0).equals(""))result=null;
 		return result;
 	}
+	
 	
 	public void get_employeebydept(HttpSession session){
 		Employee_service employee_service=new Employee_service();
 		List<normal_Dept> dept_list=employee_service.get_Dept();
 		session.setAttribute("dept_list", dept_list);
 	}
+	
 }

@@ -39,7 +39,7 @@
       {// 4 = "loaded"
       if (xmlhttp.status==200)
         {// 200 = "OK"
-        document.getElementById("center").innerHTML=xmlhttp.responseText;
+        document.getElementById("data").innerHTML=xmlhttp.responseText;
     	createEditor();
         }
       else
@@ -93,6 +93,7 @@
     	var release_time=document.getElementById("release_time").value;
     	var begin_time=document.getElementById("begin_time").value;
     	var end_time=document.getElementById("end_time").value;
+    	var method_1=document.getElementById("function").action;
     	document.getElementById("r_time_error").innerHTML="";
     	document.getElementById("b_e_time_error").innerHTML="";
     	if(release_time==""){
@@ -105,6 +106,8 @@
     		document.getElementById("b_e_time_error").innerHTML="起始时间不能大于终止时间";
     	}
     	else{
+    		method_1=method_1+"&employee_selected="+checkedIds;
+    		document.getElementById("function").action=method_1;
         	document.getElementById("function").submit();
         	alert("修改成功");
     	}
@@ -132,6 +135,13 @@
     	   document.all.ly.style.height=document.body.clientHeight; 
     	   document.getElementById(add_page).style.display="block";
     	   }   
+    
+    function    locking_getvalues(add_page){
+ 	   document.all.ly.style.display="block";   
+ 	   document.all.ly.style.width=document.body.clientWidth;   
+ 	   document.all.ly.style.height=document.body.clientHeight; 
+ 	   document.getElementById(add_page).style.display="block";
+ 	   }  
     
     function    Lock_CheckForm(theForm){   
     	   document.all.ly.style.display='none';
@@ -238,48 +248,38 @@ function getChecked(){
     	  }
           }
    }
-
 </script>
 <title>公告管理系统</title>
-<% User User=(User)session.getAttribute("User"); %>
-<c:set var="user_type" ><%=User.getU_type() %></c:set>
+<style type="text/css">
+#north{
+	background:url(image/bg_2.jpg);
+    background-size:100%;
+    background-repeat:no-repeat;
+}
+#center{
+    background-color: white;
+}
+</style>
 </head>
 <body  class="container-fluid">
     <div id="north" class="row">
-        <div class="col-md-4" id="north_left"><img class="img-rounded" src="./image/logo.png" height="119" id=logo></div>
-        <div class="row"  id="north_right">
-            <div class="col-md-1 pull-right" id="datetime">
-                <div name="time">10:08</div>
-                <div name="date">2017/2/22</div>
-                <div name="">农历</div>
-            </div>
-            <div class="col-md-1 pull-right" id="weather">
-                <div name="area">东莞</div>
-                <div name="weather">雨天</div>
-                <div name="nl">温度</div>
-            </div>
+        <div class="col-md-12" id="north_left">
+            <div class="pull-right"><h4>${sessionScope.Employee.getP_name() },欢迎你<a href="user_servlet?methods=sign_out">注销</a></h4></div>
         </div>
+        <img class="img-rounded" src="./image/logo.png" height="119" id=logo>
+            <ul id="guide" class="col-md-12 nav nav-tabs">
+                <c:if test="${sessionScope.User.getU_type()=='管理员'}"><li role="presentation" class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告管理</a></li></c:if>
+                <c:if test="${sessionScope.User.getU_type()=='一般用户' }"><li role="presentation"  class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告查看</a></li></c:if>
+                <li role="presentation" class=""><a onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')" data-toggle="tab">新建公告</a></li>
+                <li role="presentation" class=""><a onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')" data-toggle="tab">公告查询</a>
+            </ul>
     </div>
-    <ul id="guide" class="nav nav-tabs">
-      <c:if test="${sessionScope.User_type=='管理员'}"><li role="presentation" class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告管理</a></li></c:if>
-      <c:if test="${sessionScope.User_type=='一般用户' }"><li role="presentation"  class="active"><a onClick="flush('Notive_servlet?method=getPage')" data-toggle="tab">公告查看</a></li></c:if>
-      <li role="presentation" class=""><a onClick="reflush('/gggl/release.jsp','Notive_servlet?method=release')" data-toggle="tab">新建公告</a></li>
-      <li role="presentation" class=""><a onClick="reflush('/gggl/query.jsp','Notive_servlet?method=query')" data-toggle="tab">公告查询</a>
-    </ul>
     <form id="function" action="Notive_servlet?method=getpage"  method="post">
     <div id="center">
+        <div id="data">
         <jsp:include page="massage.jsp" ></jsp:include>
+        <div>
     </div>
     </form>
-
-   <!--<div id="south">
-        <table align="center" weight="1500px">
-            <tr>
-                <td>在线5人</td>
-                <td align="center">东莞理工学院城市学院</td>
-            </tr>
-        </table>
-    <div></div>
-    </div>-->
 </body>
 </html>

@@ -22,12 +22,12 @@
         <div id="control">
             <form>
                 <ul class="nav nav-pills">
-                   <c:if test="${sessionScope.User_type=='管理员' }">
+                   <c:if test="${sessionScope.User.getU_type()=='管理员' }">
                        <li role="presentation" id="getPage" ><a onclick="flush('Notive_servlet?method=getPage')">全部公告</a></li>
                        <li role="presentation" id="Pending_audit"> <a onclick="flush('Notive_servlet?method=Pending_audit')">待审核公告</a></li>
                        <li role="presentation" id="audit"> <a onclick="flush('Notive_servlet?method=audit')">已审核公告</a></li>
                    </c:if>
-                   <c:if test="${sessionScope.User_type=='一般用户' }">
+                   <c:if test="${sessionScope.User.getU_type()=='一般用户' }">
                        <li role="presentation" id="getPage"><a onclick="flush('Notive_servlet?method=getPage')">与我相关</a></li>
                        <li role="presentation" id="getMy_Notive"> <a onclick="flush('Notive_servlet?method=getMy_Notive')">我的公告</a></li>
                        <li role="presentation" id="getUnread"> <a onclick="flush('Notive_servlet?method=getUnread')">未读公告</a></li>
@@ -46,10 +46,10 @@
                     <th style="width:400px;overflow: hidden;" align=center>发布范围</th>
                     <th style="width:500px;overflow: hidden;" align=center>生效日期</th>
                     <th style="width:100px;overflow: hidden;" align=center>生效状态</th>
-                    <c:if test="${sessionScope.User_type=='管理员' }">
+                    <c:if test="${sessionScope.User.getU_type()=='管理员' }">
                         <td style="width:180px;overflow: hidden;" align=center>操作</td>
                     </c:if>
-                    <c:if test="${sessionScope.User_type=='一般用户' }">
+                    <c:if test="${sessionScope.User.getU_type()=='一般用户' }">
                         <c:if test="${sessionScope.function=='getMy_Notive' }">
                             <td style="width:180px;overflow: hidden;" align=center>操作</td>
                         </c:if>
@@ -67,13 +67,13 @@
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>
-                        <c:if test="${sessionScope.User_type=='管理员' }">
+                        <c:if test="${sessionScope.User.getU_type()=='管理员' }">
                         <td style="width:180px;overflow: hidden;" align=center>
                             <input class="btn btn-info" type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
                             <input class="btn btn-danger" type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
                         </c:if>
-                        <c:if test="${sessionScope.User_type=='一般用户' }">
+                        <c:if test="${sessionScope.User.getU_type()=='一般用户' }">
                             <c:if test="${sessionScope.function=='getMy_Notive' }">
                                 <td  style="width:180px;overflow: hidden;" align=center>
                                 <input class="btn btn-danger" type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />

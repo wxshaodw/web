@@ -96,4 +96,8 @@ public interface Notive_Dao {
 	
 	/**标记已读**/
 	public abstract boolean Notive_read(int N_id,int P_id,String readstate);
+	
+	/**
+	 * 根据公告编号删除关系**/
+	public abstract Boolean Notive_link_delect(int N_id);
 }

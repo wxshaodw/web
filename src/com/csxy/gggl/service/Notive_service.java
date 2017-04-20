@@ -26,7 +26,7 @@ public class Notive_service {
 
 	public boolean release(normal_Notive notive){
 		int n_id=0;
-		Notive new_notive=notive;
+		normal_Notive new_notive=notive;
 		n_id=notive_Dao.releaseNotive(new_notive);
 		if(notive.getLink_employee()!=null){
 			for(int i=0;i<notive.getLink_employee().size();i++){
@@ -117,9 +117,15 @@ public class Notive_service {
 		return notive_Dao.delectNotive(N_id);
 	}
 	
-	public boolean update(Notive notive){
+	public boolean update(normal_Notive notive){
+		notive_Dao.Notive_link_delect(notive.getN_id());
+		if(notive.getLink_employee()!=null){
+			for(int i=0;i<notive.getLink_employee().size();i++){
+				employee_Dao.link_employee_to_notive(notive.getN_id(),Integer.parseInt(notive.getLink_employee().get(i)),DEFAULT_READ_STATE);
+			}
+		}
 		return notive_Dao.updateNotive(notive);
-	}
+		}
 	
 	public boolean Noitve_audit(normal_Notive notive,String state){
 		String N_state;

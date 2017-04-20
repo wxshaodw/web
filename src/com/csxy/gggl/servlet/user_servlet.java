@@ -43,10 +43,8 @@ public class user_servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName=request.getParameter("methods");
 		User user=new User();
-		
+		HttpSession session=request.getSession();
 		if(methodName.equals("login")){
-			HttpSession session=request.getSession();
-			
 			user_servlet.create_user(user, request, response);		
 			user=user_service.login(user.getU_name(),user.getU_password(),user.getU_type());
 			if(user!=null){
@@ -64,11 +62,11 @@ public class user_servlet extends HttpServlet {
 				response.sendRedirect("login.jsp");
 			}
 		}
-		else{
-			user_servlet.create_user(user, request, response);
-			Employee employee=new Employee();
-			user_servlet.create_employee(employee, request, response);
-			user_service.register(user,employee);
+		if(methodName.equals("sign_out")){
+			session.removeAttribute("User");
+			session.removeAttribute("Employee");
+			session.removeAttribute("Department_list");
+			session.removeAttribute("Employ_list");
 			response.sendRedirect("login.jsp");
 		}
 		// TODO Auto-generated method stub
@@ -88,8 +86,4 @@ public class user_servlet extends HttpServlet {
 		user.setU_type(request.getParameter("type"));
 	}
 	
-	protected static void create_employee(Employee employee,HttpServletRequest request, HttpServletResponse response){
-		employee.setP_name(request.getParameter(""));
-	}
-
 }

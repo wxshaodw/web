@@ -207,4 +207,10 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		return update(sql,read_state,N_id,P_id);
 	}
 
+	@Override
+	public Boolean Notive_link_delect(int N_id) {
+		String sql="delete from notive_employee where N_id=?";// TODO Auto-generated method stub
+		return delect(sql, N_id);
+	}
+
 }

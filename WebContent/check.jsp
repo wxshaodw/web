@@ -39,13 +39,13 @@ function w_close(){
     <%=notive.getN_context() %>
 </div>
 <div align="center" class="navbar-fixed-bottom">
-    <c:if test="${sessionScope.User_type=='管理员'}">
+    <c:if test="${sessionScope.User.getU_type()=='管理员'}">
     <c:if test="${notive.getN_state()=='待审核'}">
     <a class="col-md-3 col-md-offset-5 btn btn-success" href="Notive_servlet?method=Noitve_audit&no=<%=no%>&state=通过" onclick="w_close()" >审核通过</a>
     <a class="btn btn-danger" href="Notive_servlet?method=Noitve_audit&no=<%=no%>&state=不通过" onclick="w_close()" >审核不通过</a>
     </c:if>
     </c:if>
-    <c:if test="${sessionScope.User_type=='一般用户'}">
+    <c:if test="${sessionScope.User.getU_type()=='一般用户'}">
     <a class="col-md-3 col-md-offset-5 btn btn-success" href="Notive_servlet?method=Noitve_read&id=<%=notive.getN_id()%>&state=已读" onclick="w_close()" >已读</a>
     </c:if>
 </div>
