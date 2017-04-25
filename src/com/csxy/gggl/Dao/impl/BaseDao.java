@@ -154,5 +154,25 @@ public class BaseDao<T> implements Dao<T>{
 // TODO Auto-generated method stub
 		return sum;
 	}
+
+	@Override
+	public String get_time(String sql) {
+		String time="";
+		Connection connection=ConnectionContext.getinstance().get();
+		PreparedStatement preparedStatement=null;
+		ResultSet rs=null;
+		try {
+			preparedStatement=connection.prepareStatement(sql);
+			rs=preparedStatement.executeQuery();
+			rs.next();
+			time=rs.getString(1);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		// TODO Auto-generated method stub
+		return time;
+	}
 	
 }

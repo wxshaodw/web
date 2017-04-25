@@ -8,16 +8,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<% Page<normal_Notive> p=(Page<normal_Notive>)session.getAttribute("Page");
-   List<normal_Notive> list=p.getList();
-   %>
 <script type="text/javascript">
     function load(){
     	document.getElementById('${sessionScope.function}').className="active";
     }
 </script>
 </head>
-<body onload="load()">
+<body onload="load()" class="col-md-12">
     <form id="function" action="Notive_servlet?method=release" method="post">
         <div id="control">
             <form>
@@ -26,6 +23,7 @@
                        <li role="presentation" id="getPage" ><a onclick="flush('Notive_servlet?method=getPage')">全部公告</a></li>
                        <li role="presentation" id="Pending_audit"> <a onclick="flush('Notive_servlet?method=Pending_audit')">待审核公告</a></li>
                        <li role="presentation" id="audit"> <a onclick="flush('Notive_servlet?method=audit')">已审核公告</a></li>
+                       <li role="presentation" id="unaudit"> <a onclick="flush('Notive_servlet?method=unaudit')">不通过审核公告</a></li>
                    </c:if>
                    <c:if test="${sessionScope.User.getU_type()=='一般用户' }">
                        <li role="presentation" id="getPage"><a onclick="flush('Notive_servlet?method=getPage')">与我相关</a></li>
@@ -43,7 +41,7 @@
                     <th style="width:150px;overflow: hidden;" align=center>发布人</th>
                     <th style="width:120px;overflow: hidden;" align=center>类型</th>
                     <th style="width:300px;overflow: hidden;" align=center>标题</th>
-                    <th style="width:400px;overflow: hidden;" align=center>发布范围</th>
+                    <th style="width:800px;overflow: hidden;" align=center>发布范围</th>
                     <th style="width:500px;overflow: hidden;" align=center>生效日期</th>
                     <th style="width:100px;overflow: hidden;" align=center>生效状态</th>
                     <c:if test="${sessionScope.User.getU_type()=='管理员' }">
@@ -62,8 +60,8 @@
                         <td style="width:150px;overflow: hidden;" align=center>${notive.getN_authorname()}</td>
                         <td style="width:120px;overflow: hidden;" align=center>${notive.getN_type()}</td>
                         <td style="width:300px;overflow: hidden;" align=center><input type="button" class="btn btn-link" onclick="details('${no.index}')" value="${notive.getN_title()}" /></td>
-                        <td style="width:400px;overflow: hidden;" align="left">
-                                                                                    员工：<c:forEach items="${notive.getLink_employee()}" var="employee">${employee} &nbsp;</c:forEach>
+                        <td style="width:800px;overflow: hidden;" align="left">
+                                                                                    员工：<c:forEach items="${notive.getLink_employee_name()}" var="employee">${employee} &nbsp;</c:forEach>
                         </td>
                         <td style="width:500px;overflow: hidden;" align=center>${ notive.getN_begin_time()}至${notive.getN_end_time()}</td>
                         <td style="width:100px;overflow: hidden;" align=center>${ notive.getN_state() }</td>

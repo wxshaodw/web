@@ -1,14 +1,9 @@
 package com.csxy.gggl.Dao.impl;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import com.csxy.gggl.Dao.Notive_Dao;
 import com.csxy.gggl.domain.Notive;
-import com.csxy.gggl.utils.conversion_utils;
-import com.csxy.gggl.utils.run_state_Utils;
 import com.csxy.gggl.web.Condition;
 import com.csxy.gggl.web.Page;
 
@@ -16,15 +11,15 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
 	@Override
 	public List<Notive> getNotive() {
-		String sql="select * from Notive";
+		String sql="select * from Notive ORDER BY N_top";
 		return queryforList(sql);
 		// TODO Auto-generated method stub 
 	}
 
 	@Override
 	public List<Notive> getNotivebycondition(String condition,int page_no) {
-		String sql="select * from Notive";
-		sql=sql+condition+"limit ?,?";
+		String sql="select * from Notive ";
+		sql=sql+condition+" ORDER BY N_top  "+"limit ?,?";
 		// TODO Auto-generated method stub
 		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
@@ -52,7 +47,7 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
 	@Override
 	public List<Notive> queryforpage(int page_no) {
-		String sql="select * from notive limit ?,?";
+		String sql="select * from notive ORDER BY N_top  limit ?,?";
 		// TODO Auto-generated method stub
 		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
@@ -79,6 +74,11 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		if(!condition.getType().equals("")){
 			if(condition_mun!=0)condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_type='"+condition.getType()+"'";
+			condition_mun++;
+		}
+		if(!condition.getTitle().equals("")){
+			if(condition_mun!=0)condition_str=condition_str+" and ";
+			condition_str=condition_str+"N_title like '%"+condition.getTitle()+"%'";
 			condition_mun++;
 		}
 		if(!condition.getState().equals("")){
@@ -114,33 +114,33 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
 	@Override
 	public List<Notive> getNotivebyread_state(int P_id, String read_state,int page_no) {
-		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË') limit ?,?";
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË') ORDER BY N_top  limit ?,?";
 		// TODO Auto-generated method stub
 		return queryforList(sql, P_id,read_state,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
 	@Override
 	public int Count_Notive(int P_id, String read_state) {
-		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË')";// TODO Auto-generated method stub
+		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";// TODO Auto-generated method stub
 		return Countfordate(sql,P_id,read_state);
 	}
 
 	@Override
 	public int Count_Notive(int P_id) {
-		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË')";
+		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";
 		// TODO Auto-generated method stub
 		return Countfordate(sql, P_id);
 	}
 
 	@Override
 	public List<Notive> getNotivebyUser_id(int P_id, int page_no) {
-		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË') limit ?,?";// TODO Auto-generated method stub
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')  ORDER BY N_top  limit ?,?";// TODO Auto-generated method stub
 		return queryforList(sql, P_id,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
 	@Override
 	public List<Notive> get_audit_Notive(int page_no) {
-		String sql="select * from notive where NOT N_state='´ýÉóºË' limit ?,?";
+		String sql="select * from notive where NOT N_state='´ýÉóºË' ORDER BY N_top  limit ?,?";
 		// TODO Auto-generated method stub
 		return queryforList(sql,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
@@ -158,6 +158,10 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		if(!condition.getType().equals("")){
 			condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_type='"+condition.getType()+"'";
+		}
+		if(!condition.getTitle().equals("")){
+			condition_str=condition_str+" and ";
+			condition_str=condition_str+"N_title like '%"+condition.getTitle()+"%'";
 		}
 		if(!condition.getState().equals("")){
 			condition_str=condition_str+" and ";
@@ -184,7 +188,7 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	@Override
 	public List<Notive> getNotivebycondition(int P_id, String condition, int page_no) {
 		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË')";
-		sql=sql+condition+"limit ?,?";// TODO Auto-generated method stub
+		sql=sql+condition+" ORDER BY N_top  limit ?,?";// TODO Auto-generated method stub
 		return queryforList(sql, P_id,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
@@ -213,4 +217,16 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		return delect(sql, N_id);
 	}
 
+	@Override
+	public List<Notive> getlisttoupdate_state() {
+		String sql="select * from notive where Not N_state='´ýÉóºË' AND NOT N_state='²»Í¨¹ý'";// TODO Auto-generated method stub
+		return queryforList(sql);
+	}
+
+	@Override
+	public void update_state(int N_id, String state) {
+		String sql="update notive set N_state=? where N_id=?";
+		update(sql, state,N_id);// TODO Auto-generated method stub
+		
+	}
 }

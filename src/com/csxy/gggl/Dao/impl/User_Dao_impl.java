@@ -33,6 +33,19 @@ public class User_Dao_impl extends BaseDao<User> implements User_Dao{
 		return true;
 	}
 
+	@Override
+	public String get_last_login_time() {
+		String sql="select MAX(U_login_time) from `user` ";// TODO Auto-generated method stub
+		return get_time(sql);
+	}
+
+	@Override
+	public boolean update_time(String username,String time) {
+		String sql="update  user set U_login_time=? where U_name=?";
+		// TODO Auto-generated method stub
+		return update(sql,time,username);
+	}
+
 	
 
 }

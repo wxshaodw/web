@@ -45,7 +45,7 @@
     </tr>
         <tr>
         <td>标题：</td>
-        <td width="500px"><input type="text"></td>
+        <td width="500px"><input name="title" type="text"></td>
     </tr>
         <tr>
         <td>发布日期：</td>

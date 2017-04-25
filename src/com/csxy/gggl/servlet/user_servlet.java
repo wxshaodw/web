@@ -1,6 +1,9 @@
 package com.csxy.gggl.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,15 +12,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import com.csxy.gggl.domain.Department;
 import com.csxy.gggl.domain.Employee;
 import com.csxy.gggl.domain.User;
 import com.csxy.gggl.service.Department_service;
 import com.csxy.gggl.service.Employee_service;
+import com.csxy.gggl.service.Notive_service;
 import com.csxy.gggl.service.User_service;
+import com.csxy.gggl.utils.file;
+import com.sun.glass.ui.Application;
 
+import net.sf.json.JSONArray;
 /**
  * Servlet implementation class login_servlet
  */
@@ -27,6 +32,7 @@ public class user_servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	User_service user_service=new User_service();
+	Notive_service notive_service=new Notive_service();
 	Employee_service employee_service=new Employee_service();
 	Department_service department_service=new Department_service();
     /**
@@ -43,18 +49,22 @@ public class user_servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName=request.getParameter("methods");
 		User user=new User();
+		Date now=new Date();
 		HttpSession session=request.getSession();
+		List<Employee> emoloyee_list=employee_service.get_employeelist();
+		List<Department> department_list=department_service.get_dept_list();
 		if(methodName.equals("login")){
-			user_servlet.create_user(user, request, response);		
-			user=user_service.login(user.getU_name(),user.getU_password(),user.getU_type());
+			SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
+			update_state(now);
+			user_servlet.create_user(user, request, response);
+			user=user_service.login(user.getU_name(),user.getU_password(),user.getU_type(),df.format(now));
 			if(user!=null){
 				session.setAttribute("User", user);
-				List<Employee> emoloyee_list=employee_service.get_employeelist();
-				List<Department> department_list=department_service.get_dept_list();
 				Employee employee=employee_service.get_employee(user.getU_owner());
 				session.setAttribute("Employee", employee);
 				session.setAttribute("Department_list", department_list);
 				session.setAttribute("Employ_list",emoloyee_list);
+				session.setAttribute("employees_json", json(emoloyee_list));
 				request.getRequestDispatcher("Notive_servlet?method=getPage").forward(request,response);
 			}
 			else{
@@ -86,4 +96,20 @@ public class user_servlet extends HttpServlet {
 		user.setU_type(request.getParameter("type"));
 	}
 	
+	public JSONArray json(List<Employee> employees){
+		JSONArray json=JSONArray.fromObject(employees);
+		return json;
+	}
+	
+	public void update_state(Date now){
+		try {
+			Date last_time=user_service.gettime();
+			if(now.after(last_time)){
+				notive_service.update_notive_state();
+			}
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

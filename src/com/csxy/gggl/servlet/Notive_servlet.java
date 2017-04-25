@@ -89,6 +89,7 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("query")){
 			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
+			condition=new Condition();
             if(!request.getParameter("type").equals("全部")){
                 condition.setType(request.getParameter("type"));
             }
@@ -97,16 +98,22 @@ public class Notive_servlet extends HttpServlet {
             }
             if(!request.getParameter("top").equals("全部")){
             	condition.setTop(request.getParameter("top"));
+            }if(request.getParameter("title")==null){
+                condition.setTitle("");
+            }else{
+            	String N_title=(String)request.getParameter("title");
+            	condition.setTitle(N_title);
             }
-            condition.setTitle(request.getParameter("title"));
             condition.setBegin_time(request.getParameter("begin_time"));
             condition.setEnd_time(request.getParameter("end_time"));
             session.setAttribute("condition", condition);
             if(user.getU_type().equals("管理员")){
     			Page<normal_Notive> page=notive_service.createPage(condition,1);
+    			change_id_to_name(session, page);
     			session.setAttribute("Page",page);
             }else{
 				Page<normal_Notive> page=notive_service.createPage(user.getU_owner(), 1, condition);
+				change_id_to_name(session, page);
 				session.setAttribute("Page",page);
             }
 			response.sendRedirect("main.jsp");
@@ -118,7 +125,6 @@ public class Notive_servlet extends HttpServlet {
 			normal_Notive change_notive=(normal_Notive)session.getAttribute("change_notive");
 			List<String> employee_selected=get_selected_employee(request.getParameter("employee_selected"));
 			create_Notive(change_notive,user,employee,employee_selected, request, response);
-			System.out.println(request.getParameter("begin_time"));
 			if(notive_service.update(change_notive)){
 				flush(session, user, notive_service);
 				response.sendRedirect("main.jsp");
@@ -132,24 +138,29 @@ public class Notive_servlet extends HttpServlet {
 			if(state.equals("normal")){
 				if(user.getU_type().equals("管理员")){
 					Page<normal_Notive> page=notive_service.createPage(page_no);
+					change_id_to_name(session, page);
 				    session.setAttribute("Page",page);
 				    }
 				else{
 					Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),page_no);
+					change_id_to_name(session, page);
 					session.setAttribute("Page",page);
 				}
 			}
 			else if(state.equals("audit")){
 				Page<normal_Notive> page=notive_service.create_audit_Page(page_no);
+				change_id_to_name(session, page);
 			    session.setAttribute("Page",page);
 			}
 			else{
 				if(user.getU_type().equals("管理员")){
 					Page<normal_Notive> page=notive_service.createPage(condition,page_no);
+					change_id_to_name(session, page);
 					session.setAttribute("Page",page);
 				}
 				else{
 					Page<normal_Notive> page=notive_service.createPage(user.getU_owner(), page_no, condition);
+					change_id_to_name(session, page);
 					session.setAttribute("Page",page);
 				}
 			}
@@ -159,9 +170,21 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("Pending_audit")){
 			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
-			condition.setState(DEFAULT_STATE);
+			condition.setState("待审核");
 			session.setAttribute("condition", condition);
 			Page<normal_Notive> page=notive_service.createPage(condition,1);
+			change_id_to_name(session, page);
+			session.setAttribute("Page",page);
+			response.sendRedirect("main.jsp");
+		}
+		
+		if(methodName.equals("unaudit")){
+			session.setAttribute("function",methodName);
+			session.setAttribute("running_state", "query");
+			condition.setState("不通过");
+			session.setAttribute("condition", condition);
+			Page<normal_Notive> page=notive_service.createPage(condition,1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
@@ -170,6 +193,7 @@ public class Notive_servlet extends HttpServlet {
 			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "audit");
 			Page<normal_Notive> page=notive_service.create_audit_Page(1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
@@ -180,6 +204,7 @@ public class Notive_servlet extends HttpServlet {
 			condition.setAuthor(user.getU_owner());
 			session.setAttribute("condition", condition);
 			Page<normal_Notive> page=notive_service.createPage(condition,1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
@@ -187,6 +212,7 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("getUnread")){
 			session.setAttribute("function",methodName);
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"未读", 1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
@@ -194,6 +220,7 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("getread")){
 			session.setAttribute("function",methodName);
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"已读", 1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
 		}
@@ -244,11 +271,13 @@ public class Notive_servlet extends HttpServlet {
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
 			Page<normal_Notive> page=notive_service.createPage(1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 		}else{
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
 			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),1);
+			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 		}
 	}
@@ -266,4 +295,26 @@ public class Notive_servlet extends HttpServlet {
 		session.setAttribute("dept_list", dept_list);
 	}
 	
+	public List<String> get_employee_name(HttpSession session,List<String> id_list){
+		List<Employee> employees=(List<Employee>)session.getAttribute("Employ_list");
+		List<String> name_list=new ArrayList<String>();
+		if(id_list!=null){
+			for(int i=0;i<id_list.size();i++){
+				for(int j=0;j<employees.size();j++){
+					if(Integer.parseInt(id_list.get(i))==employees.get(j).getP_id()){
+						name_list.add(employees.get(j).getP_name());
+					}
+				}
+			}
+		}
+		else name_list=null;
+		return name_list;
+	}
+	
+	public void change_id_to_name(HttpSession session,Page page){
+		List<normal_Notive> list=page.getList();
+		for(int i=0;i<list.size();i++){
+			list.get(i).setLink_employee_name(get_employee_name(session, list.get(i).getLink_employee()));
+		}
+	}
 }

@@ -18,7 +18,7 @@
 <body>
     <c:forEach items="<%=employees %>" var="employee" varStatus="no">
         <label class=" btn btn-default btn-block">
-            <input name="employee_selected" type="checkbox" value="${employee.getP_id()}" onclick="changeIds()" />
+            <input name="employee_selected" type="checkbox"   <c:forEach items="${e1 }" var="select_e"><c:if test="${employee.getP_id()==select_e}">checked=true;</c:if></c:forEach> value="${employee.getP_id()}" onclick="changeIds()" />
                                            员工号：${employee.getP_id()}
                                             姓名：${employee.getP_name()}
         </label>

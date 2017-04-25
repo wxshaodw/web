@@ -27,4 +27,7 @@ public interface User_Dao {
 	
 	abstract boolean insert_Employee(Employee employee);
 	
+	abstract String get_last_login_time();
+	
+	abstract boolean update_time(String username,String time);
 }

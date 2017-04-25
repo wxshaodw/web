@@ -9,8 +9,11 @@
 <%@ page import="com.csxy.gggl.domain.User" %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <link href="bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" media="screen" />
+<link href="bootstrap-3.3.7-dist/css/fileinput.min.css" rel="stylesheet" media="screen" />
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="bootstrap-3.3.7-dist/js/fileinput.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/zh.js"></script>
 <script charset="utf-8" src="./kindeditor-4.1.7/jquery.js"></script>
 <script charset="utf-8" type="text/javascript">
     var Editor;
@@ -109,6 +112,7 @@
     		method_1=method_1+"&employee_selected="+checkedIds;
     		document.getElementById("function").action=method_1;
         	document.getElementById("function").submit();
+        	checkedIds.splice(0,checkedIds.length);
         	alert("修改成功");
     	}
     }
@@ -135,13 +139,16 @@
     	   document.all.ly.style.height=document.body.clientHeight; 
     	   document.getElementById(add_page).style.display="block";
     	   }   
-    
-    function    locking_getvalues(add_page){
- 	   document.all.ly.style.display="block";   
- 	   document.all.ly.style.width=document.body.clientWidth;   
- 	   document.all.ly.style.height=document.body.clientHeight; 
- 	   document.getElementById(add_page).style.display="block";
- 	   }  
+    function    locking_getvalues(num,add_page){
+    	for(var i=0;i<num;i++){
+        	get_employee_list(i);
+    	}
+    	get_employee_list(0);
+    	document.all.ly.style.display="block";   
+    	document.all.ly.style.width=document.body.clientWidth;   
+    	document.all.ly.style.height=document.body.clientHeight; 
+    	document.getElementById(add_page).style.display="block";
+  	   }  
     
     function    Lock_CheckForm(theForm){   
     	   document.all.ly.style.display='none';
@@ -149,7 +156,7 @@
     	   }
     
     function    Lock_CheckForm_clean(theForm,box){   
-    	checkedIds=[];
+    	checkedIds.splice(0,checkedIds.length);
     	document.getElementById("eployee_list").innerHTML="";
  	    document.all.ly.style.display='none';
  	    document.getElementById(theForm).style.display='none';
@@ -167,7 +174,16 @@
     
     function get_checkbox_value(text,theForm){
     	var t=document.getElementById(text);
-    	t.value=checkedIds;
+    	var employee_list=${employees_json};
+    	var str="";
+    	for(var i=0;i<checkedIds.length;i++){
+    		for(var j=0;j<employee_list.length;j++){
+    			if(checkedIds[i]==employee_list[j].p_id){
+    				str=str+employee_list[j].p_name+",";
+    			}
+    		}
+    	}
+    	t.value=str;
     	Lock_CheckForm(theForm)
     	
     }
@@ -247,7 +263,9 @@ function getChecked(){
     		  }
     	  }
           }
+      changeIds()
    }
+   
 </script>
 <title>公告管理系统</title>
 <style type="text/css">
@@ -276,7 +294,7 @@ function getChecked(){
     </div>
     <form id="function" action="Notive_servlet?method=getpage"  method="post">
     <div id="center">
-        <div id="data">
+        <div id="data" class="row">
         <jsp:include page="massage.jsp" ></jsp:include>
         <div>
     </div>

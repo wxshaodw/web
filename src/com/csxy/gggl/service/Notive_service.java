@@ -144,4 +144,13 @@ public class Notive_service {
 		
 	}
 	
+	public void update_notive_state(){
+		List<Notive>notives=notive_Dao.getlisttoupdate_state();
+		for(int i=0;i<notives.size();i++){
+			String  state=run_state_Utils.return_state(notives.get(i).getN_begin_time(), notives.get(i).getN_end_time());
+			notive_Dao.update_state(notives.get(i).getN_id(), state);
+		}
+		
+	}
+	
 }

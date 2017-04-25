@@ -100,4 +100,12 @@ public interface Notive_Dao {
 	/**
 	 * 根据公告编号删除关系**/
 	public abstract Boolean Notive_link_delect(int N_id);
+	
+	/**获取通过审核的公告列表**/
+	public abstract List<Notive> getlisttoupdate_state();
+	
+	/**
+	 * 修改状态**/
+	public abstract void update_state(int N_id,String state);
+	
 }

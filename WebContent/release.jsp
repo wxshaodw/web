@@ -91,13 +91,7 @@ text-decoration: none;
             <input type="date" id="begin_time" name="begin_time" >
             <label>至</label>
             <input type="date" id="end_time" name="end_time"><font id="b_e_time_error"></font>
-        </td>
-    </tr>   
-        <tr>
-        <td>添加附件：</td>
-        <td width="500px">
-        </td>
-    </tr>    
+        </td>  
     <tr height="200px">
     <td colspan="2"><textarea name="content" cols="100" rows="8" style="width:700px;height:200px;visibility:hidden;"><%=htmlspecialchars(htmlData)%></textarea></td>
     </tr>

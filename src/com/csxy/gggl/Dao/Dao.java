@@ -44,4 +44,8 @@ public interface Dao<T> {
 	/**
 	 * 返回数据总条数**/
 	int Countfordate(String sql,Object...args);
+	
+	
+	/**返回登录时间**/
+	String get_time(String sql);
 }
