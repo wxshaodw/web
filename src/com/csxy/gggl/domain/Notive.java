@@ -6,7 +6,7 @@ public class Notive {
 	private String N_context;
 	private String N_type;
 	private String N_top;
-	private int N_author;
+	private String N_author;
 	private String N_state;
 	private String N_release_time;
 	private String N_begin_time;
@@ -24,18 +24,16 @@ public class Notive {
 	public void setN_title(String n_title) {
 		N_title = n_title;
 	}
-
 	public String getN_context() {
 		return N_context;
 	}
 	public void setN_context(String n_context) {
 		N_context = n_context;
 	}
-
-	public int getN_author() {
+	public String getN_author() {
 		return N_author;
 	}
-	public void setN_author(int n_author) {
+	public void setN_author(String n_author) {
 		N_author = n_author;
 	}
 	public String getN_top() {
@@ -50,7 +48,6 @@ public class Notive {
 	public void setN_state(String n_state) {
 		N_state = n_state;
 	}
-	
 	public String getN_release_time() {
 		return N_release_time;
 	}

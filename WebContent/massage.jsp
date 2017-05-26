@@ -68,6 +68,7 @@
                         <c:if test="${sessionScope.User.getU_type()=='管理员' }">
                         <td style="width:180px;overflow: hidden;" align=center>
                             <input class="btn btn-info" type="button" value="修改" onClick="update('/gggl/update.jsp?no='+${no.index},'Notive_servlet?method=update&update='+${notive.getN_id()})" />
+                            <br/>
                             <input class="btn btn-danger" type="button" value="删除" onclick="delete_1('Notive_servlet?method=delect&delect='+${notive.getN_id()})" />
                         </td>
                         </c:if>

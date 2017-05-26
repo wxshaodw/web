@@ -20,7 +20,7 @@ public class Employee_service {
 		
 	}
 	
-	public Employee get_employee(int user) {
+	public Employee get_employee(String user) {
 		return employee_Dao.getemployee(user);
 	}
 	

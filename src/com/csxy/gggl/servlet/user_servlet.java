@@ -48,6 +48,9 @@ public class user_servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String methodName=request.getParameter("methods");
+		String username=request.getParameter("username");	
+		String password=request.getParameter("password");
+		String type=request.getParameter("type");
 		User user=new User();
 		Date now=new Date();
 		HttpSession session=request.getSession();
@@ -56,11 +59,10 @@ public class user_servlet extends HttpServlet {
 		if(methodName.equals("login")){
 			SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
 			update_state(now);
-			user_servlet.create_user(user, request, response);
-			user=user_service.login(user.getU_name(),user.getU_password(),user.getU_type(),df.format(now));
+			user=user_service.login(username,password,type,df.format(now));
 			if(user!=null){
 				session.setAttribute("User", user);
-				Employee employee=employee_service.get_employee(user.getU_owner());
+				Employee employee=employee_service.get_employee(user.getU_name());
 				session.setAttribute("Employee", employee);
 				session.setAttribute("Department_list", department_list);
 				session.setAttribute("Employ_list",emoloyee_list);
@@ -90,11 +92,6 @@ public class user_servlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	protected static void create_user(User user,HttpServletRequest request, HttpServletResponse response){
-		user.setU_name(request.getParameter("username"));	
-		user.setU_password(request.getParameter("password"));
-		user.setU_type(request.getParameter("type"));
-	}
 	
 	public JSONArray json(List<Employee> employees){
 		JSONArray json=JSONArray.fromObject(employees);

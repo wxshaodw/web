@@ -1,7 +1,7 @@
 package com.csxy.gggl.web;
 
 public class Condition {
-	int author=0;
+	String author="";
 	String type="";
 	String state="";
 	String top="";
@@ -9,10 +9,10 @@ public class Condition {
 	String begin_time="";
 	String end_time="";
 	
-	public int getAuthor() {
+	public String getAuthor() {
 		return author;
 	}
-	public void setAuthor(int author) {
+	public void setAuthor(String author) {
 		this.author = author;
 	}
 	public String getType() {

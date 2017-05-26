@@ -20,7 +20,7 @@ public class Employee_Dao_impl extends BaseDao<Employee> implements Employee_Dao
 	}
 
 	@Override
-	public boolean link_employee_to_notive(int N_id,int P_id,String read_state) {
+	public boolean link_employee_to_notive(int N_id,String P_id,String read_state) {
 		String sql="insert into notive_employee values(?,?,?)";
 		System.out.println(P_id);
 		insert(sql, N_id,P_id,read_state);// TODO Auto-generated method stub
@@ -35,7 +35,7 @@ public class Employee_Dao_impl extends BaseDao<Employee> implements Employee_Dao
 	}
 
 	@Override
-	public Employee getemployee(int user) {
+	public Employee getemployee(String user) {
 		String sql="select * from Employee where P_id= ?";// TODO Auto-generated method stub
 		return query(sql, user);
 	}

@@ -20,10 +20,10 @@
     session.setAttribute("change_notive",notive );
     if(notive!=null){
       	 if(notive.getLink_employee()!=null){
-      	     int employee[]=new int[notive.getLink_employee().size()];
+      	     String employee[]=new String[notive.getLink_employee().size()];
       	     String employee_select="";
       	     for(int i=0;i<employee.length;i++){
-      	     	employee[i]=Integer.parseInt(notive.getLink_employee().get(i));
+      	     	employee[i]=notive.getLink_employee().get(i);
       	     	employee_select=employee_select+notive.getLink_employee().get(i)+",";
       	     }
       	     session.setAttribute("employee_select",employee_select);

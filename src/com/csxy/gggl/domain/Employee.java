@@ -1,15 +1,17 @@
 package com.csxy.gggl.domain;
 
 public class Employee {
-	int P_id;
+	String P_id;
 	String P_name;
 	String P_mobile;
 	String P_address;
 	int P_department;
-	public int getP_id() {
+	
+	
+	public String getP_id() {
 		return P_id;
 	}
-	public void setP_id(int p_id) {
+	public void setP_id(String p_id) {
 		P_id = p_id;
 	}
 	public String getP_name() {

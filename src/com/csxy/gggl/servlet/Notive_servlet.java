@@ -112,7 +112,7 @@ public class Notive_servlet extends HttpServlet {
     			change_id_to_name(session, page);
     			session.setAttribute("Page",page);
             }else{
-				Page<normal_Notive> page=notive_service.createPage(user.getU_owner(), 1, condition);
+				Page<normal_Notive> page=notive_service.createPage(user.getU_name(), 1, condition);
 				change_id_to_name(session, page);
 				session.setAttribute("Page",page);
             }
@@ -142,7 +142,7 @@ public class Notive_servlet extends HttpServlet {
 				    session.setAttribute("Page",page);
 				    }
 				else{
-					Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),page_no);
+					Page<normal_Notive> page=notive_service.createPage(user.getU_name(),page_no);
 					change_id_to_name(session, page);
 					session.setAttribute("Page",page);
 				}
@@ -159,7 +159,7 @@ public class Notive_servlet extends HttpServlet {
 					session.setAttribute("Page",page);
 				}
 				else{
-					Page<normal_Notive> page=notive_service.createPage(user.getU_owner(), page_no, condition);
+					Page<normal_Notive> page=notive_service.createPage(user.getU_name(), page_no, condition);
 					change_id_to_name(session, page);
 					session.setAttribute("Page",page);
 				}
@@ -201,7 +201,7 @@ public class Notive_servlet extends HttpServlet {
 		if(methodName.equals("getMy_Notive")){
 			session.setAttribute("function",methodName);
 			session.setAttribute("running_state", "query");
-			condition.setAuthor(user.getU_owner());
+			condition.setAuthor(user.getU_name());
 			session.setAttribute("condition", condition);
 			Page<normal_Notive> page=notive_service.createPage(condition,1);
 			change_id_to_name(session, page);
@@ -211,7 +211,7 @@ public class Notive_servlet extends HttpServlet {
 		
 		if(methodName.equals("getUnread")){
 			session.setAttribute("function",methodName);
-			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"Î´¶Á", 1);
+			Page<normal_Notive> page=notive_service.createPage(user.getU_name(),"Î´¶Á", 1);
 			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
@@ -219,7 +219,7 @@ public class Notive_servlet extends HttpServlet {
 		
 		if(methodName.equals("getread")){
 			session.setAttribute("function",methodName);
-			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),"ÒÑ¶Á", 1);
+			Page<normal_Notive> page=notive_service.createPage(user.getU_name(),"ÒÑ¶Á", 1);
 			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 			response.sendRedirect("main.jsp");
@@ -231,12 +231,14 @@ public class Notive_servlet extends HttpServlet {
 		    int no=Integer.parseInt(request.getParameter("no"));
 		    normal_Notive audit_notive=p.getList().get(no);
 			notive_service.Noitve_audit(audit_notive, a_state);
+			flush(session, user, notive_service);
 		}
 		
 		if(methodName.equals("Noitve_read")){
 			String read_state=request.getParameter("state");
 			int N_id=Integer.parseInt(request.getParameter("id"));
-			notive_service.Notive_read(N_id, user.getU_owner(), read_state);
+			notive_service.Notive_read(N_id, user.getU_name(), read_state);
+			flush(session, user, notive_service);
 		}
 		
 		// TODO Auto-generated method stub
@@ -253,7 +255,7 @@ public class Notive_servlet extends HttpServlet {
 	}
 	
 	static void create_Notive(normal_Notive notive,User user,Employee employee,List<String> employee_selected,HttpServletRequest request, HttpServletResponse response){
-		notive.setN_author(user.getU_owner());
+		notive.setN_author(user.getU_name());
 		notive.setN_title(request.getParameter("title"));
 		notive.setN_type(request.getParameter("type"));
 		notive.setN_state(DEFAULT_STATE);
@@ -276,7 +278,7 @@ public class Notive_servlet extends HttpServlet {
 		}else{
 			session.setAttribute("running_state", "normal");
 			session.setAttribute("condition", new Condition());
-			Page<normal_Notive> page=notive_service.createPage(user.getU_owner(),1);
+			Page<normal_Notive> page=notive_service.createPage(user.getU_name(),1);
 			change_id_to_name(session, page);
 			session.setAttribute("Page",page);
 		}
@@ -301,7 +303,7 @@ public class Notive_servlet extends HttpServlet {
 		if(id_list!=null){
 			for(int i=0;i<id_list.size();i++){
 				for(int j=0;j<employees.size();j++){
-					if(Integer.parseInt(id_list.get(i))==employees.get(j).getP_id()){
+					if(id_list.get(i).equals(employees.get(j).getP_id())){
 						name_list.add(employees.get(j).getP_name());
 					}
 				}

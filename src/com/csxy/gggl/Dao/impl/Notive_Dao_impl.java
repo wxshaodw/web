@@ -26,7 +26,8 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 
 	@Override
 	public int releaseNotive(Notive new_notive) {
-		String sql="insert into notive(N_author, N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context) values"+"(?,?,?,?,?,?,?,?,?)";
+		String sql="insert into notive(N_author, N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context) "
+				+ "values"+"(?,?,?,?,?,?,?,?,?)";
 		int notive_id=insert(sql,new_notive.getN_author(),new_notive.getN_title(),new_notive.getN_type(),new_notive.getN_state(),new_notive.getN_top(),new_notive.getN_release_time(),new_notive.getN_begin_time(),new_notive.getN_end_time(),new_notive.getN_context());
 		new_notive.setN_id(notive_id);// TODO Auto-generated method stub
 		return new_notive.getN_id();
@@ -101,7 +102,7 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 			condition_str=condition_str+"N_end_time <='"+condition.getEnd_time()+"'";
 			condition_mun++;
 		}
-		if(condition.getAuthor()!=0){
+		if(!condition.getAuthor().equals("")){
 			if(condition_mun!=0)condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_author ='"+condition.getAuthor()+"'";
 			condition_mun++;
@@ -113,28 +114,32 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	}
 
 	@Override
-	public List<Notive> getNotivebyread_state(int P_id, String read_state,int page_no) {
-		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË') ORDER BY N_top  limit ?,?";
+	public List<Notive> getNotivebyread_state(String P_id, String read_state,int page_no) {
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee "
+				+ "WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË') ORDER BY N_top  limit ?,?";
 		// TODO Auto-generated method stub
 		return queryforList(sql, P_id,read_state,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
 	@Override
-	public int Count_Notive(int P_id, String read_state) {
-		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";// TODO Auto-generated method stub
+	public int Count_Notive(String P_id, String read_state) {
+		String sql="select count(*) from notive,notive_employee "
+				+ "WHERE notive.N_id=notive_employee.N_id AND P_id=? AND read_state=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";// TODO Auto-generated method stub
 		return Countfordate(sql,P_id,read_state);
 	}
 
 	@Override
-	public int Count_Notive(int P_id) {
-		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";
+	public int Count_Notivebyid(String P_id) {
+		String sql="select count(*) from notive,notive_employee"
+				+ " WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')";
 		// TODO Auto-generated method stub
 		return Countfordate(sql, P_id);
 	}
 
 	@Override
-	public List<Notive> getNotivebyUser_id(int P_id, int page_no) {
-		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')  ORDER BY N_top  limit ?,?";// TODO Auto-generated method stub
+	public List<Notive> getNotivebyUser_id(String P_id, int page_no) {
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee "
+				+ "WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË' and NOT N_state='²»Í¨¹ý' and NOT N_state='Î´·¢²¼')  ORDER BY N_top  limit ?,?";// TODO Auto-generated method stub
 		return queryforList(sql, P_id,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
@@ -179,21 +184,22 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 			condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_end_time <='"+condition.getEnd_time()+"'";
 		}
-		if(condition.getAuthor()!=0){
+		if(!condition.getAuthor().equals("")){
 			condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_author ='"+condition.getAuthor()+"'";
 		}
 		return condition_str;	}
 
 	@Override
-	public List<Notive> getNotivebycondition(int P_id, String condition, int page_no) {
-		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË')";
+	public List<Notive> getNotivebycondition(String P_id, String condition, int page_no) {
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee "
+				+ "WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='´ýÉóºË')";
 		sql=sql+condition+" ORDER BY N_top  limit ?,?";// TODO Auto-generated method stub
 		return queryforList(sql, P_id,(page_no-1)*Page.getPageSize(),Page.getPageSize());
 	}
 
 	@Override
-	public int Count_Notivebycondition(int P_id, String condition) {
+	public int Count_Notivebycondition(String P_id, String condition) {
 		String sql="select count(*) from notive,notive_employee WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state= '´ýÉóºË' )";
 		sql=sql+condition;// TODO Auto-generated method stub
 		return Countfordate(sql,P_id);
@@ -206,7 +212,7 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 	}
 
 	@Override
-	public boolean Notive_read(int N_id, int P_id, String read_state) {
+	public boolean Notive_read(int N_id, String P_id, String read_state) {
 		String sql="update notive_employee set read_state=? where N_id=? and P_id=?";// TODO Auto-generated method stub
 		return update(sql,read_state,N_id,P_id);
 	}

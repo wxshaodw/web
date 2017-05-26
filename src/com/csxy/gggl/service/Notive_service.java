@@ -30,7 +30,7 @@ public class Notive_service {
 		n_id=notive_Dao.releaseNotive(new_notive);
 		if(notive.getLink_employee()!=null){
 			for(int i=0;i<notive.getLink_employee().size();i++){
-				employee_Dao.link_employee_to_notive(n_id,Integer.parseInt(notive.getLink_employee().get(i)),DEFAULT_READ_STATE);
+				employee_Dao.link_employee_to_notive(n_id,notive.getLink_employee().get(i),DEFAULT_READ_STATE);
 			}
 		}
 		return true;
@@ -77,7 +77,7 @@ public class Notive_service {
 		return page;
 	}
 	
-	public Page<normal_Notive> createPage(int P_id,String read_state,int Page_no){
+	public Page<normal_Notive> createPage(String P_id,String read_state,int Page_no){
 		int sum=notive_Dao.Count_Notive(P_id, read_state);
 		List<Notive> list=notive_Dao.getNotivebyread_state(P_id, read_state, Page_no);
 		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
@@ -86,8 +86,8 @@ public class Notive_service {
 		return page;
 	}
 	
-	public Page<normal_Notive> createPage(int P_id,int Page_no){
-		int sum=notive_Dao.Count_Notive(P_id);
+	public Page<normal_Notive> createPage(String P_id,int Page_no){
+		int sum=notive_Dao.Count_Notivebyid(P_id);
 		List<Notive> list=notive_Dao.getNotivebyUser_id(P_id, Page_no);
 		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
 		page.setList(create_normalNotive(list));
@@ -95,7 +95,7 @@ public class Notive_service {
 		return page;
 	}
 	
-	public Page<normal_Notive> createPage(int P_id,int Page_no,Condition condition){
+	public Page<normal_Notive> createPage(String P_id,int Page_no,Condition condition){
 		int sum=notive_Dao.Count_Notivebycondition(P_id, notive_Dao.create_query_sqlbyuser(condition));
 		List<Notive> list=notive_Dao.getNotivebycondition(P_id, notive_Dao.create_query_sqlbyuser(condition), Page_no);
 		Page<normal_Notive> page=new Page<normal_Notive>(Page_no);
@@ -121,7 +121,7 @@ public class Notive_service {
 		notive_Dao.Notive_link_delect(notive.getN_id());
 		if(notive.getLink_employee()!=null){
 			for(int i=0;i<notive.getLink_employee().size();i++){
-				employee_Dao.link_employee_to_notive(notive.getN_id(),Integer.parseInt(notive.getLink_employee().get(i)),DEFAULT_READ_STATE);
+				employee_Dao.link_employee_to_notive(notive.getN_id(),notive.getLink_employee().get(i),DEFAULT_READ_STATE);
 			}
 		}
 		return notive_Dao.updateNotive(notive);
@@ -138,7 +138,7 @@ public class Notive_service {
 		return notive_Dao.Notive_audit(notive.getN_id(), N_state);
 	}
 	
-	public boolean Notive_read(int N_id,int P_id,String read_state){
+	public boolean Notive_read(int N_id,String P_id,String read_state){
 		notive_Dao.Notive_read(N_id, P_id, read_state);
 		return false;
 		

@@ -19,7 +19,6 @@ public class User_Dao_impl extends BaseDao<User> implements User_Dao{
 	public boolean register(User new_user) {
 		String sql="insert into User(U_name, U_password) values (?,?)";
 		int user_id=insert(sql,new_user.getU_name(),new_user.getU_password());
-		new_user.setU_id(user_id);
 		return true;
 		// TODO Auto-generated method stub		
 	}
