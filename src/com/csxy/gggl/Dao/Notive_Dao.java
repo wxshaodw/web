@@ -108,4 +108,9 @@ public interface Notive_Dao {
 	 * ÐÞ¸Ä×´Ì¬**/
 	public abstract void update_state(int N_id,String state);
 	
+	public abstract List<Notive> query_all(String condition);
+	
+	public abstract List<Notive> query_all(String P_id ,String condition);
+	
+	public abstract Notive get_a_Noitve(int N_id);
 }

@@ -106,6 +106,10 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 			if(condition_mun!=0)condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_author ='"+condition.getAuthor()+"'";
 			condition_mun++;
+		}if(!condition.getRelease().equals("")){
+			if(condition_mun!=0)condition_str=condition_str+" and ";
+			condition_str=condition_str+"N_releast_time กฎ"+condition.getRelease()+"'";
+			condition_mun++;
 		}
 		if(condition_mun==0){
 			condition_str="";
@@ -183,6 +187,9 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		if(!condition.getEnd_time().equals("")){
 			condition_str=condition_str+" and ";
 			condition_str=condition_str+"N_end_time <='"+condition.getEnd_time()+"'";
+		}if(!condition.getRelease().equals("")){
+			condition_str=condition_str+" and ";
+			condition_str=condition_str+"N_releast_time กฎ"+condition.getRelease()+"'";
 		}
 		if(!condition.getAuthor().equals("")){
 			condition_str=condition_str+" and ";
@@ -234,5 +241,29 @@ public class Notive_Dao_impl extends BaseDao<Notive> implements Notive_Dao{
 		String sql="update notive set N_state=? where N_id=?";
 		update(sql, state,N_id);// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<Notive> query_all(String condition) {
+		String sql="select * from Notive ";
+		sql=sql+condition+" ORDER BY N_top  ";
+		return queryforList(sql);
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Notive> query_all(String P_id, String condition) {
+		String sql="select notive.N_id,N_author,N_title,N_type,N_state,N_top,N_release_time,N_begin_time,N_end_time,N_context from notive,notive_employee "
+				+ "WHERE notive.N_id=notive_employee.N_id AND P_id=? and(NOT N_state='ดýษ๓บห')";
+		sql=sql+condition+" ORDER BY N_top ";// TODO Auto-generated method stub
+		return queryforList(sql, P_id);
+	}
+
+	@Override
+	public Notive get_a_Noitve(int N_id) {
+		String sql="select * from Notive where N_id=?";
+		Notive notive=query(sql, N_id);
+		return notive;
 	}
 }

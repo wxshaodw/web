@@ -12,15 +12,16 @@
     function turn(method){
     	var username=document.getElementById("username").value;
     	var password=document.getElementById("password").value;
-    	if(username==""){
+    	document.getElementById("chat").submit();
+    	/*if(username==""){
     		document.getElementById("error").innerHTML="请输入用户名";
     	}
     	else if(password==""){
-    		document.getElementById("error").innerHTML="请输入密码";
+    		document.getElementById("error").innerHTML="请输入密码“;
     	}
     	else{
-    		document.getElementById("chat").submit();
-    	}
+    		
+    	}*/
     }
 </script>
 <style type="text/css">
@@ -177,7 +178,7 @@ body{
                <input type="text" id="username" name="username" class="form-control" value="" placeholder="请输入用户名" />
            </div>
            <div id="password_box" class="form-group">
-               <input type="password" id="password" name="password" class="form-control" value="" placeholder="请输入密码">    
+               <input type="password" id="password" name="password" class="form-control" value="" placeholder="请输入密码" />    
            </div>
            <div id="select_type" class="form-group" align="left">用户类别：
                <input type="radio" name="type" value="一般用户" checked="checked" />一般用户

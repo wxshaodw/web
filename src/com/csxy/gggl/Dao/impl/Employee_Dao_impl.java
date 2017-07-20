@@ -70,4 +70,10 @@ public class Employee_Dao_impl extends BaseDao<Employee> implements Employee_Dao
 		return queryforList(sql, D_id);
 	}
 
+	@Override
+	public List<Employee> get_select_employee(int N_id) {
+		String sql="select employee.P_id,employee.P_name,employee.P_mobile,employee.P_address,employee.P_department from notive,notive_employee,employee WHERE notive.N_id=notive_employee.N_id AND employee.P_id=notive_employee.P_id AND notive.N_id=?";
+		return queryforList(sql, N_id);
+	}
+
 }

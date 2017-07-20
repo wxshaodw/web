@@ -29,4 +29,8 @@ public interface Employee_Dao {
 	/**
 	 * 根据部门号获取员工列表**/
 	public List<Employee>get_employee_list(int D_id);
+	
+	/**
+	 * 返回与公告相关的员工列表**/
+	public List<Employee> get_select_employee(int N_id);
 }

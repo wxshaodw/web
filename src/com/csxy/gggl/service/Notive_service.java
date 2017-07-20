@@ -153,4 +153,19 @@ public class Notive_service {
 		
 	}
 	
+	public List<normal_Notive> getallNotivebycondition(Condition condition){
+		List<Notive> list=notive_Dao.query_all(notive_Dao.create_query_sql(condition));
+		return create_normalNotive(list);
+	}
+	
+	public List<normal_Notive> getallNotivebycondition(Condition condition,String P_id){
+		List<Notive> list=notive_Dao.query_all(P_id,notive_Dao.create_query_sql(condition));
+		return create_normalNotive(list);
+	}
+	
+	public Notive get_Notive(int N_id){
+		return notive_Dao.get_a_Noitve(N_id);
+		
+	}
+	
 }

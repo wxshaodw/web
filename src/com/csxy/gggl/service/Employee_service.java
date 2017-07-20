@@ -20,6 +20,11 @@ public class Employee_service {
 		
 	}
 	
+	public List<Employee> get_employeelist(int dept_id){
+		return employee_Dao.get_employee_list(dept_id);
+		
+	}
+	
 	public Employee get_employee(String user) {
 		return employee_Dao.getemployee(user);
 	}
@@ -37,6 +42,10 @@ public class Employee_service {
 		}
 		return list;
 		
+	}
+	
+	public List<Employee> get_selected_list(int N_id){
+		return employee_Dao.get_select_employee(N_id);
 	}
 	
 }

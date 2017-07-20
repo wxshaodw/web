@@ -7,6 +7,7 @@ public class Condition {
 	String top="";
 	String title="";
 	String begin_time="";
+	String release="";
 	String end_time="";
 	
 	public String getAuthor() {
@@ -50,6 +51,12 @@ public class Condition {
 	}
 	public void setEnd_time(String end_time) {
 		this.end_time = end_time;
+	}
+	public String getRelease() {
+		return release;
+	}
+	public void setRelease(String release) {
+		this.release = release;
 	}
 
 }

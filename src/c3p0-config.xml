@@ -3,8 +3,8 @@
 <c3p0-config>
     <named-config name="javawebapp">
         
-        <property name="user">root</property>
-        <property name="password">root</property>
+        <property name="user">pc9527</property>
+        <property name="password">pc9527</property>
         <property name="jdbcUrl">jdbc:mysql:///notive_manger</property><property name="driverClass">com.mysql.jdbc.Driver</property>
         
         <property name="acquireIncrement">2</property>
