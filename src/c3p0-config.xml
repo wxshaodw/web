@@ -14,6 +14,6 @@
 
         <property name="maxStatements">20</property> 
         <property name="maxStatementsPerConnection">5</property>
-    
+    <property name="maxStatementsPerConnection">5</property>
     </named-config>
 </c3p0-config>
